@@ -12,7 +12,7 @@ A dark Neovim colorscheme inspired by [Syntax FM](https://github.com/syntaxfm/vs
 ## Palette
 
 | Color   | Hex       | Usage                        |
-|---------|-----------|------------------------------|
+| ------- | --------- | ---------------------------- |
 | Orange  | `#fabf46` | Functions, accents           |
 | Green   | `#cdff5c` | Strings                      |
 | Cyan    | `#6dfff8` | Keywords, types, operators   |
