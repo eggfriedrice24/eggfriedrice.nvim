@@ -16,7 +16,7 @@ function M.setup(c, config)
 	hl("@variable.member", { fg = c.fg })
 
 	-- Constants
-	hl("@constant", { fg = c.magenta })
+	hl("@constant", { fg = c.fg })
 	hl("@constant.builtin", { fg = c.magenta })
 	hl("@constant.macro", { fg = c.magenta })
 
@@ -71,7 +71,7 @@ function M.setup(c, config)
 	hl("@keyword.coroutine", { fg = c.cyan })
 	hl("@keyword.function", { fg = c.cyan })
 	hl("@keyword.operator", { fg = c.cyan })
-	hl("@keyword.import", { fg = c.cyan })
+	hl("@keyword.import", { fg = c.orange })
 	hl("@keyword.type", { fg = c.cyan })
 	hl("@keyword.modifier", { fg = c.cyan })
 	hl("@keyword.repeat", { fg = c.red })
@@ -125,9 +125,9 @@ function M.setup(c, config)
 	hl("@diff.delta", { fg = c.git_change })
 
 	-- Tags (HTML, JSX)
-	hl("@tag", { fg = c.red })
-	hl("@tag.builtin", { fg = c.red })
-	hl("@tag.attribute", { fg = c.orange })
+	hl("@tag", { fg = c.orange })
+	hl("@tag.builtin", { fg = c.orange })
+	hl("@tag.attribute", { fg = c.cyan })
 	hl("@tag.delimiter", { fg = c.rose })
 end
 

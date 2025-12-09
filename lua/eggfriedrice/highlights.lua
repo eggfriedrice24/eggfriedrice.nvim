@@ -11,7 +11,6 @@ end
 function M.setup(c, config)
 	local bg = config.transparent and c.none or c.bg
 	local bg_dark = config.transparent and c.none or c.bg_dark
-	local bg_light = config.transparent and c.none or c.bg_light
 
 	-- Editor UI
 	hl("Normal", { fg = c.fg, bg = bg })
@@ -104,7 +103,7 @@ function M.setup(c, config)
 	hl("Exception", { fg = c.red })
 
 	hl("PreProc", { fg = c.cyan })
-	hl("Include", { fg = c.cyan })
+	hl("Include", { fg = c.orange })
 	hl("Define", { fg = c.cyan })
 	hl("Macro", { fg = c.cyan })
 	hl("PreCondit", { fg = c.cyan })
@@ -125,22 +124,6 @@ function M.setup(c, config)
 	hl("Ignore", { fg = c.bg })
 	hl("Error", { fg = c.error })
 	hl("Todo", { fg = c.bg, bg = c.orange, bold = true })
-
-	-- TypeScript/JavaScript
-	hl("typescriptBraces", { fg = c.rose })
-	hl("typescriptParens", { fg = c.rose })
-	hl("typescriptBrackets", { fg = c.rose })
-	hl("typescriptBlock", { fg = c.rose })
-	hl("typescriptTypeBlock", { fg = c.rose })
-	hl("typescriptArrowFunc", { fg = c.rose })
-	hl("typescriptObjectLiteral", { fg = c.rose })
-	hl("jsBrackets", { fg = c.rose })
-	hl("jsBraces", { fg = c.rose })
-	hl("jsParens", { fg = c.rose })
-	hl("jsFuncBraces", { fg = c.rose })
-	hl("jsObjectBraces", { fg = c.rose })
-	hl("jsDestructuringBraces", { fg = c.rose })
-	hl("jsTemplateBraces", { fg = c.rose })
 end
 
 return M

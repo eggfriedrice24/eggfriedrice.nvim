@@ -73,6 +73,7 @@ function M.setup(c, config)
 	hl("@lsp.type.property", { fg = c.fg })
 	hl("@lsp.type.struct", { fg = c.cyan })
 	hl("@lsp.type.type", { fg = c.cyan })
+	hl("@lsp.type.typeAlias", { fg = c.cyan })
 	hl("@lsp.type.typeParameter", { fg = c.cyan })
 	hl("@lsp.type.variable", { fg = c.fg })
 
@@ -81,9 +82,9 @@ function M.setup(c, config)
 	hl("@lsp.mod.readonly", { italic = true })
 	hl("@lsp.mod.defaultLibrary", { fg = c.cyan })
 
-	-- Language-specific semantic highlights
-	hl("@lsp.typemod.function.defaultLibrary", { fg = c.cyan })
+	-- Type modifiers
 	hl("@lsp.typemod.variable.defaultLibrary", { fg = c.cyan })
+	hl("@lsp.typemod.function.defaultLibrary", { fg = c.cyan })
 end
 
 return M
