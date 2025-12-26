@@ -12,12 +12,12 @@ local colors = {
 	fg_gutter = "#4a4a4a",
 
 	-- Palette
+	yellow = "#ffdf20",
 	orange = "#fabf46",
-	green = "#cdff5c",
+	green = "#d8f999",
 	cyan = "#6dfff8",
 	red = "#eb5757",
-	magenta = "#cf256d",
-	rose = "#fb7185",
+	rose = "#ffa1ad",
 
 	-- Semantic
 	comment = "#515151",
@@ -28,7 +28,7 @@ local colors = {
 	error = "#eb5757",
 	warning = "#fabf46",
 	info = "#6dfff8",
-	hint = "#cdff5c",
+	hint = "#d8f999",
 
 	-- Git
 	git_add = "#cdff5c",

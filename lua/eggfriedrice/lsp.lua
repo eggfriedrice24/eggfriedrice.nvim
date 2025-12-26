@@ -50,7 +50,7 @@ function M.setup(c, config)
 	hl("LspReferenceWrite", { bg = c.selection })
 
 	-- LSP signature help
-	hl("LspSignatureActiveParameter", { fg = c.orange, bold = true })
+	hl("LspSignatureActiveParameter", { fg = c.yellow, bold = true })
 
 	-- LSP codelens
 	hl("LspCodeLens", { fg = c.comment })
@@ -63,11 +63,11 @@ function M.setup(c, config)
 	hl("@lsp.type.class", { fg = c.cyan })
 	hl("@lsp.type.decorator", { fg = c.cyan })
 	hl("@lsp.type.enum", { fg = c.cyan })
-	hl("@lsp.type.enumMember", { fg = c.magenta })
-	hl("@lsp.type.function", { fg = c.orange })
+	hl("@lsp.type.enumMember", { fg = c.orange })
+	hl("@lsp.type.function", { fg = c.yellow })
 	hl("@lsp.type.interface", { fg = c.cyan })
 	hl("@lsp.type.macro", { fg = c.cyan })
-	hl("@lsp.type.method", { fg = c.orange })
+	hl("@lsp.type.method", { fg = c.yellow })
 	hl("@lsp.type.namespace", { fg = c.cyan })
 	hl("@lsp.type.parameter", { fg = c.fg })
 	hl("@lsp.type.property", { fg = c.fg })
