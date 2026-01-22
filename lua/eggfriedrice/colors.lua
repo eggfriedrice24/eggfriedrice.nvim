@@ -13,8 +13,8 @@ local colors = {
 
 	-- Palette
 	yellow = "#ffdf20",
-	orange = "#fabf46",
-	green = "#d8f999",
+	orange = "#ffae57",
+	green = "#05df72",
 	cyan = "#6dfff8",
 	red = "#eb5757",
 	rose = "#ffa1ad",
@@ -28,7 +28,7 @@ local colors = {
 	error = "#eb5757",
 	warning = "#fabf46",
 	info = "#6dfff8",
-	hint = "#d8f999",
+	hint = "#05df72",
 
 	-- Git
 	git_add = "#cdff5c",

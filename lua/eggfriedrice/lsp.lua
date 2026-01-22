@@ -50,7 +50,7 @@ function M.setup(c, config)
 	hl("LspReferenceWrite", { bg = c.selection })
 
 	-- LSP signature help
-	hl("LspSignatureActiveParameter", { fg = c.yellow, bold = true })
+	hl("LspSignatureActiveParameter", { fg = c.orange, bold = true })
 
 	-- LSP codelens
 	hl("LspCodeLens", { fg = c.comment })
@@ -60,31 +60,31 @@ function M.setup(c, config)
 	hl("LspInlayHint", { fg = c.comment, bg = c.bg_light })
 
 	-- Semantic tokens
-	hl("@lsp.type.class", { fg = c.cyan })
-	hl("@lsp.type.decorator", { fg = c.cyan })
-	hl("@lsp.type.enum", { fg = c.cyan })
-	hl("@lsp.type.enumMember", { fg = c.orange })
-	hl("@lsp.type.function", { fg = c.yellow })
-	hl("@lsp.type.interface", { fg = c.cyan })
-	hl("@lsp.type.macro", { fg = c.cyan })
-	hl("@lsp.type.method", { fg = c.yellow })
-	hl("@lsp.type.namespace", { fg = c.cyan })
+	hl("@lsp.type.class", { fg = c.yellow })
+	hl("@lsp.type.decorator", { fg = c.orange })
+	hl("@lsp.type.enum", { fg = c.yellow })
+	hl("@lsp.type.enumMember", { fg = c.fg })
+	hl("@lsp.type.function", { fg = c.orange })
+	hl("@lsp.type.interface", { fg = c.yellow })
+	hl("@lsp.type.macro", { fg = c.yellow })
+	hl("@lsp.type.method", { fg = c.orange })
+	hl("@lsp.type.namespace", { fg = c.yellow })
 	hl("@lsp.type.parameter", { fg = c.fg })
-	hl("@lsp.type.property", { fg = c.fg })
-	hl("@lsp.type.struct", { fg = c.cyan })
-	hl("@lsp.type.type", { fg = c.cyan })
-	hl("@lsp.type.typeAlias", { fg = c.cyan })
-	hl("@lsp.type.typeParameter", { fg = c.cyan })
+	hl("@lsp.type.property", { fg = c.fg_dark })
+	hl("@lsp.type.struct", { fg = c.yellow })
+	hl("@lsp.type.type", { fg = c.yellow })
+	hl("@lsp.type.typeAlias", { fg = c.yellow })
+	hl("@lsp.type.typeParameter", { fg = c.yellow })
 	hl("@lsp.type.variable", { fg = c.fg })
 
 	-- Semantic token modifiers
 	hl("@lsp.mod.deprecated", { strikethrough = true })
 	hl("@lsp.mod.readonly", { italic = true })
-	hl("@lsp.mod.defaultLibrary", { fg = c.cyan })
+	hl("@lsp.mod.defaultLibrary", { fg = c.yellow })
 
 	-- Type modifiers
-	hl("@lsp.typemod.variable.defaultLibrary", { fg = c.cyan })
-	hl("@lsp.typemod.function.defaultLibrary", { fg = c.cyan })
+	hl("@lsp.typemod.variable.defaultLibrary", { fg = c.yellow })
+	hl("@lsp.typemod.function.defaultLibrary", { fg = c.orange })
 end
 
 return M
