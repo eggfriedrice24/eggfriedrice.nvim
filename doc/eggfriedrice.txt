@@ -15,9 +15,9 @@ CONTENTS                                                *eggfriedrice-contents*
 1. INTRODUCTION                                     *eggfriedrice-introduction*
 
 eggfriedrice is a dark colorscheme that leans into its name: yolk-yellow
-keywords, rice-cream text, scallion-green strings, and a single cool teal
-accent for types. Yellow is reserved for keywords only, so the signature
-color stays a signature instead of noise.
+keywords, rice-cream text, and scallion-green strings on a navy background
+inspired by the halcyon VSCode theme. Yellow is reserved for keywords only,
+so the signature color stays a signature instead of noise.
 
 Token roles are enforced consistently across legacy |:syntax| groups,
 treesitter captures, and LSP semantic tokens, and are tuned against
@@ -106,17 +106,19 @@ green, visual is rose, replace is red, command is orange.
 ==============================================================================
 7. PALETTE                                               *eggfriedrice-palette*
 
-  Role                          Key         Hex ~
-  Keywords (the signature)      yellow      #f2c94c
-  Functions, annotations        orange      #ffae57
-  Strings                       green       #a5d65f
-  Types, classes, tags          cyan        #7fd8ce
-  Numbers, constants, escapes   rose        #ffa1ad
-  Errors, deletions             red         #eb5757
-  Text                          fg          #d8d3c3
-  Punctuation, operators        fg_dark     #a8a396
-  Comments                      comment     #7a7568
-  Background                    bg          #1a1a1a
+  Role                            Key         Hex ~
+  Keywords (the signature)        yellow      #ffc940
+  Functions                       orange      #ffae57
+  Strings                         green       #a5d65f
+  Types, classes, tags            cyan        #5ad4c6
+  Members, properties             blue        #6cb8ff
+  Booleans, builtins, decorators  purple      #c678dd
+  Numbers, constants, escapes     rose        #ffa1ad
+  Errors, deletions               red         #eb5757
+  Text                            fg          #d8d3c3
+  Punctuation, operators          fg_dark     #a8a396
+  Comments                        comment     #8695b7
+  Background                      bg          #1d2433
 
 Diff, search, and diagnostic backgrounds are blended from these at load
 time, so palette overrides via |eggfriedrice-on_colors| carry through.

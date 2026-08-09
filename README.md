@@ -1,23 +1,25 @@
 # eggfriedrice
 
-A dark, warm Neovim colorscheme that leans into its name: yolk-yellow keywords, rice-cream text, scallion-green strings, and one cool teal accent for types. Yellow is the signature and it is used for exactly one thing - keywords - so everything else stays readable.
+A dark, warm Neovim colorscheme that leans into its name: yolk-yellow keywords, rice-cream text, and scallion-green strings on a navy background inspired by [halcyon](https://github.com/bchiang7/halcyon-vscode). Yellow is the signature and it is used for exactly one thing - keywords - so everything else stays readable.
 
 ![preview](assets/preview.svg)
 
 ## Palette
 
 | Role | Color | Hex |
-| ------------------------------ | ------------ | --------- |
-| Keywords (the signature) | Yolk yellow | `#f2c94c` |
-| Functions, annotations | Orange | `#ffae57` |
+| ------------------------------- | ------------ | --------- |
+| Keywords (the signature) | Yolk yellow | `#ffc940` |
+| Functions | Orange | `#ffae57` |
 | Strings | Scallion | `#a5d65f` |
-| Types, classes, tags | Teal | `#7fd8ce` |
+| Types, classes, tags | Teal | `#5ad4c6` |
+| Members, properties | Blue | `#6cb8ff` |
+| Booleans, builtins, decorators | Purple | `#c678dd` |
 | Numbers, constants, escapes | Rose | `#ffa1ad` |
 | Errors, deletions | Red | `#eb5757` |
 | Text | Rice cream | `#d8d3c3` |
 | Punctuation, operators | Muted | `#a8a396` |
-| Comments | Warm gray | `#7a7568` |
-| Background | Near black | `#1a1a1a` |
+| Comments | Blue gray | `#8695b7` |
+| Background | Navy | `#1d2433` |
 
 Diff, search, and diagnostic backgrounds are blended from these at load time, so overriding a palette color carries through everywhere.
 
