@@ -13,25 +13,27 @@ local M = {}
 ---@return table
 function M.get(config)
 	local c = {
-		-- Base
-		bg = "#1a1a1a",
-		bg_dark = "#121212",
-		bg_light = "#252525",
+		-- Base (halcyon-inspired navy)
+		bg = "#1d2433",
+		bg_dark = "#171c28",
+		bg_light = "#232c42",
 		fg = "#d8d3c3", -- rice: warm cream
 		fg_dark = "#a8a396",
-		fg_gutter = "#4d4a41",
+		fg_gutter = "#46516c",
 
 		-- Palette
-		yellow = "#f2c94c", -- yolk: keywords, the signature
-		orange = "#ffae57", -- functions, annotations
+		yellow = "#ffc940", -- yolk: keywords, the signature
+		orange = "#ffae57", -- functions
 		green = "#a5d65f", -- scallion: strings
-		cyan = "#7fd8ce", -- the one cool accent: types
-		rose = "#ffa1ad", -- data literals: numbers, constants, escapes
+		cyan = "#5ad4c6", -- types, classes, tags
+		blue = "#6cb8ff", -- members, properties
+		purple = "#c678dd", -- booleans, builtin constants, decorators
+		rose = "#ffa1ad", -- numbers, constants, escapes
 		red = "#eb5757", -- errors, deletions
 
 		-- Semantic
-		comment = "#7a7568",
-		selection = "#3d3225",
+		comment = "#8695b7", -- halcyon blue-gray: recedes on navy
+		selection = "#2f3b54",
 		border = "#c9a747",
 
 		none = "NONE",

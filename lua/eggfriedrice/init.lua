@@ -34,11 +34,11 @@ local function terminal(c)
 	vim.g.terminal_color_10 = c.green
 	vim.g.terminal_color_3 = c.yellow
 	vim.g.terminal_color_11 = c.yellow
-	vim.g.terminal_color_4 = c.cyan
-	vim.g.terminal_color_12 = c.cyan
-	vim.g.terminal_color_5 = c.rose
+	vim.g.terminal_color_4 = c.blue
+	vim.g.terminal_color_12 = c.blue
+	vim.g.terminal_color_5 = c.purple
 	vim.g.terminal_color_13 = c.rose
-	vim.g.terminal_color_6 = util.blend(c.cyan, "#ffffff", 0.8)
+	vim.g.terminal_color_6 = c.cyan
 	vim.g.terminal_color_14 = util.blend(c.cyan, "#ffffff", 0.8)
 	vim.g.terminal_color_7 = c.fg
 	vim.g.terminal_color_15 = util.blend(c.fg, "#ffffff", 0.7)
