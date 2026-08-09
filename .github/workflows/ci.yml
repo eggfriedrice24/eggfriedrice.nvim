@@ -1,0 +1,38 @@
+name: ci
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  stylua:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: JohnnyMorganz/stylua-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+          args: --check lua/ colors/
+
+  load:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        neovim: [stable, nightly]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: ${{ matrix.neovim }}
+      - name: Load colorscheme headless
+        run: |
+          nvim --headless --clean -u NONE \
+            -c 'set rtp+=.' \
+            -c 'lua require("eggfriedrice").setup({ transparent = true, on_colors = function(c) end, on_highlights = function(h, c) end })' \
+            -c 'colorscheme eggfriedrice' \
+            -c 'lua assert(vim.g.colors_name == "eggfriedrice")' \
+            -c 'lua assert(require("lualine.themes.eggfriedrice").normal.a.bg)' \
+            -c 'qa!'

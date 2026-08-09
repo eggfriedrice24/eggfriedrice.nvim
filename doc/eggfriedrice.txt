@@ -1,0 +1,124 @@
+*eggfriedrice.txt*        A warm, yellow-dominant dark colorscheme for Neovim
+
+==============================================================================
+CONTENTS                                                *eggfriedrice-contents*
+
+  1. Introduction ......................... |eggfriedrice-introduction|
+  2. Requirements ......................... |eggfriedrice-requirements|
+  3. Usage ................................ |eggfriedrice-usage|
+  4. Configuration ........................ |eggfriedrice-configuration|
+  5. Hooks ................................ |eggfriedrice-hooks|
+  6. Lualine .............................. |eggfriedrice-lualine|
+  7. Palette .............................. |eggfriedrice-palette|
+
+==============================================================================
+1. INTRODUCTION                                     *eggfriedrice-introduction*
+
+eggfriedrice is a dark colorscheme that leans into its name: yolk-yellow
+keywords, rice-cream text, scallion-green strings, and a single cool teal
+accent for types. Yellow is reserved for keywords only, so the signature
+color stays a signature instead of noise.
+
+Token roles are enforced consistently across legacy |:syntax| groups,
+treesitter captures, and LSP semantic tokens, and are tuned against
+TypeScript, JavaScript, Go, Rust, Java, and Python.
+
+==============================================================================
+2. REQUIREMENTS                                     *eggfriedrice-requirements*
+
+- Neovim >= 0.9
+- 'termguicolors' (set automatically on load)
+
+==============================================================================
+3. USAGE                                                   *eggfriedrice-usage*
+
+Load the colorscheme: >lua
+
+    vim.cmd.colorscheme("eggfriedrice")
+<
+Calling `setup()` is only required to change defaults, and must happen
+before `colorscheme` is executed.
+
+==============================================================================
+4. CONFIGURATION                                   *eggfriedrice-configuration*
+
+                                                          *eggfriedrice.setup()*
+Defaults: >lua
+
+    require("eggfriedrice").setup({
+      transparent = false,    -- no background; use the terminal's
+      italic_comments = true, -- italic comments
+      dim_inactive = false,   -- darker background in inactive windows
+      on_colors = nil,        -- fun(colors) palette hook
+      on_highlights = nil,    -- fun(highlights, colors) group hook
+    })
+<
+transparent                                         *eggfriedrice-transparent*
+    When true, editor, float, and sidebar backgrounds are set to NONE so
+    the terminal background (and its opacity/blur) shows through.
+
+italic_comments                                 *eggfriedrice-italic_comments*
+    When false, comments are rendered upright.
+
+dim_inactive                                       *eggfriedrice-dim_inactive*
+    When true, inactive windows use the darker background shade. Ignored
+    while `transparent` is set.
+
+==============================================================================
+5. HOOKS                                                   *eggfriedrice-hooks*
+
+on_colors                                             *eggfriedrice-on_colors*
+    Receives the complete palette table (base colors, semantic aliases,
+    and derived backgrounds) before any highlight groups are built.
+    Mutate it in place: >lua
+
+    require("eggfriedrice").setup({
+      on_colors = function(c)
+        c.green = "#b0e070"
+        c.comment = "#8a8578"
+      end,
+    })
+<
+on_highlights                                     *eggfriedrice-on_highlights*
+    Receives the final table of highlight groups and the palette after
+    all groups are built and before they are applied. Mutate or add
+    groups in place: >lua
+
+    require("eggfriedrice").setup({
+      on_highlights = function(hl, c)
+        hl.CursorLineNr = { fg = c.rose, bold = true }
+        hl["@punctuation.special"] = { fg = c.orange }
+      end,
+    })
+<
+==============================================================================
+6. LUALINE                                               *eggfriedrice-lualine*
+
+A lualine theme ships with the plugin: >lua
+
+    require("lualine").setup({
+      options = { theme = "eggfriedrice" },
+    })
+<
+Mode colors match |mini.statusline| groups: normal is yellow, insert is
+green, visual is rose, replace is red, command is orange.
+
+==============================================================================
+7. PALETTE                                               *eggfriedrice-palette*
+
+  Role                          Key         Hex ~
+  Keywords (the signature)      yellow      #f2c94c
+  Functions, annotations        orange      #ffae57
+  Strings                       green       #a5d65f
+  Types, classes, tags          cyan        #7fd8ce
+  Numbers, constants, escapes   rose        #ffa1ad
+  Errors, deletions             red         #eb5757
+  Text                          fg          #d8d3c3
+  Punctuation, operators        fg_dark     #a8a396
+  Comments                      comment     #7a7568
+  Background                    bg          #1a1a1a
+
+Diff, search, and diagnostic backgrounds are blended from these at load
+time, so palette overrides via |eggfriedrice-on_colors| carry through.
+
+vim:tw=78:ts=8:noet:ft=help:norl:

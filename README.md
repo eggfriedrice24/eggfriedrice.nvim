@@ -57,29 +57,87 @@ use {
 
 ## Configuration
 
-Call `setup()` before `colorscheme` (only needed if you change defaults):
+`setup()` is optional and only needed to change defaults. Call it before `colorscheme`. Full docs: `:h eggfriedrice`.
 
 ```lua
+-- defaults
 require("eggfriedrice").setup({
-  transparent = false,    -- transparent background
+  transparent = false,    -- no background; let the terminal show through
   italic_comments = true, -- italic comments
-  dim_inactive = false,   -- dim inactive windows
-
-  -- Tweak palette colors before highlights are built
-  on_colors = function(colors)
-    -- colors.green = "#b0e070"
-  end,
-
-  -- Tweak or add highlight groups after they are built
-  on_highlights = function(highlights, colors)
-    -- highlights.CursorLineNr = { fg = colors.yellow, bold = true }
-  end,
+  dim_inactive = false,   -- darker background in inactive windows
+  on_colors = nil,        -- fun(colors): tweak the palette
+  on_highlights = nil,    -- fun(highlights, colors): tweak highlight groups
 })
 
 vim.cmd.colorscheme("eggfriedrice")
 ```
 
+### Transparent background
+
+Removes editor, float, and sidebar backgrounds so your terminal's background (and its opacity or blur) shows through:
+
+```lua
+{
+  "eggfriedrice24/eggfriedrice.nvim",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    require("eggfriedrice").setup({
+      transparent = true,
+    })
+    vim.cmd.colorscheme("eggfriedrice")
+  end,
+}
+```
+
+### Upright comments
+
+```lua
+require("eggfriedrice").setup({
+  italic_comments = false,
+})
+```
+
+### Dim inactive windows
+
+Inactive windows get the darker background shade (ignored while `transparent` is set):
+
+```lua
+require("eggfriedrice").setup({
+  dim_inactive = true,
+})
+```
+
+### Overriding the palette
+
+`on_colors` runs before highlights are built and receives the complete palette, including semantic aliases (`error`, `git_add`, ...) and derived backgrounds (`diff`, `search`, ...). Changes carry through everywhere:
+
+```lua
+require("eggfriedrice").setup({
+  on_colors = function(c)
+    c.green = "#b0e070"   -- brighter strings
+    c.comment = "#8a8578" -- brighter comments
+  end,
+})
+```
+
+### Overriding highlight groups
+
+`on_highlights` runs after all groups are built and can change or add any group:
+
+```lua
+require("eggfriedrice").setup({
+  on_highlights = function(hl, c)
+    hl.CursorLineNr = { fg = c.rose, bold = true }
+    hl["@punctuation.special"] = { fg = c.orange }
+    hl.TelescopeBorder = { fg = c.fg_gutter }
+  end,
+})
+```
+
 ### lualine
+
+A matching lualine theme is bundled (normal is yellow, insert green, visual rose, replace red, command orange):
 
 ```lua
 require("lualine").setup({
