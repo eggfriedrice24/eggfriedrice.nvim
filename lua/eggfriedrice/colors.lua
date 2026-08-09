@@ -2,40 +2,67 @@
 ---@author eggfriedrice24
 ---@license MIT
 
-local colors = {
-	-- Base
-	bg = "#1a1a1a",
-	bg_dark = "#121212",
-	bg_light = "#252525",
-	fg = "#d4d4d4",
-	fg_dark = "#a0a0a0",
-	fg_gutter = "#4a4a4a",
+local util = require("eggfriedrice.util")
 
-	-- Palette
-	yellow = "#ffdf20",
-	orange = "#ffae57",
-	green = "#05df72",
-	cyan = "#6dfff8",
-	red = "#eb5757",
-	rose = "#ffa1ad",
+local M = {}
 
-	-- Semantic
-	comment = "#515151",
-	selection = "#3d3225",
-	border = "#fabf46",
+---Build the palette. Derived values are computed before the `on_colors`
+---hook runs, so the hook receives the complete table and can override
+---anything, including derived backgrounds.
+---@param config? eggfriedrice.Config
+---@return table
+function M.get(config)
+	local c = {
+		-- Base
+		bg = "#1a1a1a",
+		bg_dark = "#121212",
+		bg_light = "#252525",
+		fg = "#d8d3c3", -- rice: warm cream
+		fg_dark = "#a8a396",
+		fg_gutter = "#4d4a41",
+
+		-- Palette
+		yellow = "#f2c94c", -- yolk: keywords, the signature
+		orange = "#ffae57", -- functions, annotations
+		green = "#a5d65f", -- scallion: strings
+		cyan = "#7fd8ce", -- the one cool accent: types
+		rose = "#ffa1ad", -- data literals: numbers, constants, escapes
+		red = "#eb5757", -- errors, deletions
+
+		-- Semantic
+		comment = "#7a7568",
+		selection = "#3d3225",
+		border = "#c9a747",
+
+		none = "NONE",
+	}
 
 	-- Diagnostic
-	error = "#eb5757",
-	warning = "#fabf46",
-	info = "#6dfff8",
-	hint = "#05df72",
+	c.error = c.red
+	c.warning = c.orange
+	c.info = c.cyan
+	c.hint = c.green
 
 	-- Git
-	git_add = "#cdff5c",
-	git_change = "#fabf46",
-	git_delete = "#eb5757",
+	c.git_add = c.green
+	c.git_change = c.yellow
+	c.git_delete = c.red
 
-	none = "NONE",
-}
+	-- Derived backgrounds
+	c.diff = {
+		add = util.blend(c.green, c.bg, 0.15),
+		change = util.blend(c.yellow, c.bg, 0.10),
+		delete = util.blend(c.red, c.bg, 0.15),
+		text = util.blend(c.yellow, c.bg, 0.30),
+	}
+	c.search = util.blend(c.yellow, c.bg, 0.30)
+	c.scope = util.blend(c.yellow, c.bg, 0.45)
 
-return colors
+	if config and config.on_colors then
+		config.on_colors(c)
+	end
+
+	return c
+end
+
+return M
