@@ -113,7 +113,7 @@ green, visual is rose, replace is red, command is orange.
   Types, classes, tags            cyan        #5ad4c6
   Members, properties             blue        #6cb8ff
   Booleans, builtins, decorators  purple      #c678dd
-  Numbers, constants, escapes     rose        #ffa1ad
+  Numbers, constants, escapes     rose        #ff7a95
   Errors, deletions               red         #eb5757
   Text                            fg          #d8d3c3
   Punctuation, operators          fg_dark     #a8a396

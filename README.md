@@ -14,7 +14,7 @@ A dark, warm Neovim colorscheme that leans into its name: yolk-yellow keywords, 
 | Types, classes, tags | Teal | `#5ad4c6` |
 | Members, properties | Blue | `#6cb8ff` |
 | Booleans, builtins, decorators | Purple | `#c678dd` |
-| Numbers, constants, escapes | Rose | `#ffa1ad` |
+| Numbers, constants, escapes | Rose | `#ff7a95` |
 | Errors, deletions | Red | `#eb5757` |
 | Text | Rice cream | `#d8d3c3` |
 | Punctuation, operators | Muted | `#a8a396` |
