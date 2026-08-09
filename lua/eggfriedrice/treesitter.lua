@@ -4,132 +4,143 @@
 
 local M = {}
 
-local function hl(group, opts)
-	vim.api.nvim_set_hl(0, group, opts)
-end
+---Treesitter captures. Role map:
+---yellow = keywords, orange = functions/annotations, green = strings,
+---cyan = types, rose = data literals and special punctuation,
+---fg_dark = operators and plain punctuation.
+---@param c table
+---@param config eggfriedrice.Config
+---@return table<string, vim.api.keyset.highlight>
+function M.get(c, config)
+	return {
+		-- Identifiers
+		["@variable"] = { fg = c.fg },
+		["@variable.builtin"] = { fg = c.yellow }, -- self, this, super
+		["@variable.parameter"] = { fg = c.fg },
+		["@variable.parameter.builtin"] = { fg = c.fg },
+		["@variable.member"] = { fg = c.fg },
+		["@property"] = { fg = c.fg },
 
-function M.setup(c, config)
-	-- Identifiers
-	hl("@variable", { fg = c.fg })
-	hl("@variable.builtin", { fg = c.yellow })
-	hl("@variable.parameter", { fg = c.fg })
-	hl("@variable.member", { fg = c.fg_dark })
+		-- Constants (Go const, Rust const, PY_UPPER, None, nil, iota)
+		["@constant"] = { fg = c.rose },
+		["@constant.builtin"] = { fg = c.rose },
+		["@constant.macro"] = { fg = c.rose },
 
-	-- Constants
-	hl("@constant", { fg = c.fg_dark })
-	hl("@constant.builtin", { fg = c.cyan })
-	hl("@constant.macro", { fg = c.yellow })
+		-- Modules (Go packages, Python modules, Java packages)
+		["@module"] = { fg = c.fg },
+		["@module.builtin"] = { fg = c.fg },
 
-	-- Modules
-	hl("@module", { fg = c.yellow })
-	hl("@module.builtin", { fg = c.yellow })
+		-- Labels (goto labels, Rust lifetimes)
+		["@label"] = { fg = c.rose },
 
-	-- Strings
-	hl("@string", { fg = c.green })
-	hl("@string.documentation", { fg = c.cyan })
-	hl("@string.regexp", { fg = c.yellow })
-	hl("@string.escape", { fg = c.yellow })
-	hl("@string.special", { fg = c.yellow })
-	hl("@string.special.symbol", { fg = c.yellow })
-	hl("@string.special.url", { fg = c.yellow, underline = true })
+		-- Strings
+		["@string"] = { fg = c.green },
+		["@string.documentation"] = { fg = c.green },
+		["@string.regexp"] = { fg = c.orange },
+		["@string.escape"] = { fg = c.rose },
+		["@string.special"] = { fg = c.rose },
+		["@string.special.symbol"] = { fg = c.rose },
+		["@string.special.url"] = { fg = c.cyan, underline = true },
 
-	-- Characters
-	hl("@character", { fg = c.green })
-	hl("@character.special", { fg = c.yellow })
+		-- Characters
+		["@character"] = { fg = c.green },
+		["@character.special"] = { fg = c.rose },
 
-	-- Numbers & Booleans
-	hl("@number", { fg = c.yellow })
-	hl("@number.float", { fg = c.yellow })
-	hl("@boolean", { fg = c.yellow })
+		-- Numbers & Booleans
+		["@number"] = { fg = c.rose },
+		["@number.float"] = { fg = c.rose },
+		["@boolean"] = { fg = c.rose },
 
-	-- Types
-	hl("@type", { fg = c.yellow })
-	hl("@type.builtin", { fg = c.yellow })
-	hl("@type.definition", { fg = c.yellow })
+		-- Types (structs, traits, interfaces, classes, generics)
+		["@type"] = { fg = c.cyan },
+		["@type.builtin"] = { fg = c.cyan },
+		["@type.definition"] = { fg = c.cyan },
 
-	-- Attributes & Properties
-	hl("@attribute", { fg = c.orange })
-	hl("@attribute.builtin", { fg = c.orange })
-	hl("@property", { fg = c.fg })
+		-- Attributes (Python/TS decorators, Rust #[derive], Java @Override)
+		["@attribute"] = { fg = c.orange },
+		["@attribute.builtin"] = { fg = c.orange },
 
-	-- Functions
-	hl("@function", { fg = c.orange })
-	hl("@function.builtin", { fg = c.orange })
-	hl("@function.call", { fg = c.orange })
-	hl("@function.macro", { fg = c.yellow })
-	hl("@function.method", { fg = c.orange })
-	hl("@function.method.call", { fg = c.orange })
+		-- Functions
+		["@function"] = { fg = c.orange },
+		["@function.builtin"] = { fg = c.orange },
+		["@function.call"] = { fg = c.orange },
+		["@function.macro"] = { fg = c.orange }, -- println!, vec!
+		["@function.method"] = { fg = c.orange },
+		["@function.method.call"] = { fg = c.orange },
 
-	-- Constructors
-	hl("@constructor", { fg = c.rose })
+		-- Constructors (new Foo, Rust variants, Java/TS classes)
+		["@constructor"] = { fg = c.cyan },
 
-	-- Operators
-	hl("@operator", { fg = c.yellow })
+		-- Operators (muted so identifiers and literals pop)
+		["@operator"] = { fg = c.fg_dark },
 
-	-- Keywords
-	hl("@keyword", { fg = c.yellow })
-	hl("@keyword.coroutine", { fg = c.yellow })
-	hl("@keyword.function", { fg = c.yellow })
-	hl("@keyword.operator", { fg = c.yellow })
-	hl("@keyword.import", { fg = c.yellow })
-	hl("@keyword.export", { fg = c.yellow })
-	hl("@keyword.type", { fg = c.yellow })
-	hl("@keyword.modifier", { fg = c.yellow })
-	hl("@keyword.repeat", { fg = c.cyan })
-	hl("@keyword.return", { fg = c.rose })
-	hl("@keyword.debug", { fg = c.orange })
-	hl("@keyword.exception", { fg = c.rose })
-	hl("@keyword.conditional", { fg = c.rose })
-	hl("@keyword.conditional.ternary", { fg = c.rose })
-	hl("@keyword.directive", { fg = c.yellow })
-	hl("@keyword.directive.define", { fg = c.yellow })
+		-- Keywords: all yellow, the signature. Explicit subcaptures so
+		-- runtime default links (e.g. @keyword.operator -> Operator)
+		-- cannot pull them toward other roles.
+		["@keyword"] = { fg = c.yellow },
+		["@keyword.coroutine"] = { fg = c.yellow },
+		["@keyword.function"] = { fg = c.yellow },
+		["@keyword.operator"] = { fg = c.yellow }, -- and, or, not, in, new, instanceof
+		["@keyword.import"] = { fg = c.yellow },
+		["@keyword.export"] = { fg = c.yellow },
+		["@keyword.type"] = { fg = c.yellow },
+		["@keyword.modifier"] = { fg = c.yellow }, -- pub, mut, public, static, async
+		["@keyword.repeat"] = { fg = c.yellow },
+		["@keyword.return"] = { fg = c.yellow },
+		["@keyword.debug"] = { fg = c.yellow },
+		["@keyword.exception"] = { fg = c.yellow },
+		["@keyword.conditional"] = { fg = c.yellow },
+		["@keyword.conditional.ternary"] = { fg = c.yellow },
+		["@keyword.directive"] = { fg = c.yellow },
+		["@keyword.directive.define"] = { fg = c.yellow },
 
-	-- Punctuation
-	hl("@punctuation.delimiter", { fg = c.rose })
-	hl("@punctuation.bracket", { fg = c.rose })
-	hl("@punctuation.special", { fg = c.rose })
+		-- Punctuation: muted, except special (template ${}, f-string {})
+		["@punctuation.delimiter"] = { fg = c.fg_dark },
+		["@punctuation.bracket"] = { fg = c.fg_dark },
+		["@punctuation.special"] = { fg = c.rose },
 
-	-- Comments
-	hl("@comment", { fg = c.comment, italic = config.italic_comments })
-	hl("@comment.documentation", { fg = c.comment, italic = config.italic_comments })
-	hl("@comment.error", { fg = c.error })
-	hl("@comment.warning", { fg = c.warning })
-	hl("@comment.todo", { fg = c.bg, bg = c.orange, bold = true })
-	hl("@comment.note", { fg = c.bg, bg = c.info })
+		-- Comments
+		["@comment"] = { fg = c.comment, italic = config.italic_comments },
+		["@comment.documentation"] = { fg = c.comment, italic = config.italic_comments },
+		["@comment.error"] = { fg = c.error },
+		["@comment.warning"] = { fg = c.warning },
+		["@comment.todo"] = { fg = c.bg, bg = c.orange, bold = true },
+		["@comment.note"] = { fg = c.bg, bg = c.info },
 
-	-- Markup
-	hl("@markup.strong", { bold = true })
-	hl("@markup.italic", { italic = true })
-	hl("@markup.strikethrough", { strikethrough = true })
-	hl("@markup.underline", { underline = true })
-	hl("@markup.heading", { fg = c.yellow, bold = true })
-	hl("@markup.heading.1", { fg = c.yellow, bold = true })
-	hl("@markup.heading.2", { fg = c.yellow, bold = true })
-	hl("@markup.heading.3", { fg = c.green, bold = true })
-	hl("@markup.heading.4", { fg = c.orange, bold = true })
-	hl("@markup.heading.5", { fg = c.yellow, bold = true })
-	hl("@markup.heading.6", { fg = c.red, bold = true })
-	hl("@markup.quote", { fg = c.fg_dark, italic = true })
-	hl("@markup.math", { fg = c.yellow })
-	hl("@markup.link", { fg = c.yellow })
-	hl("@markup.link.label", { fg = c.yellow })
-	hl("@markup.link.url", { fg = c.yellow, underline = true })
-	hl("@markup.raw", { fg = c.green })
-	hl("@markup.raw.block", { fg = c.green })
-	hl("@markup.list", { fg = c.yellow })
-	hl("@markup.list.checked", { fg = c.green })
-	hl("@markup.list.unchecked", { fg = c.fg_gutter })
+		-- Markup
+		["@markup.strong"] = { bold = true },
+		["@markup.italic"] = { italic = true },
+		["@markup.strikethrough"] = { strikethrough = true },
+		["@markup.underline"] = { underline = true },
+		["@markup.heading"] = { fg = c.yellow, bold = true },
+		["@markup.heading.1"] = { fg = c.yellow, bold = true },
+		["@markup.heading.2"] = { fg = c.orange, bold = true },
+		["@markup.heading.3"] = { fg = c.green, bold = true },
+		["@markup.heading.4"] = { fg = c.cyan, bold = true },
+		["@markup.heading.5"] = { fg = c.rose, bold = true },
+		["@markup.heading.6"] = { fg = c.fg_dark, bold = true },
+		["@markup.quote"] = { fg = c.fg_dark, italic = true },
+		["@markup.math"] = { fg = c.cyan },
+		["@markup.link"] = { fg = c.cyan },
+		["@markup.link.label"] = { fg = c.cyan },
+		["@markup.link.url"] = { fg = c.cyan, underline = true },
+		["@markup.raw"] = { fg = c.green },
+		["@markup.raw.block"] = { fg = c.green },
+		["@markup.list"] = { fg = c.rose },
+		["@markup.list.checked"] = { fg = c.green },
+		["@markup.list.unchecked"] = { fg = c.fg_dark },
 
-	-- Diff
-	hl("@diff.plus", { fg = c.git_add })
-	hl("@diff.minus", { fg = c.git_delete })
-	hl("@diff.delta", { fg = c.git_change })
+		-- Diff
+		["@diff.plus"] = { fg = c.git_add },
+		["@diff.minus"] = { fg = c.git_delete },
+		["@diff.delta"] = { fg = c.git_change },
 
-	-- Tags (HTML, JSX)
-	hl("@tag", { fg = c.orange })
-	hl("@tag.builtin", { fg = c.orange })
-	hl("@tag.attribute", { fg = c.yellow })
-	hl("@tag.delimiter", { fg = c.rose })
+		-- Tags (HTML, JSX/TSX)
+		["@tag"] = { fg = c.cyan },
+		["@tag.builtin"] = { fg = c.cyan },
+		["@tag.attribute"] = { fg = c.orange },
+		["@tag.delimiter"] = { fg = c.fg_dark },
+	}
 end
 
 return M

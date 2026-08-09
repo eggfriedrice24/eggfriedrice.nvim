@@ -2,89 +2,86 @@
 ---@author eggfriedrice24
 ---@license MIT
 
+local util = require("eggfriedrice.util")
+
 local M = {}
 
-local function hl(group, opts)
-	vim.api.nvim_set_hl(0, group, opts)
-end
+---Diagnostics and LSP semantic tokens. Semantic tokens override
+---treesitter (rust-analyzer, gopls, jdtls, pyright all send them),
+---so they must follow the same role map.
+---@param c table
+---@param config eggfriedrice.Config
+---@return table<string, vim.api.keyset.highlight>
+function M.get(c, config)
+	return {
+		-- Diagnostics
+		DiagnosticError = { fg = c.error },
+		DiagnosticWarn = { fg = c.warning },
+		DiagnosticInfo = { fg = c.info },
+		DiagnosticHint = { fg = c.hint },
+		DiagnosticOk = { fg = c.green },
+		DiagnosticUnnecessary = { fg = c.comment },
+		DiagnosticDeprecated = { strikethrough = true, sp = c.fg_dark },
+		-- DiagnosticSign* and DiagnosticFloating* default-link to the
+		-- groups above, so they are not repeated here.
 
-function M.setup(c, config)
-	-- Diagnostics
-	hl("DiagnosticError", { fg = c.error })
-	hl("DiagnosticWarn", { fg = c.warning })
-	hl("DiagnosticInfo", { fg = c.info })
-	hl("DiagnosticHint", { fg = c.hint })
-	hl("DiagnosticOk", { fg = c.green })
+		-- Diagnostic virtual text
+		DiagnosticVirtualTextError = { fg = c.error, bg = util.blend(c.error, c.bg, 0.12) },
+		DiagnosticVirtualTextWarn = { fg = c.warning, bg = util.blend(c.warning, c.bg, 0.12) },
+		DiagnosticVirtualTextInfo = { fg = c.info, bg = util.blend(c.info, c.bg, 0.12) },
+		DiagnosticVirtualTextHint = { fg = c.hint, bg = util.blend(c.hint, c.bg, 0.12) },
+		DiagnosticVirtualTextOk = { fg = c.green, bg = util.blend(c.green, c.bg, 0.12) },
 
-	-- Diagnostic virtual text
-	hl("DiagnosticVirtualTextError", { fg = c.error, bg = "#2d202a" })
-	hl("DiagnosticVirtualTextWarn", { fg = c.warning, bg = "#2d2a20" })
-	hl("DiagnosticVirtualTextInfo", { fg = c.info, bg = "#202a2d" })
-	hl("DiagnosticVirtualTextHint", { fg = c.hint, bg = "#1a2a2a" })
-	hl("DiagnosticVirtualTextOk", { fg = c.green, bg = "#1a2a1a" })
+		-- Diagnostic underlines
+		DiagnosticUnderlineError = { undercurl = true, sp = c.error },
+		DiagnosticUnderlineWarn = { undercurl = true, sp = c.warning },
+		DiagnosticUnderlineInfo = { undercurl = true, sp = c.info },
+		DiagnosticUnderlineHint = { undercurl = true, sp = c.hint },
+		DiagnosticUnderlineOk = { undercurl = true, sp = c.green },
 
-	-- Diagnostic underlines
-	hl("DiagnosticUnderlineError", { undercurl = true, sp = c.error })
-	hl("DiagnosticUnderlineWarn", { undercurl = true, sp = c.warning })
-	hl("DiagnosticUnderlineInfo", { undercurl = true, sp = c.info })
-	hl("DiagnosticUnderlineHint", { undercurl = true, sp = c.hint })
-	hl("DiagnosticUnderlineOk", { undercurl = true, sp = c.green })
+		-- LSP references
+		LspReferenceText = { bg = c.selection },
+		LspReferenceRead = { bg = c.selection },
+		LspReferenceWrite = { bg = c.selection },
+		LspReferenceTarget = { bg = c.selection },
 
-	-- Diagnostic floating windows
-	hl("DiagnosticFloatingError", { fg = c.error })
-	hl("DiagnosticFloatingWarn", { fg = c.warning })
-	hl("DiagnosticFloatingInfo", { fg = c.info })
-	hl("DiagnosticFloatingHint", { fg = c.hint })
-	hl("DiagnosticFloatingOk", { fg = c.green })
+		-- LSP UI
+		LspSignatureActiveParameter = { fg = c.orange, bold = true },
+		LspCodeLens = { fg = c.comment },
+		LspCodeLensSeparator = { fg = c.fg_gutter },
+		LspInlayHint = { fg = c.comment, bg = c.bg_light },
+		LspInfoBorder = { fg = c.border },
 
-	-- Diagnostic signs
-	hl("DiagnosticSignError", { fg = c.error })
-	hl("DiagnosticSignWarn", { fg = c.warning })
-	hl("DiagnosticSignInfo", { fg = c.info })
-	hl("DiagnosticSignHint", { fg = c.hint })
-	hl("DiagnosticSignOk", { fg = c.green })
+		-- Semantic tokens: types
+		["@lsp.type.class"] = { fg = c.cyan },
+		["@lsp.type.interface"] = { fg = c.cyan },
+		["@lsp.type.struct"] = { fg = c.cyan },
+		["@lsp.type.enum"] = { fg = c.cyan },
+		["@lsp.type.type"] = { fg = c.cyan },
+		["@lsp.type.typeAlias"] = { fg = c.cyan },
+		["@lsp.type.typeParameter"] = { fg = c.cyan },
+		["@lsp.type.builtinType"] = { fg = c.cyan }, -- rust-analyzer: i32, str
 
-	-- LSP references
-	hl("LspReferenceText", { bg = c.selection })
-	hl("LspReferenceRead", { bg = c.selection })
-	hl("LspReferenceWrite", { bg = c.selection })
+		-- Semantic tokens: callables and annotations
+		["@lsp.type.function"] = { fg = c.orange },
+		["@lsp.type.method"] = { fg = c.orange },
+		["@lsp.type.macro"] = { fg = c.orange }, -- rust-analyzer: println!
+		["@lsp.type.decorator"] = { fg = c.orange },
 
-	-- LSP signature help
-	hl("LspSignatureActiveParameter", { fg = c.orange, bold = true })
+		-- Semantic tokens: values and identifiers
+		["@lsp.type.enumMember"] = { fg = c.rose },
+		["@lsp.type.lifetime"] = { fg = c.rose }, -- rust-analyzer
+		["@lsp.type.selfKeyword"] = { fg = c.yellow }, -- rust-analyzer
+		["@lsp.type.namespace"] = { fg = c.fg },
+		["@lsp.type.parameter"] = { fg = c.fg },
+		["@lsp.type.property"] = { fg = c.fg },
+		["@lsp.type.variable"] = { fg = c.fg },
 
-	-- LSP codelens
-	hl("LspCodeLens", { fg = c.comment })
-	hl("LspCodeLensSeparator", { fg = c.fg_gutter })
-
-	-- LSP inlay hints
-	hl("LspInlayHint", { fg = c.comment, bg = c.bg_light })
-
-	-- Semantic tokens
-	hl("@lsp.type.class", { fg = c.yellow })
-	hl("@lsp.type.decorator", { fg = c.orange })
-	hl("@lsp.type.enum", { fg = c.yellow })
-	hl("@lsp.type.enumMember", { fg = c.fg })
-	hl("@lsp.type.function", { fg = c.orange })
-	hl("@lsp.type.interface", { fg = c.yellow })
-	hl("@lsp.type.macro", { fg = c.yellow })
-	hl("@lsp.type.method", { fg = c.orange })
-	hl("@lsp.type.namespace", { fg = c.yellow })
-	hl("@lsp.type.parameter", { fg = c.fg })
-	hl("@lsp.type.property", { fg = c.fg_dark })
-	hl("@lsp.type.struct", { fg = c.yellow })
-	hl("@lsp.type.type", { fg = c.yellow })
-	hl("@lsp.type.typeAlias", { fg = c.yellow })
-	hl("@lsp.type.typeParameter", { fg = c.yellow })
-	hl("@lsp.type.variable", { fg = c.fg })
-
-	-- Semantic token modifiers
-	hl("@lsp.mod.deprecated", { strikethrough = true })
-	hl("@lsp.mod.readonly", { italic = true })
-	hl("@lsp.mod.defaultLibrary", { fg = c.yellow })
-
-	-- Type modifiers
-	hl("@lsp.typemod.variable.defaultLibrary", { fg = c.yellow })
-	hl("@lsp.typemod.function.defaultLibrary", { fg = c.orange })
+		-- Semantic token modifiers. @lsp.mod.readonly italic is
+		-- deliberately not set: rust-analyzer marks most bindings
+		-- readonly and the buffer turns italic.
+		["@lsp.mod.deprecated"] = { strikethrough = true },
+	}
 end
 
 return M
