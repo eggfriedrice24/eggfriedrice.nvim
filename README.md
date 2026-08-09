@@ -10,8 +10,8 @@ A dark, warm Neovim colorscheme that leans into its name: yolk-yellow keywords, 
 | ------------------------------- | ------------ | --------- |
 | Keywords (the signature) | Yolk yellow | `#ffc940` |
 | Functions | Orange | `#ffae57` |
-| Strings | Scallion | `#99e250` |
-| Types, classes | Teal | `#5ad4c6` |
+| Strings | Scallion | `#00c950` |
+| Types, classes | Teal | `#78e2d6` |
 | Member access, JSX braces | Blue | `#6cb8ff` |
 | Booleans, builtins, decorators | Purple | `#c678dd` |
 | Numbers, constants, keys, JSX tags | Rose | `#ff7a95` |
