@@ -19,7 +19,7 @@ A dark, warm Neovim colorscheme that leans into its name: yolk-yellow keywords, 
 | Text | Rice cream | `#d8d3c3` |
 | Punctuation, operators | Muted | `#a8a396` |
 | Comments | Blue gray | `#8695b7` |
-| Background | Navy | `#121722` |
+| Background | Navy | `#0d111a` |
 
 Diff, search, and diagnostic backgrounds are blended from these at load time, so overriding a palette color carries through everywhere.
 

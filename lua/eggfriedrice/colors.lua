@@ -14,9 +14,9 @@ local M = {}
 function M.get(config)
 	local c = {
 		-- Base (halcyon-inspired navy)
-		bg = "#121722",
-		bg_dark = "#0c101a",
-		bg_light = "#171c28",
+		bg = "#0d111a",
+		bg_dark = "#090c13",
+		bg_light = "#121722",
 		fg = "#d8d3c3", -- rice: warm cream
 		fg_dark = "#a8a396",
 		fg_gutter = "#46516c",
@@ -24,11 +24,11 @@ function M.get(config)
 		-- Palette
 		yellow = "#ffc940", -- yolk: keywords, the signature
 		orange = "#ffae57", -- functions
-		green = "#00c950", -- scallion: strings
-		cyan = "#78e2d6", -- types, classes, tags
-		blue = "#6cb8ff", -- members, properties
+		green = "#00c950", -- strings
+		cyan = "#78e2d6", -- types, classes
+		blue = "#6cb8ff", -- member access, special punctuation
 		purple = "#c678dd", -- booleans, builtin constants, decorators
-		rose = "#ff7a95", -- numbers, constants, escapes
+		rose = "#ff7a95", -- numbers, constants, keys, tags
 		red = "#eb5757", -- errors, deletions
 
 		-- Semantic
