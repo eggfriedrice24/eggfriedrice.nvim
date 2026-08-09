@@ -24,7 +24,7 @@ function M.get(config)
 		-- Palette
 		yellow = "#ffc940", -- yolk: keywords, the signature
 		orange = "#ffae57", -- functions
-		green = "#a5d65f", -- scallion: strings
+		green = "#99e250", -- scallion: strings
 		cyan = "#5ad4c6", -- types, classes, tags
 		blue = "#6cb8ff", -- members, properties
 		purple = "#c678dd", -- booleans, builtin constants, decorators
