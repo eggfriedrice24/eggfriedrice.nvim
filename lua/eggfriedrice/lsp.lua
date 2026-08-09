@@ -66,7 +66,7 @@ function M.get(c, config)
 		["@lsp.type.function"] = { fg = c.orange },
 		["@lsp.type.method"] = { fg = c.orange },
 		["@lsp.type.macro"] = { fg = c.orange }, -- rust-analyzer: println!
-		["@lsp.type.decorator"] = { fg = c.orange },
+		["@lsp.type.decorator"] = { fg = c.purple },
 
 		-- Semantic tokens: values and identifiers
 		["@lsp.type.enumMember"] = { fg = c.rose },
@@ -74,7 +74,7 @@ function M.get(c, config)
 		["@lsp.type.selfKeyword"] = { fg = c.yellow }, -- rust-analyzer
 		["@lsp.type.namespace"] = { fg = c.fg },
 		["@lsp.type.parameter"] = { fg = c.fg },
-		["@lsp.type.property"] = { fg = c.fg },
+		["@lsp.type.property"] = { fg = c.blue },
 		["@lsp.type.variable"] = { fg = c.fg },
 
 		-- Semantic token modifiers. @lsp.mod.readonly italic is

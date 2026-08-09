@@ -5,8 +5,9 @@
 local M = {}
 
 ---Treesitter captures. Role map:
----yellow = keywords, orange = functions/annotations, green = strings,
----cyan = types, rose = data literals and special punctuation,
+---yellow = keywords, orange = functions, green = strings, cyan = types,
+---blue = members/properties, purple = booleans/builtins/decorators,
+---rose = numbers/constants/escapes and special punctuation,
 ---fg_dark = operators and plain punctuation.
 ---@param c table
 ---@param config eggfriedrice.Config
@@ -18,12 +19,12 @@ function M.get(c, config)
 		["@variable.builtin"] = { fg = c.yellow }, -- self, this, super
 		["@variable.parameter"] = { fg = c.fg },
 		["@variable.parameter.builtin"] = { fg = c.fg },
-		["@variable.member"] = { fg = c.fg },
-		["@property"] = { fg = c.fg },
+		["@variable.member"] = { fg = c.blue },
+		["@property"] = { fg = c.blue },
 
 		-- Constants (Go const, Rust const, PY_UPPER, None, nil, iota)
 		["@constant"] = { fg = c.rose },
-		["@constant.builtin"] = { fg = c.rose },
+		["@constant.builtin"] = { fg = c.purple },
 		["@constant.macro"] = { fg = c.rose },
 
 		-- Modules (Go packages, Python modules, Java packages)
@@ -49,7 +50,7 @@ function M.get(c, config)
 		-- Numbers & Booleans
 		["@number"] = { fg = c.rose },
 		["@number.float"] = { fg = c.rose },
-		["@boolean"] = { fg = c.rose },
+		["@boolean"] = { fg = c.purple },
 
 		-- Types (structs, traits, interfaces, classes, generics)
 		["@type"] = { fg = c.cyan },
@@ -57,8 +58,8 @@ function M.get(c, config)
 		["@type.definition"] = { fg = c.cyan },
 
 		-- Attributes (Python/TS decorators, Rust #[derive], Java @Override)
-		["@attribute"] = { fg = c.orange },
-		["@attribute.builtin"] = { fg = c.orange },
+		["@attribute"] = { fg = c.purple },
+		["@attribute.builtin"] = { fg = c.purple },
 
 		-- Functions
 		["@function"] = { fg = c.orange },

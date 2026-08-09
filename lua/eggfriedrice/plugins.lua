@@ -109,8 +109,8 @@ function M.get(c, config)
 		CmpItemKindSnippet = { fg = c.green },
 		CmpItemKindVariable = { fg = c.fg },
 		CmpItemKindReference = { fg = c.fg },
-		CmpItemKindProperty = { fg = c.fg },
-		CmpItemKindField = { fg = c.fg },
+		CmpItemKindProperty = { fg = c.blue },
+		CmpItemKindField = { fg = c.blue },
 		CmpItemKindText = { fg = c.fg },
 		CmpItemKindFile = { fg = c.fg },
 

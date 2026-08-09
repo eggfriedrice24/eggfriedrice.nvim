@@ -99,7 +99,7 @@ function M.get(c, config)
 		String = { fg = c.green },
 		Character = { fg = c.green },
 		Number = { fg = c.rose },
-		Boolean = { fg = c.rose },
+		Boolean = { fg = c.purple },
 		Float = { fg = c.rose },
 
 		Identifier = { fg = c.fg },
