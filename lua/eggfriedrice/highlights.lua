@@ -126,7 +126,7 @@ function M.get(c, config)
 
 		Special = { fg = c.rose },
 		SpecialChar = { fg = c.rose },
-		Tag = { fg = c.cyan },
+		Tag = { fg = c.rose },
 		Delimiter = { fg = c.fg_dark },
 		SpecialComment = { fg = c.comment },
 		Debug = { fg = c.orange },

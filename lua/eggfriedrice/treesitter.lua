@@ -6,9 +6,9 @@ local M = {}
 
 ---Treesitter captures. Role map:
 ---yellow = keywords, orange = functions, green = strings, cyan = types,
----blue = members/properties, purple = booleans/builtins/decorators,
----rose = numbers/constants/escapes and special punctuation,
----fg_dark = operators and plain punctuation.
+---blue = members/properties and special punctuation (${}, JSX braces),
+---purple = booleans/builtins/decorators, rose = numbers/constants/escapes
+---and tags, fg_dark = operators and plain punctuation.
 ---@param c table
 ---@param config eggfriedrice.Config
 ---@return table<string, vim.api.keyset.highlight>
@@ -95,10 +95,10 @@ function M.get(c, config)
 		["@keyword.directive"] = { fg = c.yellow },
 		["@keyword.directive.define"] = { fg = c.yellow },
 
-		-- Punctuation: muted, except special (template ${}, f-string {})
+		-- Punctuation: muted, except special (template ${}, JSX braces)
 		["@punctuation.delimiter"] = { fg = c.fg_dark },
 		["@punctuation.bracket"] = { fg = c.fg_dark },
-		["@punctuation.special"] = { fg = c.rose },
+		["@punctuation.special"] = { fg = c.blue },
 
 		-- Comments
 		["@comment"] = { fg = c.comment, italic = config.italic_comments },
@@ -137,8 +137,8 @@ function M.get(c, config)
 		["@diff.delta"] = { fg = c.git_change },
 
 		-- Tags (HTML, JSX/TSX)
-		["@tag"] = { fg = c.cyan },
-		["@tag.builtin"] = { fg = c.cyan },
+		["@tag"] = { fg = c.rose },
+		["@tag.builtin"] = { fg = c.rose },
 		["@tag.attribute"] = { fg = c.orange },
 		["@tag.delimiter"] = { fg = c.fg_dark },
 	}
