@@ -46,15 +46,11 @@ Diff, search, and diagnostic backgrounds are blended from these at load time, so
 }
 ```
 
-### [packer.nvim](https://github.com/wbthomason/packer.nvim)
+### vim.pack (Neovim 0.12+)
 
 ```lua
-use {
-  "eggfriedrice24/eggfriedrice.nvim",
-  config = function()
-    vim.cmd.colorscheme("eggfriedrice")
-  end,
-}
+vim.pack.add({ "https://github.com/eggfriedrice24/eggfriedrice.nvim" })
+vim.cmd.colorscheme("eggfriedrice")
 ```
 
 ## Configuration
