@@ -12,9 +12,9 @@ A dark, warm Neovim colorscheme that leans into its name: yolk-yellow keywords, 
 | Functions | Orange | `#ffae57` |
 | Strings | Scallion | `#a5d65f` |
 | Types, classes | Teal | `#5ad4c6` |
-| Members, properties, JSX braces | Blue | `#6cb8ff` |
+| Member access, JSX braces | Blue | `#6cb8ff` |
 | Booleans, builtins, decorators | Purple | `#c678dd` |
-| Numbers, constants, JSX tags | Rose | `#ff7a95` |
+| Numbers, constants, keys, JSX tags | Rose | `#ff7a95` |
 | Errors, deletions | Red | `#eb5757` |
 | Text | Rice cream | `#d8d3c3` |
 | Punctuation, operators | Muted | `#a8a396` |

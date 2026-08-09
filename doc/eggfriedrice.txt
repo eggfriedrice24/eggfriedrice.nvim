@@ -111,9 +111,9 @@ green, visual is rose, replace is red, command is orange.
   Functions                       orange      #ffae57
   Strings                         green       #a5d65f
   Types, classes                  cyan        #5ad4c6
-  Members, properties, braces     blue        #6cb8ff
+  Member access, JSX braces       blue        #6cb8ff
   Booleans, builtins, decorators  purple      #c678dd
-  Numbers, constants, JSX tags    rose        #ff7a95
+  Numbers, keys, tags, constants  rose        #ff7a95
   Errors, deletions               red         #eb5757
   Text                            fg          #d8d3c3
   Punctuation, operators          fg_dark     #a8a396
