@@ -84,6 +84,15 @@ function M.get(c, config)
 		["@lsp.typemod.property.declaration"] = { fg = c.rose },
 		["@lsp.typemod.member.declaration"] = { fg = c.rose },
 
+		-- Python (basedpyright): class attributes come as property with
+		-- classMember/static instead of declaration, and attribute
+		-- access gets no tokens at all, so property tokens are
+		-- declaration-ish and safe to color rose. Keyword-argument
+		-- names come as parameter; cleared so treesitter can style
+		-- them (plain def parameters render fg either way).
+		["@lsp.type.property.python"] = { fg = c.rose },
+		["@lsp.type.parameter.python"] = {},
+
 		-- Semantic token modifiers. @lsp.mod.readonly italic is
 		-- deliberately not set: rust-analyzer marks most bindings
 		-- readonly and the buffer turns italic.
