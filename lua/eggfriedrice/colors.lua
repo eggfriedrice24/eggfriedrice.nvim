@@ -14,9 +14,9 @@ local M = {}
 function M.get(config)
 	local c = {
 		-- Base (halcyon-inspired navy)
-		bg = "#171c28",
-		bg_dark = "#111522",
-		bg_light = "#1d2433",
+		bg = "#121722",
+		bg_dark = "#0c101a",
+		bg_light = "#171c28",
 		fg = "#d8d3c3", -- rice: warm cream
 		fg_dark = "#a8a396",
 		fg_gutter = "#46516c",
