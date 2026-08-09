@@ -6,9 +6,10 @@ local M = {}
 
 ---Treesitter captures. Role map:
 ---yellow = keywords, orange = functions, green = strings, cyan = types,
----blue = members/properties and special punctuation (${}, JSX braces),
----purple = booleans/builtins/decorators, rose = numbers/constants/escapes
----and tags, fg_dark = operators and plain punctuation.
+---blue = member ACCESS and special punctuation (${}, JSX braces),
+---rose = numbers/constants/escapes, tags, and property DECLARATIONS
+---(object keys, struct/class fields), purple = booleans/builtins/
+---decorators, fg_dark = operators and plain punctuation.
 ---@param c table
 ---@param config eggfriedrice.Config
 ---@return table<string, vim.api.keyset.highlight>
@@ -20,7 +21,7 @@ function M.get(c, config)
 		["@variable.parameter"] = { fg = c.fg },
 		["@variable.parameter.builtin"] = { fg = c.fg },
 		["@variable.member"] = { fg = c.blue },
-		["@property"] = { fg = c.blue },
+		["@property"] = { fg = c.rose }, -- field declarations (Go structs)
 
 		-- Constants (Go const, Rust const, PY_UPPER, None, nil, iota)
 		["@constant"] = { fg = c.rose },

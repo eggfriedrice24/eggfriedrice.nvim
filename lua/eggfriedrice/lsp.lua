@@ -77,6 +77,13 @@ function M.get(c, config)
 		["@lsp.type.property"] = { fg = c.blue },
 		["@lsp.type.variable"] = { fg = c.fg },
 
+		-- Property declarations are rose, property access stays blue:
+		-- object keys and field declarations carry the declaration
+		-- modifier (ts_ls, rust-analyzer, jdtls); ts_ls classifies keys
+		-- with function values as member+declaration.
+		["@lsp.typemod.property.declaration"] = { fg = c.rose },
+		["@lsp.typemod.member.declaration"] = { fg = c.rose },
+
 		-- Semantic token modifiers. @lsp.mod.readonly italic is
 		-- deliberately not set: rust-analyzer marks most bindings
 		-- readonly and the buffer turns italic.
