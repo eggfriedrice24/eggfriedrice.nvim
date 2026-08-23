@@ -108,7 +108,7 @@ green, visual is rose, replace is red, command is orange.
 
   Role                            Key         Hex ~
   Keywords (the signature)        yellow      #ffc940
-  Functions                       orange      #fcb32c
+  Functions                       orange      #fc9a2c
   Strings                         green       #00c950
   Types, classes                  cyan        #78e2d6
   Member access, JSX braces       blue        #6cb8ff

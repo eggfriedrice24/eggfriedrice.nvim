@@ -9,7 +9,7 @@ A dark, warm Neovim colorscheme that leans into its name: yolk-yellow keywords, 
 | Role | Color | Hex |
 | ------------------------------- | ------------ | --------- |
 | Keywords (the signature) | Yolk yellow | `#ffc940` |
-| Functions | Orange | `#fcb32c` |
+| Functions | Orange | `#fc9a2c` |
 | Strings | Scallion | `#00c950` |
 | Types, classes | Teal | `#78e2d6` |
 | Member access, JSX braces | Blue | `#6cb8ff` |
