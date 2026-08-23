@@ -113,7 +113,7 @@ green, visual is rose, replace is red, command is orange.
   Types, classes                  cyan        #78e2d6
   Member access, JSX braces       blue        #6cb8ff
   Booleans, builtins, decorators  purple      #c678dd
-  Numbers, keys, tags, constants  rose        #a50036
+  Numbers, keys, tags, constants  rose        #ff2056
   Errors, deletions               red         #eb5757
   Text                            fg          #d8d3c3
   Punctuation, operators          fg_dark     #a8a396

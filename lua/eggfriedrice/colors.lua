@@ -28,7 +28,7 @@ function M.get(config)
 		cyan = "#78e2d6", -- types, classes
 		blue = "#6cb8ff", -- member access, special punctuation
 		purple = "#c678dd", -- booleans, builtin constants, decorators
-		rose = "#a50036", -- numbers, constants, keys, tags
+		rose = "#ff2056", -- numbers, constants, keys, tags
 		red = "#eb5757", -- errors, deletions
 
 		-- Semantic
