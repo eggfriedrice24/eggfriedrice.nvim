@@ -23,7 +23,7 @@ function M.get(config)
 
 		-- Palette
 		yellow = "#ffc940", -- yolk: keywords, the signature
-		orange = "#ffae57", -- functions
+		orange = "#fcb32c", -- functions
 		green = "#00c950", -- strings
 		cyan = "#78e2d6", -- types, classes
 		blue = "#6cb8ff", -- member access, special punctuation
