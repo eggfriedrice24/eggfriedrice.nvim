@@ -12,7 +12,7 @@ A dark, warm Neovim colorscheme that leans into its name: yolk-yellow literals, 
 | Keywords, decorators | Purple | `#c084fc` |
 | Functions, types, builtins, numbers, booleans, constants | Yolk yellow | `#ffc940` |
 | Operators | Blue | `#6cb8ff` |
-| Strings | Scallion | `#00c950` |
+| Strings | Scallion | `#60e654` |
 | Escapes, enum members, accents | Teal | `#78e2d6` |
 | Text | Rice cream | `#d8d3c3` |
 | Punctuation | Muted | `#a8a396` |

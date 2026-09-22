@@ -28,7 +28,7 @@ function M.get(config)
 		-- types, builtins, functions, and literals. Orange is dormant.
 		yellow = "#ffc940", -- yolk: functions, types, builtins, numbers, booleans, constants, attributes
 		orange = "#fc9a2c", -- dormant: not assigned to any group
-		green = "#00c950", -- strings
+		green = "#60e654", -- strings
 		cyan = "#78e2d6", -- escapes, enum members, UI accents
 		blue = "#6cb8ff", -- operators (One Dark Pro uses cyan here)
 		purple = "#c084fc", -- keywords, decorators

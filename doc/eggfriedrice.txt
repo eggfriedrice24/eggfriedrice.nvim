@@ -115,7 +115,7 @@ green, visual is purple, replace is red, command is cyan.
   Keywords, decorators            purple      #c084fc
   Functions, types, literals      yellow      #ffc940
   Operators                       blue        #6cb8ff
-  Strings                         green       #00c950
+  Strings                         green       #60e654
   Escapes, enum members, accents  cyan        #78e2d6
   Text                            fg          #d8d3c3
   Punctuation                     fg_dark     #a8a396
