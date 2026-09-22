@@ -21,15 +21,18 @@ function M.get(config)
 		fg_dark = "#a8a396",
 		fg_gutter = "#46516c",
 
-		-- Palette
-		yellow = "#ffc940", -- yolk: keywords, the signature
-		orange = "#fc9a2c", -- functions
+		-- Palette. Roles follow One Dark Pro: red is the identifier
+		-- color (variables, fields, keys, tags), purple the keyword
+		-- color, blue the operator color (their cyan). Yellow, the
+		-- signature, takes their yellow, blue and orange roles at once:
+		-- types, builtins, functions, and literals. Orange is dormant.
+		yellow = "#ffc940", -- yolk: functions, types, builtins, numbers, booleans, constants, attributes
+		orange = "#fc9a2c", -- dormant: not assigned to any group
 		green = "#00c950", -- strings
-		cyan = "#78e2d6", -- types, classes
-		blue = "#6cb8ff", -- member access, special punctuation
-		purple = "#c678dd", -- booleans, builtin constants, decorators
-		rose = "#ff2056", -- numbers, constants, keys, tags
-		red = "#eb5757", -- errors, deletions
+		cyan = "#78e2d6", -- escapes, enum members, UI accents
+		blue = "#6cb8ff", -- operators (One Dark Pro uses cyan here)
+		purple = "#c678dd", -- keywords, decorators
+		red = "#e06c75", -- variables, fields, keys, tags, errors
 
 		-- Semantic
 		comment = "#8695b7", -- halcyon blue-gray: recedes on navy
@@ -41,7 +44,7 @@ function M.get(config)
 
 	-- Diagnostic
 	c.error = c.red
-	c.warning = c.orange
+	c.warning = c.yellow
 	c.info = c.cyan
 	c.hint = c.green
 

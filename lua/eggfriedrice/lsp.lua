@@ -7,8 +7,8 @@ local util = require("eggfriedrice.util")
 local M = {}
 
 ---Diagnostics and LSP semantic tokens. Semantic tokens override
----treesitter (rust-analyzer, gopls, jdtls, pyright all send them),
----so they must follow the same role map.
+---treesitter (rust-analyzer, gopls, jdtls, ts_ls, lua_ls and
+---basedpyright all send them), so they must follow the same role map.
 ---@param c table
 ---@param config eggfriedrice.Config
 ---@return table<string, vim.api.keyset.highlight>
@@ -46,52 +46,65 @@ function M.get(c, config)
 		LspReferenceTarget = { bg = c.selection },
 
 		-- LSP UI
-		LspSignatureActiveParameter = { fg = c.orange, bold = true },
+		LspSignatureActiveParameter = { fg = c.yellow, bold = true },
 		LspCodeLens = { fg = c.comment },
 		LspCodeLensSeparator = { fg = c.fg_gutter },
 		LspInlayHint = { fg = c.comment, bg = c.bg_light },
 		LspInfoBorder = { fg = c.border },
 
-		-- Semantic tokens: types
-		["@lsp.type.class"] = { fg = c.cyan },
-		["@lsp.type.interface"] = { fg = c.cyan },
-		["@lsp.type.struct"] = { fg = c.cyan },
-		["@lsp.type.enum"] = { fg = c.cyan },
-		["@lsp.type.type"] = { fg = c.cyan },
-		["@lsp.type.typeAlias"] = { fg = c.cyan },
-		["@lsp.type.typeParameter"] = { fg = c.cyan },
-		["@lsp.type.builtinType"] = { fg = c.cyan }, -- rust-analyzer: i32, str
+		-- Semantic tokens: types and builtins (yellow)
+		["@lsp.type.class"] = { fg = c.yellow },
+		["@lsp.type.interface"] = { fg = c.yellow },
+		["@lsp.type.struct"] = { fg = c.yellow },
+		["@lsp.type.enum"] = { fg = c.yellow },
+		["@lsp.type.union"] = { fg = c.yellow }, -- rust-analyzer
+		["@lsp.type.type"] = { fg = c.yellow },
+		["@lsp.type.typeAlias"] = { fg = c.yellow },
+		["@lsp.type.typeParameter"] = { fg = c.yellow },
+		["@lsp.type.builtinType"] = { fg = c.yellow }, -- rust-analyzer: i32, str
+		["@lsp.type.record"] = { fg = c.yellow }, -- jdtls
+		["@lsp.type.namespace"] = { fg = c.yellow }, -- Go packages, Python modules
+		["@lsp.type.toolModule"] = { fg = c.yellow }, -- rust-analyzer: #[rustfmt::skip]
+		["@lsp.type.selfKeyword"] = { fg = c.yellow }, -- rust-analyzer: self
+		["@lsp.type.selfTypeKeyword"] = { fg = c.yellow }, -- rust-analyzer: Self
+		["@lsp.type.selfParameter"] = { fg = c.yellow }, -- basedpyright: self
+		["@lsp.type.clsParameter"] = { fg = c.yellow }, -- basedpyright: cls
+		["@lsp.type.enumMember"] = { fg = c.cyan },
+		["@lsp.type.escapeSequence"] = { fg = c.cyan }, -- rust-analyzer
+		["@lsp.typemod.function.defaultLibrary"] = { fg = c.yellow }, -- len, append, require
+		["@lsp.typemod.method.defaultLibrary"] = { fg = c.yellow },
 
-		-- Semantic tokens: callables and annotations
-		["@lsp.type.function"] = { fg = c.orange },
-		["@lsp.type.method"] = { fg = c.orange },
-		["@lsp.type.macro"] = { fg = c.orange }, -- rust-analyzer: println!
+		-- Semantic tokens: callables (yellow)
+		["@lsp.type.function"] = { fg = c.yellow },
+		["@lsp.type.method"] = { fg = c.yellow },
+		["@lsp.type.member"] = { fg = c.yellow }, -- ts_ls: methods and function-valued keys
+		["@lsp.type.macro"] = { fg = c.yellow }, -- rust-analyzer: println!
+		["@lsp.type.procMacro"] = { fg = c.yellow },
+		["@lsp.type.magicFunction"] = { fg = c.yellow }, -- basedpyright: __init__
+
+		-- Semantic tokens: keywords and annotations (purple)
+		["@lsp.type.keyword"] = { fg = c.purple },
+		["@lsp.type.modifier"] = { fg = c.purple }, -- jdtls: public, static
 		["@lsp.type.decorator"] = { fg = c.purple },
+		["@lsp.type.annotation"] = { fg = c.purple }, -- jdtls: @Override
+		["@lsp.type.lifetime"] = { fg = c.purple }, -- rust-analyzer: 'a
+		["@lsp.type.derive"] = { fg = c.purple }, -- rust-analyzer: #[derive(Debug)]
+		["@lsp.type.deriveHelper"] = { fg = c.purple },
+		["@lsp.type.builtinAttribute"] = { fg = c.purple },
+		["@lsp.type.formatSpecifier"] = { fg = c.purple }, -- rust-analyzer: {} in println!
 
-		-- Semantic tokens: values and identifiers
-		["@lsp.type.enumMember"] = { fg = c.rose },
-		["@lsp.type.lifetime"] = { fg = c.rose }, -- rust-analyzer
-		["@lsp.type.selfKeyword"] = { fg = c.yellow }, -- rust-analyzer
-		["@lsp.type.namespace"] = { fg = c.fg },
-		["@lsp.type.parameter"] = { fg = c.fg },
-		["@lsp.type.property"] = { fg = c.blue },
-		["@lsp.type.variable"] = { fg = c.fg },
-
-		-- Property declarations are rose, property access stays blue:
-		-- object keys and field declarations carry the declaration
-		-- modifier (ts_ls, rust-analyzer, jdtls); ts_ls classifies keys
-		-- with function values as member+declaration.
-		["@lsp.typemod.property.declaration"] = { fg = c.rose },
-		["@lsp.typemod.member.declaration"] = { fg = c.rose },
-
-		-- Python (basedpyright): class attributes come as property with
-		-- classMember/static instead of declaration, and attribute
-		-- access gets no tokens at all, so property tokens are
-		-- declaration-ish and safe to color rose. Keyword-argument
-		-- names come as parameter; cleared so treesitter can style
-		-- them (plain def parameters render fg either way).
-		["@lsp.type.property.python"] = { fg = c.rose },
-		["@lsp.type.parameter.python"] = {},
+		-- Semantic tokens: identifiers (red) and literals (yellow).
+		-- Plain variables are left to treesitter: ts_ls, gopls, lua_ls
+		-- and rust-analyzer send SCREAMING_CASE constants as variable
+		-- (+readonly) too, which would repaint them red. Treesitter
+		-- already paints identifiers red and constants yellow.
+		["@lsp.type.variable"] = {},
+		["@lsp.type.parameter"] = { fg = c.red },
+		["@lsp.type.property"] = { fg = c.red },
+		["@lsp.type.label"] = { fg = c.red }, -- rust-analyzer: 'outer
+		["@lsp.type.recordComponent"] = { fg = c.red }, -- jdtls
+		["@lsp.type.annotationMember"] = { fg = c.red }, -- jdtls
+		["@lsp.type.builtinConstant"] = { fg = c.yellow }, -- basedpyright: True, None
 
 		-- Semantic token modifiers. @lsp.mod.readonly italic is
 		-- deliberately not set: rust-analyzer marks most bindings

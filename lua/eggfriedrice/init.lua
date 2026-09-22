@@ -37,7 +37,7 @@ local function terminal(c)
 	vim.g.terminal_color_4 = c.blue
 	vim.g.terminal_color_12 = c.blue
 	vim.g.terminal_color_5 = c.purple
-	vim.g.terminal_color_13 = c.rose
+	vim.g.terminal_color_13 = util.blend(c.purple, "#ffffff", 0.8)
 	vim.g.terminal_color_6 = c.cyan
 	vim.g.terminal_color_14 = util.blend(c.cyan, "#ffffff", 0.8)
 	vim.g.terminal_color_7 = c.fg

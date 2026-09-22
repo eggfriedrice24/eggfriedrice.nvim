@@ -16,9 +16,9 @@ end
 return {
 	normal = mode(c.yellow),
 	insert = mode(c.green),
-	visual = mode(c.rose),
+	visual = mode(c.purple),
 	replace = mode(c.red),
-	command = mode(c.orange),
+	command = mode(c.cyan),
 	terminal = mode(c.cyan),
 	inactive = {
 		a = { fg = c.comment, bg = c.bg_dark },
