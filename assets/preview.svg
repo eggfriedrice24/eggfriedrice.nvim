@@ -1,23 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="680" height="452" viewBox="0 0 680 452" font-family="ui-monospace, 'JetBrains Mono', 'Fira Code', Menlo, monospace" font-size="14">
   <rect width="680" height="452" rx="10" fill="#0d111a"/>
-  <circle cx="24" cy="24" r="5" fill="#eb5757"/>
+  <circle cx="24" cy="24" r="5" fill="#e06c75"/>
   <circle cx="42" cy="24" r="5" fill="#ffc940"/>
   <circle cx="60" cy="24" r="5" fill="#00c950"/>
   <text x="340" y="29" fill="#8695b7" text-anchor="middle">main.ts</text>
   <g xml:space="preserve">
-    <text x="24" y="66"><tspan fill="#ffc940">import</tspan><tspan fill="#a8a396"> { </tspan><tspan fill="#fc9a2c">serve</tspan><tspan fill="#a8a396"> } </tspan><tspan fill="#ffc940">from</tspan><tspan fill="#00c950"> "./server"</tspan></text>
+    <text x="24" y="66"><tspan fill="#c678dd">import</tspan><tspan fill="#a8a396"> { </tspan><tspan fill="#ffc940">serve</tspan><tspan fill="#a8a396"> } </tspan><tspan fill="#c678dd">from</tspan><tspan fill="#00c950"> "./server"</tspan></text>
     <text x="24" y="110"><tspan fill="#8695b7" font-style="italic">// retry the dev server until it comes up</tspan></text>
-    <text x="24" y="132"><tspan fill="#ffc940">const</tspan><tspan fill="#ff2056"> MAX_RETRIES</tspan><tspan fill="#a8a396"> = </tspan><tspan fill="#ff2056">3</tspan></text>
-    <text x="24" y="176"><tspan fill="#ffc940">type</tspan><tspan fill="#78e2d6"> Config</tspan><tspan fill="#a8a396"> = {</tspan></text>
-    <text x="24" y="198"><tspan fill="#ff2056">  host</tspan><tspan fill="#a8a396">: </tspan><tspan fill="#78e2d6">string</tspan></text>
-    <text x="24" y="220"><tspan fill="#ff2056">  port</tspan><tspan fill="#a8a396">: </tspan><tspan fill="#78e2d6">number</tspan></text>
+    <text x="24" y="132"><tspan fill="#c678dd">const</tspan><tspan fill="#ffc940"> MAX_RETRIES</tspan><tspan fill="#6cb8ff"> = </tspan><tspan fill="#ffc940">3</tspan></text>
+    <text x="24" y="176"><tspan fill="#c678dd">type</tspan><tspan fill="#ffc940"> Config</tspan><tspan fill="#6cb8ff"> = </tspan><tspan fill="#a8a396">{</tspan></text>
+    <text x="24" y="198"><tspan fill="#e06c75">  host</tspan><tspan fill="#a8a396">: </tspan><tspan fill="#ffc940">string</tspan></text>
+    <text x="24" y="220"><tspan fill="#e06c75">  port</tspan><tspan fill="#a8a396">: </tspan><tspan fill="#ffc940">number</tspan></text>
     <text x="24" y="242"><tspan fill="#a8a396">}</tspan></text>
-    <text x="24" y="286"><tspan fill="#ffc940">async function</tspan><tspan fill="#fc9a2c"> main</tspan><tspan fill="#a8a396">(</tspan><tspan fill="#d8d3c3">cfg</tspan><tspan fill="#a8a396">: </tspan><tspan fill="#78e2d6">Config</tspan><tspan fill="#a8a396">): </tspan><tspan fill="#78e2d6">Promise</tspan><tspan fill="#a8a396">&lt;</tspan><tspan fill="#78e2d6">void</tspan><tspan fill="#a8a396">&gt; {</tspan></text>
-    <text x="24" y="308"><tspan fill="#ffc940">  const</tspan><tspan fill="#d8d3c3"> url</tspan><tspan fill="#a8a396"> = </tspan><tspan fill="#00c950">`http://</tspan><tspan fill="#6cb8ff">${</tspan><tspan fill="#d8d3c3">cfg</tspan><tspan fill="#a8a396">.</tspan><tspan fill="#6cb8ff">host</tspan><tspan fill="#6cb8ff">}</tspan><tspan fill="#00c950">:</tspan><tspan fill="#6cb8ff">${</tspan><tspan fill="#d8d3c3">cfg</tspan><tspan fill="#a8a396">.</tspan><tspan fill="#6cb8ff">port</tspan><tspan fill="#6cb8ff">}</tspan><tspan fill="#00c950">`</tspan></text>
-    <text x="24" y="330"><tspan fill="#ffc940">  for</tspan><tspan fill="#a8a396"> (</tspan><tspan fill="#ffc940">let</tspan><tspan fill="#d8d3c3"> i</tspan><tspan fill="#a8a396"> = </tspan><tspan fill="#ff2056">0</tspan><tspan fill="#a8a396">; </tspan><tspan fill="#d8d3c3">i</tspan><tspan fill="#a8a396"> &lt; </tspan><tspan fill="#ff2056">MAX_RETRIES</tspan><tspan fill="#a8a396">; </tspan><tspan fill="#d8d3c3">i</tspan><tspan fill="#a8a396">++) {</tspan></text>
-    <text x="24" y="352"><tspan fill="#ffc940">    if</tspan><tspan fill="#a8a396"> (</tspan><tspan fill="#ffc940">await</tspan><tspan fill="#fc9a2c"> serve</tspan><tspan fill="#a8a396">(</tspan><tspan fill="#d8d3c3">url</tspan><tspan fill="#a8a396">, { </tspan><tspan fill="#ff2056">secure</tspan><tspan fill="#a8a396">: </tspan><tspan fill="#c678dd">true</tspan><tspan fill="#a8a396"> })) </tspan><tspan fill="#ffc940">return</tspan></text>
+    <text x="24" y="286"><tspan fill="#c678dd">async function</tspan><tspan fill="#ffc940"> main</tspan><tspan fill="#a8a396">(</tspan><tspan fill="#e06c75">cfg</tspan><tspan fill="#a8a396">: </tspan><tspan fill="#ffc940">Config</tspan><tspan fill="#a8a396">): </tspan><tspan fill="#ffc940">Promise</tspan><tspan fill="#a8a396">&lt;</tspan><tspan fill="#ffc940">void</tspan><tspan fill="#a8a396">&gt; {</tspan></text>
+    <text x="24" y="308"><tspan fill="#c678dd">  const</tspan><tspan fill="#e06c75"> url</tspan><tspan fill="#6cb8ff"> = </tspan><tspan fill="#00c950">`http://</tspan><tspan fill="#c678dd">${</tspan><tspan fill="#e06c75">cfg</tspan><tspan fill="#a8a396">.</tspan><tspan fill="#e06c75">host</tspan><tspan fill="#c678dd">}</tspan><tspan fill="#00c950">:</tspan><tspan fill="#c678dd">${</tspan><tspan fill="#e06c75">cfg</tspan><tspan fill="#a8a396">.</tspan><tspan fill="#e06c75">port</tspan><tspan fill="#c678dd">}</tspan><tspan fill="#00c950">`</tspan></text>
+    <text x="24" y="330"><tspan fill="#c678dd">  for</tspan><tspan fill="#a8a396"> (</tspan><tspan fill="#c678dd">let</tspan><tspan fill="#e06c75"> i</tspan><tspan fill="#6cb8ff"> = </tspan><tspan fill="#ffc940">0</tspan><tspan fill="#a8a396">; </tspan><tspan fill="#e06c75">i</tspan><tspan fill="#6cb8ff"> &lt; </tspan><tspan fill="#ffc940">MAX_RETRIES</tspan><tspan fill="#a8a396">; </tspan><tspan fill="#e06c75">i</tspan><tspan fill="#6cb8ff">++</tspan><tspan fill="#a8a396">) {</tspan></text>
+    <text x="24" y="352"><tspan fill="#c678dd">    if</tspan><tspan fill="#a8a396"> (</tspan><tspan fill="#c678dd">await</tspan><tspan fill="#ffc940"> serve</tspan><tspan fill="#a8a396">(</tspan><tspan fill="#e06c75">url</tspan><tspan fill="#a8a396">, { </tspan><tspan fill="#e06c75">secure</tspan><tspan fill="#a8a396">: </tspan><tspan fill="#ffc940">true</tspan><tspan fill="#a8a396"> })) </tspan><tspan fill="#c678dd">return</tspan></text>
     <text x="24" y="374"><tspan fill="#a8a396">  }</tspan></text>
-    <text x="24" y="396"><tspan fill="#ffc940">  throw new</tspan><tspan fill="#78e2d6"> Error</tspan><tspan fill="#a8a396">(</tspan><tspan fill="#00c950">"server did not start"</tspan><tspan fill="#a8a396">)</tspan></text>
+    <text x="24" y="396"><tspan fill="#c678dd">  throw new</tspan><tspan fill="#ffc940"> Error</tspan><tspan fill="#a8a396">(</tspan><tspan fill="#00c950">"server did not start"</tspan><tspan fill="#a8a396">)</tspan></text>
     <text x="24" y="418"><tspan fill="#a8a396">}</tspan></text>
   </g>
 </svg>

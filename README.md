@@ -1,31 +1,30 @@
 # eggfriedrice
 
-A dark, warm Neovim colorscheme that leans into its name: yolk-yellow keywords, rice-cream text, and scallion-green strings on a navy background inspired by [halcyon](https://github.com/bchiang7/halcyon-vscode). Yellow is the signature and it is used for exactly one thing - keywords - so everything else stays readable.
+A dark, warm Neovim colorscheme that leans into its name: yolk-yellow literals, rice-cream text, and scallion-green strings on a navy background inspired by [halcyon](https://github.com/bchiang7/halcyon-vscode). Token roles follow [One Dark Pro](https://github.com/Binaryify/OneDark-Pro): red identifiers, purple keywords, green strings. Yellow is the signature and carries functions, types and builtins plus everything One Dark Pro paints orange: numbers, booleans, constants, attributes. Operators are blue where One Dark Pro uses cyan.
 
 ![preview](assets/preview.svg)
 
 ## Palette
 
 | Role | Color | Hex |
-| ------------------------------- | ------------ | --------- |
-| Keywords (the signature) | Yolk yellow | `#ffc940` |
-| Functions | Orange | `#fc9a2c` |
+| ------------------------------------------ | ----------- | --------- |
+| Variables, fields, keys, tags, errors | Red | `#e06c75` |
+| Keywords, decorators | Purple | `#c678dd` |
+| Functions, types, builtins, numbers, booleans, constants | Yolk yellow | `#ffc940` |
+| Operators | Blue | `#6cb8ff` |
 | Strings | Scallion | `#00c950` |
-| Types, classes | Teal | `#78e2d6` |
-| Member access, JSX braces | Blue | `#6cb8ff` |
-| Booleans, builtins, decorators | Purple | `#c678dd` |
-| Numbers, constants, keys, JSX tags | Rose | `#ff2056` |
-| Errors, deletions | Red | `#eb5757` |
+| Escapes, enum members, accents | Teal | `#78e2d6` |
 | Text | Rice cream | `#d8d3c3` |
-| Punctuation, operators | Muted | `#a8a396` |
+| Punctuation | Muted | `#a8a396` |
 | Comments | Blue gray | `#8695b7` |
 | Background | Navy | `#0d111a` |
+| Dormant, not assigned to any group | Orange | `#fc9a2c` |
 
-Diff, search, and diagnostic backgrounds are blended from these at load time, so overriding a palette color carries through everywhere.
+Fields and properties are red on both declaration and access, like One Dark Pro. Diff, search, and diagnostic backgrounds are blended from these at load time, so overriding a palette color carries through everywhere.
 
 ## Features
 
-- Consistent token roles across legacy syntax, treesitter, and LSP semantic tokens - tuned against TypeScript, JavaScript, Go, Rust, Java, and Python
+- Consistent token roles across legacy syntax, treesitter, and LSP semantic tokens - tuned against TypeScript, JavaScript, Go, Rust, Java, Python, Lua, CSS, HTML, YAML, JSON, TOML, and Markdown
 - Terminal colors (`:terminal` matches the theme)
 - Bundled lualine theme
 - `on_colors` / `on_highlights` hooks for overriding anything
@@ -121,12 +120,12 @@ require("eggfriedrice").setup({
 
 ### Overriding highlight groups
 
-`on_highlights` runs after all groups are built and can change or add any group:
+`on_highlights` runs after all groups are built and can change or add any group. The dormant orange is in the palette for exactly this:
 
 ```lua
 require("eggfriedrice").setup({
   on_highlights = function(hl, c)
-    hl.CursorLineNr = { fg = c.rose, bold = true }
+    hl.CursorLineNr = { fg = c.red, bold = true }
     hl["@punctuation.special"] = { fg = c.orange }
     hl.TelescopeBorder = { fg = c.fg_gutter }
   end,
@@ -135,7 +134,7 @@ require("eggfriedrice").setup({
 
 ### lualine
 
-A matching lualine theme is bundled (normal is yellow, insert green, visual rose, replace red, command orange):
+A matching lualine theme is bundled (normal is yellow, insert green, visual purple, replace red, command cyan):
 
 ```lua
 require("lualine").setup({
