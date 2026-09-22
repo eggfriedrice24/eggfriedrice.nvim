@@ -31,7 +31,7 @@ function M.get(config)
 		green = "#00c950", -- strings
 		cyan = "#78e2d6", -- escapes, enum members, UI accents
 		blue = "#6cb8ff", -- operators (One Dark Pro uses cyan here)
-		purple = "#c678dd", -- keywords, decorators
+		purple = "#c084fc", -- keywords, decorators
 		red = "#e06c75", -- variables, fields, keys, tags, errors
 
 		-- Semantic

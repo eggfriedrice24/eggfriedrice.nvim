@@ -9,7 +9,7 @@ A dark, warm Neovim colorscheme that leans into its name: yolk-yellow literals, 
 | Role | Color | Hex |
 | ------------------------------------------ | ----------- | --------- |
 | Variables, fields, keys, tags, errors | Red | `#e06c75` |
-| Keywords, decorators | Purple | `#c678dd` |
+| Keywords, decorators | Purple | `#c084fc` |
 | Functions, types, builtins, numbers, booleans, constants | Yolk yellow | `#ffc940` |
 | Operators | Blue | `#6cb8ff` |
 | Strings | Scallion | `#00c950` |
