@@ -131,7 +131,8 @@ and fills ANSI slots 9 to 15 in |:terminal| and in the extras:
 `red_bright`, `green_bright`, `yellow_bright`, `blue_bright`,
 `purple_bright`, `cyan_bright`, `fg_bright`.
 
-Diff, search, and diagnostic backgrounds are blended from these at load
+Diff backgrounds are tints at one OKLCH lightness and chroma in each
+accent's hue; search backgrounds are blends. Both are computed at load
 time, so palette overrides via |eggfriedrice-on_colors| carry through.
 
 ==============================================================================
@@ -144,7 +145,7 @@ committed output drifts, so the extras never lag behind the editor.
 
   App                        File                              ~
   Ghostty                    extras/ghostty/eggfriedrice
-  fzf                        extras/fzf/eggfriedrice.sh
+  fzf (0.36+)                extras/fzf/eggfriedrice.sh
   zsh (z-sy-h, autosuggest)  extras/zsh/eggfriedrice.zsh
   fast-syntax-highlighting   extras/fsh/eggfriedrice.ini
   Starship                   extras/starship/eggfriedrice.toml
@@ -156,7 +157,7 @@ committed output drifts, so the extras never lag behind the editor.
 Each generated file starts with its install hint. Shell roles match the
 editor: commands are yellow like functions, quoted words green like
 strings, `$vars` red like variables, redirections blue like operators.
-The fzf and tmux files leave backgrounds unset so a translucent terminal
-shows through.
+The palette JSON carries the full token set of the design system,
+including the semantic names each extra maps from.
 
 vim:tw=78:ts=8:noet:ft=help:norl:

@@ -21,7 +21,7 @@ A dark, warm Neovim colorscheme that leans into its name: yolk-yellow literals, 
 | Line numbers, dividers | Gutter | `#586480` |
 | Dormant, not assigned to any group | Orange | `#fc9a2c` |
 
-Fields and properties are red on both declaration and access, like One Dark Pro. Diff, search, and diagnostic backgrounds are blended from these at load time, so overriding a palette color carries through everywhere.
+Fields and properties are red on both declaration and access, like One Dark Pro. Diff backgrounds are tints at one OKLCH lightness and chroma in each accent's hue, and search backgrounds are blends. Both are computed at load time, so overriding a palette color carries through everywhere.
 
 A bright tier (`red_bright`, `green_bright`, `yellow_bright`, `blue_bright`, `purple_bright`, `cyan_bright`, `fg_bright`) lifts each accent 0.04 OKLCH lightness with its hue held. It fills ANSI slots 9 to 15 in `:terminal` and in the extras, so bold terminal text reads as the same color, only lit.
 
@@ -153,7 +153,7 @@ The same palette, rendered for the rest of the terminal. Every file under [`extr
 | App | File | Install |
 | --- | --- | --- |
 | [Ghostty](https://ghostty.org) | `extras/ghostty/eggfriedrice` | copy to `~/.config/ghostty/themes/eggfriedrice`, set `theme = eggfriedrice` |
-| [fzf](https://github.com/junegunn/fzf) | `extras/fzf/eggfriedrice.sh` | `source` it from your shell rc |
+| [fzf](https://github.com/junegunn/fzf) 0.36+ | `extras/fzf/eggfriedrice.sh` | `source` it from your shell rc |
 | zsh with [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) and [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) | `extras/zsh/eggfriedrice.zsh` | `source` it from `.zshrc` |
 | [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) | `extras/fsh/eggfriedrice.ini` | copy to `~/.config/fsh/`, run `fast-theme XDG:eggfriedrice` |
 | [Starship](https://starship.rs) | `extras/starship/eggfriedrice.toml` | paste into `starship.toml`, use the names in `style` |
@@ -162,7 +162,7 @@ The same palette, rendered for the rest of the terminal. Every file under [`extr
 | [bat](https://github.com/sharkdp/bat), Sublime Text | `extras/bat/eggfriedrice.tmTheme` | copy to `~/.config/bat/themes/`, run `bat cache --build`, set `BAT_THEME=eggfriedrice` |
 | anything else | `extras/palette/eggfriedrice.json` | primitives, semantic aliases and the 16 ANSI slots as JSON |
 
-Shell roles match the editor: commands are yellow like functions, quoted words green like strings, `$vars` red like variables, redirections blue like operators. The fzf and tmux files leave backgrounds unset so a translucent terminal shows through.
+Shell roles match the editor: commands are yellow like functions, quoted words green like strings, `$vars` red like variables, redirections blue like operators. The palette JSON carries the full token set of the design system, including the semantic names each extra maps from.
 
 ## Supported Plugins
 
