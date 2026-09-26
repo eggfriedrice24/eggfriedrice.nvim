@@ -5,26 +5,154 @@ local util = require("eggfriedrice.util")
 
 local M = {}
 
----One `<dict>` entry of the tmTheme settings array.
----@param name string
----@param scope string
----@param settings table<string, string> foreground, fontStyle...
+-- Global tmTheme settings, snake_case here and camelCase in the XML.
+local settings = {
+	"background",
+	"foreground",
+	"caret",
+	"selection",
+	"line_highlight",
+	"gutter",
+	"gutter_foreground",
+	"find_highlight",
+	"find_highlight_foreground",
+	"invisibles",
+}
+
+-- Scope selectors per rule, following the Sublime Text conventions bat's
+-- syntaxes use. Punctuation is muted like the editor, but string
+-- delimiters keep the string color so quotes are not greyed out.
+local scopes = {
+	comment = { "Comment", "comment, punctuation.definition.comment" },
+	string = { "String", "string" },
+	escape = { "Escape", "constant.character.escape" },
+	enum_member = { "Enum member", "variable.other.enummember, entity.name.enum-member, constant.other.enum" },
+	keyword = { "Keyword", "keyword, keyword.control, keyword.other" },
+	storage = { "Storage", "storage, storage.type, storage.modifier" },
+	decorator = {
+		"Decorator",
+		"meta.annotation, storage.type.annotation, punctuation.definition.annotation, entity.name.function.decorator, meta.decorator",
+	},
+	["function"] = { "Function", "entity.name.function, support.function, meta.function-call, variable.function" },
+	type = {
+		"Type",
+		"entity.name.type, entity.name.class, entity.name.struct, entity.name.enum, entity.name.interface, entity.name.namespace, support.type, support.class, entity.other.inherited-class",
+	},
+	constant = { "Constant", "constant, constant.language, support.constant" },
+	number = { "Number", "constant.numeric" },
+	attribute = { "Attribute", "entity.other.attribute-name" },
+	variable = { "Variable", "variable, variable.other, variable.parameter, variable.language" },
+	property = {
+		"Property",
+		"variable.other.member, variable.other.property, variable.other.object.property, support.type.property-name, meta.object-literal.key, entity.name.label",
+	},
+	tag = { "Tag", "entity.name.tag, punctuation.definition.tag" },
+	operator = { "Operator", "keyword.operator" },
+	punctuation = {
+		"Punctuation",
+		"punctuation.separator, punctuation.terminator, punctuation.accessor, punctuation.section, meta.brace",
+	},
+	invalid = { "Invalid", "invalid, invalid.illegal" },
+	markup_heading = { "Markup heading", "markup.heading, entity.name.section" },
+	markup_bold = { "Markup bold", "markup.bold" },
+	markup_italic = { "Markup italic", "markup.italic" },
+	markup_link = { "Markup link", "markup.underline.link, string.other.link" },
+	markup_code = { "Markup code", "markup.raw, markup.raw.inline, markup.raw.block" },
+	markup_list = { "Markup list", "markup.list, punctuation.definition.list_item" },
+	markup_quote = { "Markup quote", "markup.quote" },
+	diff_inserted = { "Diff inserted", "markup.inserted" },
+	diff_deleted = { "Diff deleted", "markup.deleted" },
+	diff_changed = { "Diff changed", "markup.changed" },
+	diff_header = { "Diff header", "meta.diff.header, meta.diff.range, meta.diff.index" },
+}
+
+---Settings first, then one style per scope rule in render order.
+---@param c table
+---@return eggfriedrice.Entry[]
+function M.roles(c)
+	local _ = c
+	return {
+		{ "background", "bg" },
+		{ "foreground", "fg" },
+		{ "caret", "yellow" },
+		{ "selection", "selection" },
+		{ "line_highlight", "bg_light" },
+		{ "gutter", "bg" },
+		{ "gutter_foreground", "fg_gutter_ui" },
+		{ "find_highlight", "search" },
+		{ "find_highlight_foreground", "fg" },
+		{ "invisibles", "fg_gutter" },
+		{ "comment", { fg = "comment", italic = true } },
+		{ "string", { fg = "green" } },
+		{ "escape", { fg = "cyan" } },
+		{ "enum_member", { fg = "cyan" } },
+		{ "keyword", { fg = "purple" } },
+		{ "storage", { fg = "purple" } },
+		{ "decorator", { fg = "purple" } },
+		{ "function", { fg = "yellow" } },
+		{ "type", { fg = "yellow" } },
+		{ "constant", { fg = "yellow" } },
+		{ "number", { fg = "yellow" } },
+		{ "attribute", { fg = "yellow" } },
+		{ "variable", { fg = "red" } },
+		{ "property", { fg = "red" } },
+		{ "tag", { fg = "red" } },
+		{ "operator", { fg = "blue" } },
+		{ "punctuation", { fg = "fg_dark" } },
+		{ "invalid", { fg = "red", underline = true } },
+		{ "markup_heading", { fg = "red", bold = true } },
+		{ "markup_bold", { bold = true } },
+		{ "markup_italic", { italic = true } },
+		{ "markup_link", { fg = "purple", underline = true } },
+		{ "markup_code", { fg = "green" } },
+		{ "markup_list", { fg = "yellow" } },
+		{ "markup_quote", { fg = "comment", italic = true } },
+		{ "diff_inserted", { fg = "green" } },
+		{ "diff_deleted", { fg = "red" } },
+		{ "diff_changed", { fg = "yellow" } },
+		{ "diff_header", { fg = "cyan" } },
+	}
+end
+
+---snake_case to camelCase, as tmTheme setting keys are spelled.
+---@param s string
 ---@return string
-local function rule(name, scope, settings)
-	local keys = vim.tbl_keys(settings)
-	table.sort(keys)
+local function camel(s)
+	return (s:gsub("_(%l)", string.upper))
+end
+
+---One `<dict>` entry of the tmTheme settings array.
+---@param c table
+---@param id string
+---@param style table
+---@return string
+local function rule(c, id, style)
+	local extra = require("eggfriedrice.extra")
+	local pairs_ = {}
+	local flags = {}
+	for _, flag in ipairs({ "bold", "italic", "underline" }) do
+		if style[flag] then
+			flags[#flags + 1] = flag
+		end
+	end
+	if #flags > 0 then
+		pairs_[#pairs_ + 1] = { "fontStyle", table.concat(flags, " ") }
+	end
+	if style.fg then
+		pairs_[#pairs_ + 1] = { "foreground", extra.hex(c, style.fg) }
+	end
 	local lines = {
 		"\t\t<dict>",
 		"\t\t\t<key>name</key>",
-		"\t\t\t<string>" .. name .. "</string>",
+		"\t\t\t<string>" .. scopes[id][1] .. "</string>",
 		"\t\t\t<key>scope</key>",
-		"\t\t\t<string>" .. scope .. "</string>",
+		"\t\t\t<string>" .. scopes[id][2] .. "</string>",
 		"\t\t\t<key>settings</key>",
 		"\t\t\t<dict>",
 	}
-	for _, k in ipairs(keys) do
-		lines[#lines + 1] = "\t\t\t\t<key>" .. k .. "</key>"
-		lines[#lines + 1] = "\t\t\t\t<string>" .. settings[k] .. "</string>"
+	for _, kv in ipairs(pairs_) do
+		lines[#lines + 1] = "\t\t\t\t<key>" .. kv[1] .. "</key>"
+		lines[#lines + 1] = "\t\t\t\t<string>" .. kv[2] .. "</string>"
 	end
 	lines[#lines + 1] = "\t\t\t</dict>"
 	lines[#lines + 1] = "\t\t</dict>"
@@ -34,68 +162,19 @@ end
 ---@param c table
 ---@return string
 function M.generate(c)
-	-- Scopes follow the Sublime Text conventions bat's syntaxes use.
-	-- Punctuation is muted like the editor, but string delimiters keep the
-	-- string color so quotes are not greyed out.
-	local rules = {
-		rule("Comment", "comment, punctuation.definition.comment", { foreground = c.comment, fontStyle = "italic" }),
-		rule("String", "string", { foreground = c.green }),
-		rule("Escape", "constant.character.escape", { foreground = c.cyan }),
-		rule(
-			"Enum member",
-			"variable.other.enummember, entity.name.enum-member, constant.other.enum",
-			{ foreground = c.cyan }
-		),
-		rule("Keyword", "keyword, keyword.control, keyword.other", { foreground = c.purple }),
-		rule("Storage", "storage, storage.type, storage.modifier", { foreground = c.purple }),
-		rule(
-			"Decorator",
-			"meta.annotation, storage.type.annotation, punctuation.definition.annotation, entity.name.function.decorator, meta.decorator",
-			{ foreground = c.purple }
-		),
-		rule(
-			"Function",
-			"entity.name.function, support.function, meta.function-call, variable.function",
-			{ foreground = c.yellow }
-		),
-		rule(
-			"Type",
-			"entity.name.type, entity.name.class, entity.name.struct, entity.name.enum, entity.name.interface, entity.name.namespace, support.type, support.class, entity.other.inherited-class",
-			{ foreground = c.yellow }
-		),
-		rule("Constant", "constant, constant.language, constant.numeric, support.constant", { foreground = c.yellow }),
-		rule("Attribute", "entity.other.attribute-name", { foreground = c.yellow }),
-		rule("Variable", "variable, variable.other, variable.parameter, variable.language", { foreground = c.red }),
-		rule(
-			"Property",
-			"variable.other.member, variable.other.property, variable.other.object.property, support.type.property-name, meta.object-literal.key, entity.name.label",
-			{ foreground = c.red }
-		),
-		rule("Tag", "entity.name.tag, punctuation.definition.tag", { foreground = c.red }),
-		rule("Operator", "keyword.operator", { foreground = c.blue }),
-		rule(
-			"Punctuation",
-			"punctuation.separator, punctuation.terminator, punctuation.accessor, punctuation.section, meta.brace",
-			{ foreground = c.fg_dark }
-		),
-		rule("Invalid", "invalid, invalid.illegal", { foreground = c.red, fontStyle = "underline" }),
-		rule("Markup heading", "markup.heading, entity.name.section", { foreground = c.red, fontStyle = "bold" }),
-		rule("Markup bold", "markup.bold", { fontStyle = "bold" }),
-		rule("Markup italic", "markup.italic", { fontStyle = "italic" }),
-		rule(
-			"Markup link",
-			"markup.underline.link, string.other.link",
-			{ foreground = c.purple, fontStyle = "underline" }
-		),
-		rule("Markup code", "markup.raw, markup.raw.inline, markup.raw.block", { foreground = c.green }),
-		rule("Markup list", "markup.list, punctuation.definition.list_item", { foreground = c.yellow }),
-		rule("Markup quote", "markup.quote", { foreground = c.comment, fontStyle = "italic" }),
-		rule("Diff inserted", "markup.inserted", { foreground = c.green }),
-		rule("Diff deleted", "markup.deleted", { foreground = c.red }),
-		rule("Diff changed", "markup.changed", { foreground = c.yellow }),
-		rule("Diff header", "meta.diff.header, meta.diff.range, meta.diff.index", { foreground = c.cyan }),
-	}
-
+	local extra = require("eggfriedrice.extra")
+	local roles = M.roles(c)
+	local global = {}
+	for _, key in ipairs(settings) do
+		global[#global + 1] = "\t\t\t\t<key>" .. camel(key) .. "</key>"
+		global[#global + 1] = "\t\t\t\t<string>" .. extra.hex(c, extra.role(roles, key)) .. "</string>"
+	end
+	local rules = {}
+	for _, e in ipairs(roles) do
+		if extra.is_style(e[2]) then
+			rules[#rules + 1] = rule(c, e[1], e[2])
+		end
+	end
 	return util.template(
 		[[
 <?xml version="1.0" encoding="UTF-8"?>
@@ -116,36 +195,16 @@ function M.generate(c)
 		<dict>
 			<key>settings</key>
 			<dict>
-				<key>background</key>
-				<string>${bg}</string>
-				<key>foreground</key>
-				<string>${fg}</string>
-				<key>caret</key>
-				<string>${yellow}</string>
-				<key>selection</key>
-				<string>${selection}</string>
-				<key>lineHighlight</key>
-				<string>${bg_light}</string>
-				<key>gutter</key>
-				<string>${bg}</string>
-				<key>gutterForeground</key>
-				<string>${fg_gutter_ui}</string>
-				<key>findHighlight</key>
-				<string>${search}</string>
-				<key>findHighlightForeground</key>
-				<string>${fg}</string>
-				<key>invisibles</key>
-				<string>${fg_gutter}</string>
+${global}
 			</dict>
 		</dict>
-]],
-		c
-	) .. table.concat(rules, "\n") .. [[
-
+${rules}
 	</array>
 </dict>
 </plist>
-]]
+]],
+		{ global = table.concat(global, "\n"), rules = table.concat(rules, "\n") }
+	)
 end
 
 return M

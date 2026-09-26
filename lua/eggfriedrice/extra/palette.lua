@@ -107,13 +107,13 @@ local semantic = {
 	{ "term_badge_bg", "yellow" },
 	{ "term_badge_fg", "bg" },
 	{ "term_link", "purple" },
-	{ "prompt_directory", "cyan" },
+	{ "prompt_directory", "yellow" },
 	{ "prompt_git_branch", "purple" },
 	{ "prompt_git_clean", "green" },
-	{ "prompt_git_dirty", "yellow" },
-	{ "prompt_git_ahead", "cyan" },
+	{ "prompt_git_dirty", "cyan" },
+	{ "prompt_git_ahead", "yellow" },
 	{ "prompt_git_behind", "orange" },
-	{ "prompt_char_success", "yellow" },
+	{ "prompt_char_success", "cyan" },
 	{ "prompt_char_error", "red" },
 	{ "prompt_duration", "orange" },
 	{ "prompt_lang_badge", "blue" },
@@ -167,6 +167,24 @@ M.ansi = {
 	"fg_bright",
 }
 
+-- Extras whose role maps become the `apps` section, in this order.
+local apps = {
+	"ghostty",
+	"fzf",
+	"starship",
+	"zsh",
+	"tmux",
+	"lazygit",
+	"bat",
+	"hyprland",
+	"gtk",
+	"rofi",
+	"dunst",
+	"btop",
+	"eza",
+	"opencode",
+}
+
 ---@param c table
 ---@param path string dotted palette key
 ---@return string
@@ -189,14 +207,70 @@ local function object(entries, c)
 	return table.concat(lines, ",\n")
 end
 
+---JSON key spelling: snake_case whatever the app itself calls the role.
+---@param name string
+---@return string
+local function key(name)
+	return (name:gsub("%-", "_"):gsub("(%l)(%u)", function(a, b)
+		return a .. "_" .. b:lower()
+	end))
+end
+
+---Encode a role value as JSON with palette keys resolved to hex.
+---@param c table
+---@param v any
+---@param indent string
+---@return string
+local function encode(c, v, indent)
+	local extra = require("eggfriedrice.extra")
+	local inner = indent .. "  "
+	if extra.is_entries(v) then
+		local lines = {}
+		for _, e in ipairs(v) do
+			if e[1] ~= "" then
+				lines[#lines + 1] = ('%s"%s": %s'):format(inner, key(e[1]), encode(c, e[2], inner))
+			end
+		end
+		return "{\n" .. table.concat(lines, ",\n") .. "\n" .. indent .. "}"
+	elseif extra.is_style(v) then
+		local lines = {}
+		for _, slot in ipairs({ "fg", "bg" }) do
+			if v[slot] then
+				lines[#lines + 1] = ('%s"%s": "%s"'):format(inner, slot, extra.hex(c, v[slot]))
+			end
+		end
+		for _, flag in ipairs({ "bold", "italic", "underline" }) do
+			if v[flag] then
+				lines[#lines + 1] = ('%s"%s": true'):format(inner, flag)
+			end
+		end
+		return "{\n" .. table.concat(lines, ",\n") .. "\n" .. indent .. "}"
+	elseif type(v) == "table" then
+		local items = {}
+		for _, k in ipairs(v) do
+			items[#items + 1] = ('%s"%s"'):format(inner, extra.hex(c, k))
+		end
+		return "[\n" .. table.concat(items, ",\n") .. "\n" .. indent .. "]"
+	elseif type(v) == "boolean" or type(v) == "number" then
+		return tostring(v)
+	end
+	return ('"%s"'):format(extra.hex(c, v))
+end
+
 ---Machine-readable palette for consumers outside Neovim: the design
----system's primitives, semantic tokens and ANSI slots, regenerated live.
+---system's primitives, semantic tokens, ANSI slots and per-app role
+---maps, regenerated live from the same data the extras render from.
 ---@param c table
 ---@return string
 function M.generate(c)
 	local slots = {}
 	for _, k in ipairs(M.ansi) do
 		slots[#slots + 1] = '    "' .. c[k] .. '"'
+	end
+	local sections = {}
+	for _, name in ipairs(apps) do
+		local mod = require("eggfriedrice.extra." .. name)
+		sections[#sections + 1] = ('    "%s": %s'):format(mod.app or name, encode(c, mod.roles(c), "    "))
 	end
 	return table.concat({
 		"{",
@@ -209,7 +283,10 @@ function M.generate(c)
 		"  },",
 		'  "ansi": [',
 		table.concat(slots, ",\n"),
-		"  ]",
+		"  ],",
+		'  "apps": {',
+		table.concat(sections, ",\n"),
+		"  }",
 		"}",
 		"",
 	}, "\n")

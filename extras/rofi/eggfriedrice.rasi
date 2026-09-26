@@ -35,3 +35,15 @@
     diff-delete: #391d1e;
     diff-text: #564825;
 }
+
+// suggested roles
+// window-background: @bg
+// text: @fg
+// muted: @comment
+// accent: @yellow
+// selected-background: @selection
+// selected-text: @fg
+// urgent: @red
+// active: @green
+// border-accent: @fg-gutter-ui
+// input-background: @bg-light

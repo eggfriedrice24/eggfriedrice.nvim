@@ -35,3 +35,17 @@
 @define-color diff_change #302509;
 @define-color diff_delete #391d1e;
 @define-color diff_text #564825;
+
+/* suggested roles */
+/* bar_background: @bg */
+/* bar_foreground: @fg */
+/* bar_border: @fg_gutter */
+/* muted: @comment */
+/* active: @yellow */
+/* active_text: @bg_dark */
+/* urgent: @red */
+/* success: @green */
+/* info: @blue */
+/* tab_background: @bg_dark */
+/* tab_selected: @bg_light */
+/* tab_indicator: @yellow */

@@ -192,6 +192,100 @@ function M.path(name)
 	return "extras/" .. name .. "/eggfriedrice" .. (extra.ext ~= "" and "." .. extra.ext or "")
 end
 
+-- Role maps -----------------------------------------------------------------
+--
+-- A template may expose `roles(c)`: an ordered list of `{ name, value }`
+-- entries naming the app's tokens. A value is a palette key ("yellow",
+-- "diff_add"), a style table whose `fg` and `bg` are palette keys plus
+-- `bold`, `italic` and `underline` flags, a list of palette keys, a nested
+-- entry list, or a literal that is not a palette key ("frame", 0.85,
+-- true). An entry named "" is a blank separator for renderers. The
+-- palette extra resolves every key to its hex and emits all role maps as
+-- the `apps` section of the palette JSON, so the design export and the
+-- generated files agree by construction.
+
+---@alias eggfriedrice.Entry { [1]: string, [2]: any }
+
+---@param v any
+---@return boolean
+function M.is_entries(v)
+	return type(v) == "table" and type(v[1]) == "table"
+end
+
+---@param v any
+---@return boolean
+function M.is_style(v)
+	return type(v) == "table"
+		and v[1] == nil
+		and (v.fg ~= nil or v.bg ~= nil or v.bold ~= nil or v.italic ~= nil or v.underline ~= nil)
+end
+
+---Palette key to hex map, including the flattened diff keys.
+---@param c table
+---@return table<string, string>
+function M.lookup(c)
+	local t = {}
+	for _, color in ipairs(M.colors(c)) do
+		t[color[1]] = color[2]
+	end
+	return t
+end
+
+---Hex for a palette key, or the value itself when it is not one.
+---@param c table
+---@param value any
+---@return any
+function M.hex(c, value)
+	if type(value) ~= "string" then
+		return value
+	end
+	return M.lookup(c)[value] or value
+end
+
+---Flatten entries into a `${name}` map for util.template with every
+---palette key resolved: nested names join with "_", lists index from 0,
+---styles expose `name_fg` and `name_bg`.
+---@param c table
+---@param entries eggfriedrice.Entry[]
+---@param prefix? string
+---@param out? table<string, any>
+---@return table<string, any>
+function M.vars(c, entries, prefix, out)
+	out = out or {}
+	prefix = prefix or ""
+	for _, e in ipairs(entries) do
+		local name, v = prefix .. e[1], e[2]
+		if e[1] == "" then
+			-- separator
+		elseif M.is_entries(v) then
+			M.vars(c, v, name .. "_", out)
+		elseif M.is_style(v) then
+			out[name .. "_fg"] = M.hex(c, v.fg)
+			out[name .. "_bg"] = M.hex(c, v.bg)
+		elseif type(v) == "table" then
+			for i, k in ipairs(v) do
+				out[name .. "_" .. (i - 1)] = M.hex(c, k)
+			end
+		else
+			out[name] = M.hex(c, v)
+		end
+	end
+	return out
+end
+
+---Ordered lookup of one role by name.
+---@param entries eggfriedrice.Entry[]
+---@param name string
+---@return any
+function M.role(entries, name)
+	for _, e in ipairs(entries) do
+		if e[1] == name then
+			return e[2]
+		end
+	end
+	error("unknown role " .. name)
+end
+
 ---Render every extra into `<root>/extras/`.
 ---@param root string repository root
 ---@return string[] written paths, relative to root
