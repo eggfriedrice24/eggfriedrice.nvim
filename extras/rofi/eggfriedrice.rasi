@@ -9,7 +9,7 @@
     selection: #2f3b54;
     fg-gutter: #46516c;
     fg-gutter-ui: #586480;
-    border: #c9a747;
+    border-accent: #c9a747;
     fg: #d8d3c3;
     fg-dark: #a8a396;
     fg-bright: #f2eddd;
