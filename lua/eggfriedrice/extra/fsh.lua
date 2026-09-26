@@ -28,6 +28,7 @@ incorrect-subtle = ${red}
 subtle-separator = ${comment}
 subtle-bg        = bg:${bg_light}
 secondary        = free
+recursive-base   = none
 
 [command-point]
 reserved-word     = ${purple}
@@ -64,6 +65,8 @@ back-quoted-argument   = ${cyan}
 single-quoted-argument = ${green}
 double-quoted-argument = ${green}
 dollar-quoted-argument = ${green}
+optarg-string          = ${green}
+optarg-number          = ${yellow}
 
 [in-string]
 back-dollar-quoted-argument           = ${cyan}
