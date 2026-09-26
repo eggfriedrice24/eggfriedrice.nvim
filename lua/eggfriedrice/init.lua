@@ -25,23 +25,23 @@ end
 
 ---@param c table
 local function terminal(c)
-	local util = require("eggfriedrice.util")
+	-- ANSI 0-7 are the base palette, 8-15 the bright tier from colors.lua.
 	vim.g.terminal_color_0 = c.bg_light
 	vim.g.terminal_color_8 = c.comment
 	vim.g.terminal_color_1 = c.red
-	vim.g.terminal_color_9 = c.red
+	vim.g.terminal_color_9 = c.red_bright
 	vim.g.terminal_color_2 = c.green
-	vim.g.terminal_color_10 = c.green
+	vim.g.terminal_color_10 = c.green_bright
 	vim.g.terminal_color_3 = c.yellow
-	vim.g.terminal_color_11 = c.yellow
+	vim.g.terminal_color_11 = c.yellow_bright
 	vim.g.terminal_color_4 = c.blue
-	vim.g.terminal_color_12 = c.blue
+	vim.g.terminal_color_12 = c.blue_bright
 	vim.g.terminal_color_5 = c.purple
-	vim.g.terminal_color_13 = util.blend(c.purple, "#ffffff", 0.8)
+	vim.g.terminal_color_13 = c.purple_bright
 	vim.g.terminal_color_6 = c.cyan
-	vim.g.terminal_color_14 = util.blend(c.cyan, "#ffffff", 0.8)
+	vim.g.terminal_color_14 = c.cyan_bright
 	vim.g.terminal_color_7 = c.fg
-	vim.g.terminal_color_15 = util.blend(c.fg, "#ffffff", 0.7)
+	vim.g.terminal_color_15 = c.fg_bright
 end
 
 function M.load()

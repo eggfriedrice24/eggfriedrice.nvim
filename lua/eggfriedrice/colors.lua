@@ -19,7 +19,8 @@ function M.get(config)
 		bg_light = "#121722",
 		fg = "#d8d3c3", -- rice: warm cream
 		fg_dark = "#a8a396",
-		fg_gutter = "#46516c",
+		fg_gutter = "#46516c", -- decorative: whitespace, indent guides, scrollbar thumbs (2.4:1, on purpose)
+		fg_gutter_ui = "#586480", -- readable gutter: line numbers, inactive statusline, dividers (3.2:1)
 
 		-- Palette. Roles follow One Dark Pro: red is the identifier
 		-- color (variables, fields, keys, tags), purple the keyword
@@ -33,6 +34,17 @@ function M.get(config)
 		blue = "#6cb8ff", -- operators (One Dark Pro uses cyan here)
 		purple = "#c084fc", -- keywords, decorators
 		red = "#e06c75", -- variables, fields, keys, tags, errors
+
+		-- Bright tier: ANSI 9-15 in :terminal and the terminal extras.
+		-- Each is its base color lifted 0.04 OKLCH lightness with hue
+		-- held, so bold text reads as the same color, only lit.
+		red_bright = "#fb6c7a",
+		green_bright = "#57f749",
+		yellow_bright = "#ffda87",
+		blue_bright = "#88c4ff",
+		purple_bright = "#c996ff",
+		cyan_bright = "#5cf5e6",
+		fg_bright = "#f2eddd",
 
 		-- Semantic
 		comment = "#8695b7", -- halcyon blue-gray: recedes on navy
@@ -61,6 +73,7 @@ function M.get(config)
 		text = util.blend(c.yellow, c.bg, 0.30),
 	}
 	c.search = util.blend(c.yellow, c.bg, 0.30)
+	c.search_selected = util.blend(c.yellow, c.bg, 0.55) -- current match in terminal extras; carries dark text
 	c.scope = util.blend(c.yellow, c.bg, 0.45)
 
 	if config and config.on_colors then

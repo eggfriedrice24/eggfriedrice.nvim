@@ -25,7 +25,7 @@ function M.get(c, config)
 		CursorLine = { bg = bg_light },
 		CursorColumn = { bg = bg_light },
 		ColorColumn = { bg = bg_light },
-		LineNr = { fg = c.fg_gutter },
+		LineNr = { fg = c.fg_gutter_ui },
 		CursorLineNr = { fg = c.yellow, bold = true },
 		SignColumn = { fg = c.fg_gutter, bg = bg },
 		VertSplit = { fg = c.border, bg = bg },
@@ -54,12 +54,12 @@ function M.get(c, config)
 
 		-- Statusline & Tabline
 		StatusLine = { fg = c.fg, bg = bg_dark },
-		StatusLineNC = { fg = c.fg_gutter, bg = bg_dark },
-		TabLine = { fg = c.fg_gutter, bg = bg_dark },
+		StatusLineNC = { fg = c.fg_gutter_ui, bg = bg_dark },
+		TabLine = { fg = c.fg_gutter_ui, bg = bg_dark },
 		TabLineFill = { bg = bg_dark },
 		TabLineSel = { fg = c.fg, bg = bg },
 		WinBar = { fg = c.fg, bg = bg },
-		WinBarNC = { fg = c.fg_gutter, bg = bg },
+		WinBarNC = { fg = c.fg_gutter_ui, bg = bg },
 
 		-- Messages
 		ModeMsg = { fg = c.fg, bold = true },
