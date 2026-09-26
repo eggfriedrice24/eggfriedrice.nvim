@@ -18,15 +18,19 @@ A dark, warm Neovim colorscheme that leans into its name: yolk-yellow literals, 
 | Punctuation | Muted | `#a8a396` |
 | Comments | Blue gray | `#8695b7` |
 | Background | Navy | `#0d111a` |
+| Line numbers, dividers | Gutter | `#586480` |
 | Dormant, not assigned to any group | Orange | `#fc9a2c` |
 
 Fields and properties are red on both declaration and access, like One Dark Pro. Diff, search, and diagnostic backgrounds are blended from these at load time, so overriding a palette color carries through everywhere.
+
+A bright tier (`red_bright`, `green_bright`, `yellow_bright`, `blue_bright`, `purple_bright`, `cyan_bright`, `fg_bright`) lifts each accent 0.04 OKLCH lightness with its hue held. It fills ANSI slots 9 to 15 in `:terminal` and in the extras, so bold terminal text reads as the same color, only lit.
 
 ## Features
 
 - Consistent token roles across legacy syntax, treesitter, and LSP semantic tokens - tuned against TypeScript, JavaScript, Go, Rust, Java, Python, Lua, CSS, HTML, YAML, JSON, TOML, and Markdown
 - Terminal colors (`:terminal` matches the theme)
 - Bundled lualine theme
+- Extras for Ghostty, fzf, zsh, Starship, tmux, lazygit and bat, generated from the same palette (see [Extras](#extras))
 - `on_colors` / `on_highlights` hooks for overriding anything
 - Popular plugin support (Telescope, neo-tree, gitsigns, nvim-cmp, and more)
 
@@ -141,6 +145,24 @@ require("lualine").setup({
   options = { theme = "eggfriedrice" },
 })
 ```
+
+## Extras
+
+The same palette, rendered for the rest of the terminal. Every file under [`extras/`](extras) is generated from `lua/eggfriedrice/colors.lua` by `make extras`, and CI fails when they drift, so they never lag behind the editor.
+
+| App | File | Install |
+| --- | --- | --- |
+| [Ghostty](https://ghostty.org) | `extras/ghostty/eggfriedrice` | copy to `~/.config/ghostty/themes/eggfriedrice`, set `theme = eggfriedrice` |
+| [fzf](https://github.com/junegunn/fzf) | `extras/fzf/eggfriedrice.sh` | `source` it from your shell rc |
+| zsh with [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) and [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) | `extras/zsh/eggfriedrice.zsh` | `source` it from `.zshrc` |
+| [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) | `extras/fsh/eggfriedrice.ini` | copy to `~/.config/fsh/`, run `fast-theme XDG:eggfriedrice` |
+| [Starship](https://starship.rs) | `extras/starship/eggfriedrice.toml` | paste into `starship.toml`, use the names in `style` |
+| [tmux](https://github.com/tmux/tmux) 3.3+ | `extras/tmux/eggfriedrice.tmux` | `source-file` it from `tmux.conf` |
+| [lazygit](https://github.com/jesseduffield/lazygit) | `extras/lazygit/eggfriedrice.yml` | append to `LG_CONFIG_FILE` after your own config |
+| [bat](https://github.com/sharkdp/bat), Sublime Text | `extras/bat/eggfriedrice.tmTheme` | copy to `~/.config/bat/themes/`, run `bat cache --build`, set `BAT_THEME=eggfriedrice` |
+| anything else | `extras/palette/eggfriedrice.json` | primitives, semantic aliases and the 16 ANSI slots as JSON |
+
+Shell roles match the editor: commands are yellow like functions, quoted words green like strings, `$vars` red like variables, redirections blue like operators. The fzf and tmux files leave backgrounds unset so a translucent terminal shows through.
 
 ## Supported Plugins
 

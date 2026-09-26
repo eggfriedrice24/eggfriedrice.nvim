@@ -10,6 +10,7 @@ CONTENTS                                                *eggfriedrice-contents*
   5. Hooks ................................ |eggfriedrice-hooks|
   6. Lualine .............................. |eggfriedrice-lualine|
   7. Palette .............................. |eggfriedrice-palette|
+  8. Extras ............................... |eggfriedrice-extras|
 
 ==============================================================================
 1. INTRODUCTION                                     *eggfriedrice-introduction*
@@ -120,10 +121,42 @@ green, visual is purple, replace is red, command is cyan.
   Text                            fg          #d8d3c3
   Punctuation                     fg_dark     #a8a396
   Comments                        comment     #8695b7
+  Line numbers, dividers          fg_gutter_ui #586480
+  Decorative gutter               fg_gutter   #46516c
   Background                      bg          #0d111a
   Dormant (unassigned)            orange      #fc9a2c
 
+A bright tier lifts each accent 0.04 OKLCH lightness with its hue held
+and fills ANSI slots 9 to 15 in |:terminal| and in the extras:
+`red_bright`, `green_bright`, `yellow_bright`, `blue_bright`,
+`purple_bright`, `cyan_bright`, `fg_bright`.
+
 Diff, search, and diagnostic backgrounds are blended from these at load
 time, so palette overrides via |eggfriedrice-on_colors| carry through.
+
+==============================================================================
+8. EXTRAS                                                 *eggfriedrice-extras*
+
+The palette rendered for other programs lives under `extras/` in the
+repository. Every file there is generated from `lua/eggfriedrice/colors.lua`
+by `make extras` (or `nvim -l scripts/extras.lua`), and CI fails when the
+committed output drifts, so the extras never lag behind the editor.
+
+  App                        File                              ~
+  Ghostty                    extras/ghostty/eggfriedrice
+  fzf                        extras/fzf/eggfriedrice.sh
+  zsh (z-sy-h, autosuggest)  extras/zsh/eggfriedrice.zsh
+  fast-syntax-highlighting   extras/fsh/eggfriedrice.ini
+  Starship                   extras/starship/eggfriedrice.toml
+  tmux (3.3+)                extras/tmux/eggfriedrice.tmux
+  lazygit                    extras/lazygit/eggfriedrice.yml
+  bat, Sublime Text          extras/bat/eggfriedrice.tmTheme
+  anything else              extras/palette/eggfriedrice.json
+
+Each generated file starts with its install hint. Shell roles match the
+editor: commands are yellow like functions, quoted words green like
+strings, `$vars` red like variables, redirections blue like operators.
+The fzf and tmux files leave backgrounds unset so a translucent terminal
+shows through.
 
 vim:tw=78:ts=8:noet:ft=help:norl:
