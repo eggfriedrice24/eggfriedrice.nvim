@@ -106,10 +106,10 @@ local function roles(c)
 		cursearch = { bg = c.search_selected, fill = c.bg, bold = true },
 		cursor = { bg = c.yellow },
 		-- terminal, matching the starship, zsh, eza and git extras
-		dir = { fill = c.cyan, bold = true },
+		dir = { fill = c.yellow, bold = true },
 		branch = { fill = c.purple },
-		dirty = { fill = c.yellow },
-		prompt = { fill = c.yellow, bold = true },
+		dirty = { fill = c.cyan },
+		prompt = { fill = c.cyan, bold = true },
 		cmd = { fill = c.yellow },
 		opt = { fill = c.cyan },
 		muted = { fill = c.fg_dark },
