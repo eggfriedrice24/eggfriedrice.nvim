@@ -24,6 +24,27 @@ function M.blend(fg, bg, alpha)
 	return "#" .. channel(fr, br) .. channel(fg_, bg_) .. channel(fb, bb)
 end
 
+---Substitute `${key}` and `${key.sub}` placeholders from a nested table.
+---Unknown keys raise, so a template can never silently emit a literal
+---placeholder into a generated file.
+---@param str string
+---@param values table
+---@return string
+function M.template(str, values)
+	return (
+		str:gsub("%${([%w_%.]+)}", function(path)
+			local v = values
+			for part in path:gmatch("[^%.]+") do
+				v = type(v) == "table" and v[part] or nil
+			end
+			if v == nil then
+				error(("template: unknown key '%s'"):format(path))
+			end
+			return tostring(v)
+		end)
+	)
+end
+
 ---Apply a table of highlight groups.
 ---@param groups table<string, vim.api.keyset.highlight>
 function M.apply(groups)
