@@ -75,6 +75,17 @@
 		</dict>
 		<dict>
 			<key>name</key>
+			<string>Enum member</string>
+			<key>scope</key>
+			<string>variable.other.enummember, entity.name.enum-member, constant.other.enum</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#78e2d6</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>Keyword</string>
 			<key>scope</key>
 			<string>keyword, keyword.control, keyword.other</string>

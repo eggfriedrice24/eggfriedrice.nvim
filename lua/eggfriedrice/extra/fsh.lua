@@ -14,7 +14,7 @@ function M.generate(c)
 		.. util.template(
 			[[
 [base]
-default          = none
+default          = ${fg}
 unknown-token    = ${red},bold,underline
 commandseparator = ${blue}
 redirection      = ${blue}

@@ -17,14 +17,13 @@ foreground = ${fg}
 cursor-color = ${yellow}
 cursor-text = ${bg}
 
-# cell-foreground keeps syntax colors legible inside a selection
 selection-background = ${selection}
-selection-foreground = cell-foreground
+selection-foreground = ${fg}
 
 # matches blend yellow into the background; the current match is lit
 # enough to carry dark text
 search-background = ${search}
-search-foreground = cell-foreground
+search-foreground = ${fg}
 search-selected-background = ${search_selected}
 search-selected-foreground = ${bg}
 

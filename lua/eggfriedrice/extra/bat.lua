@@ -41,6 +41,11 @@ function M.generate(c)
 		rule("Comment", "comment, punctuation.definition.comment", { foreground = c.comment, fontStyle = "italic" }),
 		rule("String", "string", { foreground = c.green }),
 		rule("Escape", "constant.character.escape", { foreground = c.cyan }),
+		rule(
+			"Enum member",
+			"variable.other.enummember, entity.name.enum-member, constant.other.enum",
+			{ foreground = c.cyan }
+		),
 		rule("Keyword", "keyword, keyword.control, keyword.other", { foreground = c.purple }),
 		rule("Storage", "storage, storage.type, storage.modifier", { foreground = c.purple }),
 		rule(

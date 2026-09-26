@@ -8,15 +8,14 @@ foreground = #d8d3c3
 cursor-color = #ffc940
 cursor-text = #0d111a
 
-# cell-foreground keeps syntax colors legible inside a selection
 selection-background = #2f3b54
-selection-foreground = cell-foreground
+selection-foreground = #d8d3c3
 
 # matches blend yellow into the background; the current match is lit
 # enough to carry dark text
 search-background = #564825
-search-foreground = cell-foreground
-search-selected-background = #92762f
+search-foreground = #d8d3c3
+search-selected-background = #907a41
 search-selected-foreground = #0d111a
 
 split-divider-color = #586480

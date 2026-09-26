@@ -8,8 +8,7 @@ local M = {}
 ---@param c table
 ---@return string
 function M.generate(c)
-	-- Styles only, no status layout. Pane backgrounds are deliberately not
-	-- set so a translucent terminal keeps its transparency.
+	-- Styles only, no status layout.
 	return require("eggfriedrice.extra").header("tmux")
 		.. util.template(
 			[[
@@ -22,8 +21,12 @@ set -g window-status-current-style "fg=${fg},bg=${bg},bold"
 set -g window-status-activity-style "fg=${orange},bg=${bg_dark}"
 set -g window-status-bell-style "fg=${bg},bg=${yellow},bold"
 
+set -g window-style "bg=${bg_dark}"
+set -g window-active-style "bg=${bg}"
 set -g pane-border-style "fg=${fg_gutter_ui}"
 set -g pane-active-border-style "fg=${border}"
+
+# current-window indicator, for your window-status-current-format: #[fg=${yellow}]
 
 set -g message-style "fg=${fg},bg=${bg_light}"
 set -g message-command-style "fg=${yellow},bg=${bg_light}"
