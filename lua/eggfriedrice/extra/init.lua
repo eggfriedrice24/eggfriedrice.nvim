@@ -124,7 +124,7 @@ M.extras = {
 		label = "Slack",
 		ext = "txt",
 		comment = "#",
-		install = "Preferences > Themes > Custom theme, paste the last line",
+		install = "Preferences > Appearance > Custom theme > Import, paste the last line",
 	},
 	discord = {
 		label = "Discord (Vencord, Vesktop, BetterDiscord)",

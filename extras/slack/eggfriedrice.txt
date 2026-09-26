@@ -1,6 +1,7 @@
 # eggfriedrice for Slack
 # generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand
-# install: Preferences > Themes > Custom theme, paste the last line
+# install: Preferences > Appearance > Custom theme > Import, paste the last line
 
-# order: column_bg, menu_bg_hover, active_item, active_item_text, hover_item, text_color, active_presence, mention_badge, top_nav_bg, top_nav_text
-#090c13,#121722,#ffc940,#0d111a,#2f3b54,#d8d3c3,#60e654,#e06c75,#0d111a,#d8d3c3
+# order: system_navigation, selected_items, presence_indication, notifications
+# turn off Window gradient unless you want the yellow bleeding into the sidebar
+#090c13,#ffc940,#60e654,#e06c75

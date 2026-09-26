@@ -3,22 +3,17 @@
 
 local M = {}
 
----Slack's custom theme string, ten colors in this fixed order.
+---Slack's custom theme, the four fields of Preferences > Appearance >
+---Custom theme, in the order the Import box expects.
 ---@param c table
 ---@return eggfriedrice.Entry[]
 function M.roles(c)
 	local _ = c
 	return {
-		{ "column_bg", "bg_dark" },
-		{ "menu_bg_hover", "bg_light" },
-		{ "active_item", "yellow" },
-		{ "active_item_text", "bg" },
-		{ "hover_item", "selection" },
-		{ "text_color", "fg" },
-		{ "active_presence", "green" },
-		{ "mention_badge", "red" },
-		{ "top_nav_bg", "bg" },
-		{ "top_nav_text", "fg" },
+		{ "system_navigation", "bg_dark" },
+		{ "selected_items", "yellow" },
+		{ "presence_indication", "green" },
+		{ "notifications", "red" },
 	}
 end
 
@@ -31,7 +26,13 @@ function M.generate(c)
 		hexes[#hexes + 1] = extra.hex(c, e[2])
 		names[#names + 1] = e[1]
 	end
-	return extra.header("slack") .. "# order: " .. table.concat(names, ", ") .. "\n" .. table.concat(hexes, ",") .. "\n"
+	return extra.header("slack")
+		.. "# order: "
+		.. table.concat(names, ", ")
+		.. "\n"
+		.. "# turn off Window gradient unless you want the yellow bleeding into the sidebar\n"
+		.. table.concat(hexes, ",")
+		.. "\n"
 end
 
 return M
