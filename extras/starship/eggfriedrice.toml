@@ -1,0 +1,52 @@
+# eggfriedrice for Starship
+# generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand
+# install: paste into starship.toml and reference the names in `style`
+
+palette = "eggfriedrice"
+
+[palettes.eggfriedrice]
+# base
+bg = "#0d111a"
+bg_dark = "#090c13"
+bg_light = "#121722"
+fg = "#d8d3c3"
+fg_dark = "#a8a396"
+comment = "#8695b7"
+
+# accents (these names shadow starship's ANSI names on purpose)
+yellow = "#ffc940"
+orange = "#fc9a2c"
+red = "#e06c75"
+green = "#60e654"
+cyan = "#78e2d6"
+blue = "#6cb8ff"
+purple = "#c084fc"
+
+# roles
+directory = "#78e2d6"
+git_branch = "#c084fc"
+git_clean = "#60e654"
+git_dirty = "#ffc940"
+git_ahead = "#78e2d6"
+git_behind = "#fc9a2c"
+git_conflicted = "#e06c75"
+success = "#ffc940"
+error = "#e06c75"
+vimcmd = "#c084fc"
+duration = "#fc9a2c"
+language = "#6cb8ff"
+jobs = "#78e2d6"
+time = "#8695b7"
+user = "#a8a396"
+
+# example usage
+# [character]
+# success_symbol = "[❯](bold success)"
+# error_symbol = "[❯](bold error)"
+# vimcmd_symbol = "[❮](bold vimcmd)"
+#
+# [directory]
+# style = "bold directory"
+#
+# [git_branch]
+# style = "bold git_branch"

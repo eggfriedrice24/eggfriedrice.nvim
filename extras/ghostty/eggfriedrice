@@ -1,0 +1,47 @@
+# eggfriedrice for Ghostty
+# generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand
+# install: copy to ~/.config/ghostty/themes/eggfriedrice and set `theme = eggfriedrice`
+
+background = #0d111a
+foreground = #d8d3c3
+
+cursor-color = #ffc940
+cursor-text = #0d111a
+
+# cell-foreground keeps syntax colors legible inside a selection
+selection-background = #2f3b54
+selection-foreground = cell-foreground
+
+# matches blend yellow into the background; the current match is lit
+# enough to carry dark text
+search-background = #564825
+search-foreground = cell-foreground
+search-selected-background = #92762f
+search-selected-foreground = #0d111a
+
+split-divider-color = #586480
+unfocused-split-fill = #090c13
+unfocused-split-opacity = 0.85
+
+window-titlebar-background = #090c13
+window-titlebar-foreground = #a8a396
+
+palette = 0=#121722
+palette = 1=#e06c75
+palette = 2=#60e654
+palette = 3=#ffc940
+palette = 4=#6cb8ff
+palette = 5=#c084fc
+palette = 6=#78e2d6
+palette = 7=#d8d3c3
+palette = 8=#8695b7
+palette = 9=#fb6c7a
+palette = 10=#57f749
+palette = 11=#ffda87
+palette = 12=#88c4ff
+palette = 13=#c996ff
+palette = 14=#5cf5e6
+palette = 15=#f2eddd
+
+# derive the 256-color cube from these sixteen instead of the xterm defaults
+palette-generate = true
