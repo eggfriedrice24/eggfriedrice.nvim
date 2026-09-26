@@ -152,9 +152,19 @@ committed output drifts, so the extras never lag behind the editor.
   tmux (3.3+)                extras/tmux/eggfriedrice.tmux
   lazygit                    extras/lazygit/eggfriedrice.yml
   bat, Sublime Text          extras/bat/eggfriedrice.tmTheme
+  Hyprland, hyprlock         extras/hyprland/eggfriedrice.conf
+  Lua                        extras/lua/eggfriedrice.lua
+  GTK CSS (waybar, ghostty)  extras/gtk/eggfriedrice.css
+  rofi                       extras/rofi/eggfriedrice.rasi
+  dunst                      extras/dunst/eggfriedrice.conf
+  btop                       extras/btop/eggfriedrice.theme
+  eza                        extras/eza/eggfriedrice.yml
+  opencode                   extras/opencode/eggfriedrice.json
   anything else              extras/palette/eggfriedrice.json
 
-Each generated file starts with its install hint. Shell roles match the
+Each generated file starts with its install hint. The hyprland, lua, gtk
+and rofi files expose the whole palette as named variables, and the tmux
+file also sets it as `@eggfriedrice_*` user options. Shell roles match the
 editor: commands are yellow like functions, quoted words green like
 strings, `$vars` red like variables, redirections blue like operators.
 The palette JSON carries the full token set of the design system,

@@ -30,7 +30,7 @@ A bright tier (`red_bright`, `green_bright`, `yellow_bright`, `blue_bright`, `pu
 - Consistent token roles across legacy syntax, treesitter, and LSP semantic tokens - tuned against TypeScript, JavaScript, Go, Rust, Java, Python, Lua, CSS, HTML, YAML, JSON, TOML, and Markdown
 - Terminal colors (`:terminal` matches the theme)
 - Bundled lualine theme
-- Extras for Ghostty, fzf, zsh, Starship, tmux, lazygit and bat, generated from the same palette (see [Extras](#extras))
+- Extras for Ghostty, Hyprland, waybar, rofi, dunst, fzf, zsh, Starship, tmux, lazygit, bat, btop, eza and opencode, generated from the same palette (see [Extras](#extras))
 - `on_colors` / `on_highlights` hooks for overriding anything
 - Popular plugin support (Telescope, neo-tree, gitsigns, nvim-cmp, and more)
 
@@ -157,9 +157,17 @@ The same palette, rendered for the rest of the terminal. Every file under [`extr
 | zsh with [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) and [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) | `extras/zsh/eggfriedrice.zsh` | `source` it from `.zshrc` |
 | [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) | `extras/fsh/eggfriedrice.ini` | copy to `~/.config/fsh/`, run `fast-theme XDG:eggfriedrice` |
 | [Starship](https://starship.rs) | `extras/starship/eggfriedrice.toml` | paste into `starship.toml`, use the names in `style` |
-| [tmux](https://github.com/tmux/tmux) 3.3+ | `extras/tmux/eggfriedrice.tmux` | `source-file` it from `tmux.conf` |
+| [tmux](https://github.com/tmux/tmux) 3.3+ | `extras/tmux/eggfriedrice.tmux` | `source-file` it from `tmux.conf`; the palette is also set as `@eggfriedrice_*` user options for your own formats |
 | [lazygit](https://github.com/jesseduffield/lazygit) | `extras/lazygit/eggfriedrice.yml` | append to `LG_CONFIG_FILE` after your own config |
 | [bat](https://github.com/sharkdp/bat), Sublime Text | `extras/bat/eggfriedrice.tmTheme` | copy to `~/.config/bat/themes/`, run `bat cache --build`, set `BAT_THEME=eggfriedrice` |
+| [Hyprland](https://hyprland.org) and hyprlock | `extras/hyprland/eggfriedrice.conf` | `source =` it, then use `$yellow` or `rgba($yellowAlphaee)` |
+| Lua (Hyprland's Lua config, wezterm, ...) | `extras/lua/eggfriedrice.lua` | put it on your Lua path and `require("eggfriedrice")` |
+| GTK CSS: [waybar](https://github.com/Alexays/Waybar), ghostty `gtk-custom-css` | `extras/gtk/eggfriedrice.css` | `@import url(...)` it, then use `@yellow` or `alpha(@bg, 0.7)` |
+| [rofi](https://github.com/davatorium/rofi) | `extras/rofi/eggfriedrice.rasi` | `@import` it, then use `@yellow` |
+| [dunst](https://dunst-project.org) | `extras/dunst/eggfriedrice.conf` | copy or symlink into `~/.config/dunst/dunstrc.d/` |
+| [btop](https://github.com/aristocratos/btop) | `extras/btop/eggfriedrice.theme` | copy into `~/.config/btop/themes/`, set `color_theme = "eggfriedrice"` |
+| [eza](https://github.com/eza-community/eza) | `extras/eza/eggfriedrice.yml` | copy or symlink to `~/.config/eza/theme.yml`, unset `LS_COLORS` and `EZA_COLORS` |
+| [opencode](https://opencode.ai) | `extras/opencode/eggfriedrice.json` | copy or symlink into `~/.config/opencode/themes/`, set `"theme": "eggfriedrice"` in `tui.json` |
 | anything else | `extras/palette/eggfriedrice.json` | primitives, semantic aliases and the 16 ANSI slots as JSON |
 
 Shell roles match the editor: commands are yellow like functions, quoted words green like strings, `$vars` red like variables, redirections blue like operators. The palette JSON carries the full token set of the design system, including the semantic names each extra maps from.
