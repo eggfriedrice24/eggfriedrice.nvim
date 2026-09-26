@@ -1,0 +1,37 @@
+// eggfriedrice for rofi
+// generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand
+// install: `@import "/path/to/eggfriedrice.rasi"` in your rasi theme, then use @yellow
+
+* {
+    bg-dark: #090c13;
+    bg: #0d111a;
+    bg-light: #121722;
+    selection: #2f3b54;
+    fg-gutter: #46516c;
+    fg-gutter-ui: #586480;
+    border: #c9a747;
+    fg: #d8d3c3;
+    fg-dark: #a8a396;
+    fg-bright: #f2eddd;
+    comment: #8695b7;
+    yellow: #ffc940;
+    orange: #fc9a2c;
+    green: #60e654;
+    cyan: #78e2d6;
+    blue: #6cb8ff;
+    purple: #c084fc;
+    red: #e06c75;
+    red-bright: #fb6c7a;
+    green-bright: #57f749;
+    yellow-bright: #ffda87;
+    blue-bright: #88c4ff;
+    purple-bright: #c996ff;
+    cyan-bright: #5cf5e6;
+    search: #564825;
+    search-selected: #907a41;
+    scope: #7a642b;
+    diff-add: #192c17;
+    diff-change: #302509;
+    diff-delete: #391d1e;
+    diff-text: #564825;
+}

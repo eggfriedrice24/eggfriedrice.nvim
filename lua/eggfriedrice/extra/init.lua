@@ -72,7 +72,99 @@ M.extras = {
 		comment = "",
 		install = "",
 	},
+	hyprland = {
+		label = "Hyprland and hyprlock",
+		ext = "conf",
+		comment = "#",
+		install = "`source = /path/to/eggfriedrice.conf` in hyprland.conf or hyprlock.conf, then use $yellow or rgba($yellowAlphaee)",
+	},
+	lua = {
+		label = "Lua",
+		ext = "lua",
+		comment = "--",
+		install = 'put it on your Lua path and `require("eggfriedrice")` (Hyprland\'s Lua config, wezterm, ...)',
+	},
+	gtk = {
+		label = "GTK CSS (waybar, ghostty gtk-custom-css)",
+		ext = "css",
+		comment = "",
+		install = '`@import url("/path/to/eggfriedrice.css");` at the top of your stylesheet, then use @yellow or alpha(@bg, 0.7)',
+	},
+	rofi = {
+		label = "rofi",
+		ext = "rasi",
+		comment = "//",
+		install = '`@import "/path/to/eggfriedrice.rasi"` in your rasi theme, then use @yellow',
+	},
+	dunst = {
+		label = "dunst",
+		ext = "conf",
+		comment = "#",
+		install = "copy or symlink into ~/.config/dunst/dunstrc.d/",
+	},
+	btop = {
+		label = "btop",
+		ext = "theme",
+		comment = "#",
+		install = 'copy or symlink into ~/.config/btop/themes/ and set color_theme = "eggfriedrice"',
+	},
+	eza = {
+		label = "eza",
+		ext = "yml",
+		comment = "#",
+		install = "copy or symlink to ~/.config/eza/theme.yml",
+	},
+	opencode = {
+		label = "opencode",
+		ext = "json",
+		comment = "",
+		install = 'copy or symlink into ~/.config/opencode/themes/ and set "theme": "eggfriedrice" in tui.json',
+	},
 }
+
+---Every palette color as an ordered flat list, for variables-style extras
+---(hyprland, lua, gtk, rofi) that expose the whole palette by name.
+---@param c table
+---@return { [1]: string, [2]: string }[] name, hex
+function M.colors(c)
+	local names = {
+		"bg_dark",
+		"bg",
+		"bg_light",
+		"selection",
+		"fg_gutter",
+		"fg_gutter_ui",
+		"border",
+		"fg",
+		"fg_dark",
+		"fg_bright",
+		"comment",
+		"yellow",
+		"orange",
+		"green",
+		"cyan",
+		"blue",
+		"purple",
+		"red",
+		"red_bright",
+		"green_bright",
+		"yellow_bright",
+		"blue_bright",
+		"purple_bright",
+		"cyan_bright",
+		"search",
+		"search_selected",
+		"scope",
+	}
+	local out = {}
+	for _, n in ipairs(names) do
+		out[#out + 1] = { n, c[n] }
+	end
+	for _, n in ipairs({ "add", "change", "delete", "text" }) do
+		out[#out + 1] = { "diff_" .. n, c.diff[n] }
+	end
+	return out
+end
 
 ---Header lines for a generated file, or "" for formats without comments.
 ---@param name string

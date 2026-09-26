@@ -1,0 +1,37 @@
+/*
+ * eggfriedrice for GTK CSS (waybar, ghostty gtk-custom-css)
+ * generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand
+ * install: `@import url("/path/to/eggfriedrice.css");` at the top of your stylesheet, then use @yellow or alpha(@bg, 0.7)
+ */
+
+@define-color bg_dark #090c13;
+@define-color bg #0d111a;
+@define-color bg_light #121722;
+@define-color selection #2f3b54;
+@define-color fg_gutter #46516c;
+@define-color fg_gutter_ui #586480;
+@define-color border #c9a747;
+@define-color fg #d8d3c3;
+@define-color fg_dark #a8a396;
+@define-color fg_bright #f2eddd;
+@define-color comment #8695b7;
+@define-color yellow #ffc940;
+@define-color orange #fc9a2c;
+@define-color green #60e654;
+@define-color cyan #78e2d6;
+@define-color blue #6cb8ff;
+@define-color purple #c084fc;
+@define-color red #e06c75;
+@define-color red_bright #fb6c7a;
+@define-color green_bright #57f749;
+@define-color yellow_bright #ffda87;
+@define-color blue_bright #88c4ff;
+@define-color purple_bright #c996ff;
+@define-color cyan_bright #5cf5e6;
+@define-color search #564825;
+@define-color search_selected #907a41;
+@define-color scope #7a642b;
+@define-color diff_add #192c17;
+@define-color diff_change #302509;
+@define-color diff_delete #391d1e;
+@define-color diff_text #564825;
