@@ -118,7 +118,7 @@ M.extras = {
 		label = "opencode",
 		ext = "json",
 		comment = "",
-		install = 'copy or symlink into ~/.config/opencode/themes/ and set "theme": "eggfriedrice" in tui.json',
+		install = 'copy or symlink into ~/.config/opencode/themes/, then set theme.name to "eggfriedrice" in cli.json (opencode 2) or "theme" in tui.json (opencode 1)',
 	},
 }
 

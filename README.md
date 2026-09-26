@@ -169,7 +169,7 @@ The same palette, rendered for the rest of the terminal. Every file under [`extr
 | [dunst](https://dunst-project.org) | `extras/dunst/eggfriedrice.conf` | copy or symlink into `~/.config/dunst/dunstrc.d/` |
 | [btop](https://github.com/aristocratos/btop) | `extras/btop/eggfriedrice.theme` | copy into `~/.config/btop/themes/`, set `color_theme = "eggfriedrice"` |
 | [eza](https://github.com/eza-community/eza) | `extras/eza/eggfriedrice.yml` | copy or symlink to `~/.config/eza/theme.yml`, unset `LS_COLORS` and `EZA_COLORS` |
-| [opencode](https://opencode.ai) | `extras/opencode/eggfriedrice.json` | copy or symlink into `~/.config/opencode/themes/`, set `"theme": "eggfriedrice"` in `tui.json` |
+| [opencode](https://opencode.ai) | `extras/opencode/eggfriedrice.json` | copy or symlink into `~/.config/opencode/themes/`, then set `theme.name` in `cli.json` (opencode 2) or `theme` in `tui.json` (opencode 1) |
 | anything else | `extras/palette/eggfriedrice.json` | primitives, semantic aliases and the 16 ANSI slots as JSON |
 
 Shell roles match the editor: commands are yellow like functions, quoted words green like strings, `$vars` red like variables, redirections blue like operators. The palette JSON carries the full token set of the design system, including the semantic names each extra maps from.
