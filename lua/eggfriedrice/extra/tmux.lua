@@ -8,8 +8,16 @@ local M = {}
 ---@param c table
 ---@return string
 function M.generate(c)
-	-- Styles only, no status layout.
-	return require("eggfriedrice.extra").header("tmux")
+	-- Styles only, no status layout. The palette is also exported as user
+	-- options so a status format can say #[fg=#{@eggfriedrice_yellow}].
+	local extra = require("eggfriedrice.extra")
+	local options = {}
+	for _, color in ipairs(extra.colors(c)) do
+		options[#options + 1] = ('set -g @eggfriedrice_%s "%s"'):format(color[1], color[2])
+	end
+	return extra.header("tmux")
+		.. table.concat(options, "\n")
+		.. "\n\n"
 		.. util.template(
 			[[
 set -g status-style "fg=${fg_dark},bg=${bg_dark}"
