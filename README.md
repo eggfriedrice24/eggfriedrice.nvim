@@ -32,7 +32,7 @@ A bright tier (`red_bright`, `green_bright`, `yellow_bright`, `blue_bright`, `pu
 - Consistent token roles across legacy syntax, treesitter, and LSP semantic tokens - tuned against TypeScript, JavaScript, Go, Rust, Java, Python, Lua, CSS, HTML, YAML, JSON, TOML, and Markdown
 - Terminal colors (`:terminal` matches the theme)
 - Bundled lualine theme
-- Extras for Ghostty, Hyprland, waybar, rofi, dunst, fzf, zsh, Starship, tmux, lazygit, bat, btop, eza and opencode, generated from the same palette (see [Extras](#extras))
+- Extras for Ghostty, Hyprland, waybar, rofi, dunst, fzf, zsh, Starship, tmux, lazygit, bat, btop, eza, opencode, Slack and Discord, generated from the same palette (see [Extras](#extras))
 - `on_colors` / `on_highlights` hooks for overriding anything
 - Popular plugin support (Telescope, neo-tree, gitsigns, nvim-cmp, and more)
 
@@ -170,6 +170,8 @@ The same palette, rendered for the rest of the terminal. Every file under [`extr
 | [btop](https://github.com/aristocratos/btop) | `extras/btop/eggfriedrice.theme` | copy into `~/.config/btop/themes/`, set `color_theme = "eggfriedrice"` |
 | [eza](https://github.com/eza-community/eza) | `extras/eza/eggfriedrice.yml` | copy or symlink to `~/.config/eza/theme.yml`, unset `LS_COLORS` and `EZA_COLORS` |
 | [opencode](https://opencode.ai) | `extras/opencode/eggfriedrice.json` | copy or symlink into `~/.config/opencode/themes/`, then set `theme.name` in `cli.json` (opencode 2) or `theme` in `tui.json` (opencode 1) |
+| [Slack](https://slack.com) | `extras/slack/eggfriedrice.txt` | Preferences, Themes, Custom theme: paste the last line |
+| [Discord](https://discord.com) via [Vencord](https://vencord.dev), Vesktop or BetterDiscord | `extras/discord/eggfriedrice.theme.css` | copy or symlink into the client mod's `themes/` dir and enable it; the stock client cannot load themes |
 | anything else | `extras/palette/eggfriedrice.json` | primitives, semantic tokens, the 16 ANSI slots and every app's role map as JSON |
 
 Shell roles match the editor: commands are yellow like functions, quoted words green like strings, `$vars` red like variables, redirections blue like operators. The palette JSON carries the full token set of the design system, including the semantic names each extra maps from.

@@ -160,6 +160,8 @@ committed output drifts, so the extras never lag behind the editor.
   btop                       extras/btop/eggfriedrice.theme
   eza                        extras/eza/eggfriedrice.yml
   opencode                   extras/opencode/eggfriedrice.json
+  Slack                      extras/slack/eggfriedrice.txt
+  Discord (client mods)      extras/discord/eggfriedrice.theme.css
   anything else              extras/palette/eggfriedrice.json
 
 Each generated file starts with its install hint. The hyprland, lua, gtk
