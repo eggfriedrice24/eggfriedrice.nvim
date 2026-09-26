@@ -4,6 +4,8 @@ A dark, warm Neovim colorscheme that leans into its name: yolk-yellow literals, 
 
 ![preview](assets/preview.svg)
 
+The preview is generated from the palette by `make preview`, so it never drifts from the colors.
+
 ## Palette
 
 | Role | Color | Hex |

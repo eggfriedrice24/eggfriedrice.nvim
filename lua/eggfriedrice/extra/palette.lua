@@ -145,7 +145,10 @@ local semantic = {
 	{ "sh_reserved_word", "purple" },
 }
 
-local ansi = {
+---Palette keys of ANSI slots 0 to 15, in order. The preview reads this
+---list so its swatches match the JSON.
+---@type string[]
+M.ansi = {
 	"bg_light",
 	"red",
 	"green",
@@ -192,7 +195,7 @@ end
 ---@return string
 function M.generate(c)
 	local slots = {}
-	for _, k in ipairs(ansi) do
+	for _, k in ipairs(M.ansi) do
 		slots[#slots + 1] = '    "' .. c[k] .. '"'
 	end
 	return table.concat({

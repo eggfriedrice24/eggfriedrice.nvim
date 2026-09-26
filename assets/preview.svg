@@ -1,23 +1,210 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="680" height="452" viewBox="0 0 680 452" font-family="ui-monospace, 'JetBrains Mono', 'Fira Code', Menlo, monospace" font-size="14">
-  <rect width="680" height="452" rx="10" fill="#0d111a"/>
-  <circle cx="24" cy="24" r="5" fill="#e06c75"/>
-  <circle cx="42" cy="24" r="5" fill="#ffc940"/>
-  <circle cx="60" cy="24" r="5" fill="#60e654"/>
-  <text x="340" y="29" fill="#8695b7" text-anchor="middle">main.ts</text>
-  <g xml:space="preserve">
-    <text x="24" y="66"><tspan fill="#c084fc">import</tspan><tspan fill="#a8a396"> { </tspan><tspan fill="#ffc940">serve</tspan><tspan fill="#a8a396"> } </tspan><tspan fill="#c084fc">from</tspan><tspan fill="#60e654"> "./server"</tspan></text>
-    <text x="24" y="110"><tspan fill="#8695b7" font-style="italic">// retry the dev server until it comes up</tspan></text>
-    <text x="24" y="132"><tspan fill="#c084fc">const</tspan><tspan fill="#ffc940"> MAX_RETRIES</tspan><tspan fill="#6cb8ff"> = </tspan><tspan fill="#ffc940">3</tspan></text>
-    <text x="24" y="176"><tspan fill="#c084fc">type</tspan><tspan fill="#ffc940"> Config</tspan><tspan fill="#6cb8ff"> = </tspan><tspan fill="#a8a396">{</tspan></text>
-    <text x="24" y="198"><tspan fill="#e06c75">  host</tspan><tspan fill="#a8a396">: </tspan><tspan fill="#ffc940">string</tspan></text>
-    <text x="24" y="220"><tspan fill="#e06c75">  port</tspan><tspan fill="#a8a396">: </tspan><tspan fill="#ffc940">number</tspan></text>
-    <text x="24" y="242"><tspan fill="#a8a396">}</tspan></text>
-    <text x="24" y="286"><tspan fill="#c084fc">async function</tspan><tspan fill="#ffc940"> main</tspan><tspan fill="#a8a396">(</tspan><tspan fill="#e06c75">cfg</tspan><tspan fill="#a8a396">: </tspan><tspan fill="#ffc940">Config</tspan><tspan fill="#a8a396">): </tspan><tspan fill="#ffc940">Promise</tspan><tspan fill="#a8a396">&lt;</tspan><tspan fill="#ffc940">void</tspan><tspan fill="#a8a396">&gt; {</tspan></text>
-    <text x="24" y="308"><tspan fill="#c084fc">  const</tspan><tspan fill="#e06c75"> url</tspan><tspan fill="#6cb8ff"> = </tspan><tspan fill="#60e654">`http://</tspan><tspan fill="#c084fc">${</tspan><tspan fill="#e06c75">cfg</tspan><tspan fill="#a8a396">.</tspan><tspan fill="#e06c75">host</tspan><tspan fill="#c084fc">}</tspan><tspan fill="#60e654">:</tspan><tspan fill="#c084fc">${</tspan><tspan fill="#e06c75">cfg</tspan><tspan fill="#a8a396">.</tspan><tspan fill="#e06c75">port</tspan><tspan fill="#c084fc">}</tspan><tspan fill="#60e654">`</tspan></text>
-    <text x="24" y="330"><tspan fill="#c084fc">  for</tspan><tspan fill="#a8a396"> (</tspan><tspan fill="#c084fc">let</tspan><tspan fill="#e06c75"> i</tspan><tspan fill="#6cb8ff"> = </tspan><tspan fill="#ffc940">0</tspan><tspan fill="#a8a396">; </tspan><tspan fill="#e06c75">i</tspan><tspan fill="#6cb8ff"> &lt; </tspan><tspan fill="#ffc940">MAX_RETRIES</tspan><tspan fill="#a8a396">; </tspan><tspan fill="#e06c75">i</tspan><tspan fill="#6cb8ff">++</tspan><tspan fill="#a8a396">) {</tspan></text>
-    <text x="24" y="352"><tspan fill="#c084fc">    if</tspan><tspan fill="#a8a396"> (</tspan><tspan fill="#c084fc">await</tspan><tspan fill="#ffc940"> serve</tspan><tspan fill="#a8a396">(</tspan><tspan fill="#e06c75">url</tspan><tspan fill="#a8a396">, { </tspan><tspan fill="#e06c75">secure</tspan><tspan fill="#a8a396">: </tspan><tspan fill="#ffc940">true</tspan><tspan fill="#a8a396"> })) </tspan><tspan fill="#c084fc">return</tspan></text>
-    <text x="24" y="374"><tspan fill="#a8a396">  }</tspan></text>
-    <text x="24" y="396"><tspan fill="#c084fc">  throw new</tspan><tspan fill="#ffc940"> Error</tspan><tspan fill="#a8a396">(</tspan><tspan fill="#60e654">"server did not start"</tspan><tspan fill="#a8a396">)</tspan></text>
-    <text x="24" y="418"><tspan fill="#a8a396">}</tspan></text>
-  </g>
+<svg font-family="JetBrains Mono, Fira Code, Menlo, monospace" font-size="13" height="869" viewBox="0 0 1200 869" width="1200" xmlns="http://www.w3.org/2000/svg">
+<!-- generated from lua/eggfriedrice/colors.lua by `make preview`; do not edit by hand -->
+<rect fill="#0d111a" height="869" rx="10" width="1200"/>
+<clipPath id="clip-editor"><rect height="334" rx="10" width="1152" x="24" y="24"/></clipPath>
+<g clip-path="url(#clip-editor)"><rect fill="#0d111a" height="334" width="1152" x="24" y="24"/>
+<rect fill="#090c13" height="36" width="1152" x="24" y="24"/>
+<circle cx="42" cy="42" fill="#e06c75" r="5"/>
+<circle cx="60" cy="42" fill="#ffc940" r="5"/>
+<circle cx="78" cy="42" fill="#60e654" r="5"/>
+<rect fill="#0d111a" height="36" width="74.8" x="100" y="24"/>
+<rect fill="#ffc940" height="2" width="74.8" x="100" y="25"/>
+<text fill="#d8d3c3" x="114" y="47">app.ts</text>
+<text fill="#8695b7" x="188.8" y="47">main.go</text>
+<text fill="#586480" text-anchor="end" x="56" y="87">1</text>
+<rect fill="#564825" height="21" rx="2" width="39" x="142.2" y="72"/><text x="72" xml:space="preserve" y="87"><tspan fill="#c084fc">import</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#a8a396">{</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">serve</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#a8a396">}</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#c084fc">from</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#60e654">"./http"</tspan></text>
+<text fill="#586480" text-anchor="end" x="56" y="108">2</text>
+<text x="72" xml:space="preserve" y="108"><tspan fill="#8695b7" font-style="italic">// retry until the api answers</tspan></text>
+<text fill="#586480" text-anchor="end" x="56" y="129">3</text>
+<text x="72" xml:space="preserve" y="129"><tspan fill="#c084fc">interface</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">Config</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#a8a396">{</tspan></text>
+<text fill="#586480" text-anchor="end" x="56" y="150">4</text>
+<text x="72" xml:space="preserve" y="150"><tspan fill="#d8d3c3">  </tspan><tspan fill="#e06c75">host</tspan><tspan fill="#a8a396">:</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">string</tspan></text>
+<text fill="#586480" text-anchor="end" x="56" y="171">5</text>
+<text x="72" xml:space="preserve" y="171"><tspan fill="#d8d3c3">  </tspan><tspan fill="#e06c75">port</tspan><tspan fill="#a8a396">:</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">number</tspan></text>
+<text fill="#586480" text-anchor="end" x="56" y="192">6</text>
+<text x="72" xml:space="preserve" y="192"><tspan fill="#d8d3c3">  </tspan><tspan fill="#e06c75">secure</tspan><tspan fill="#a8a396">:</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">boolean</tspan></text>
+<text fill="#586480" text-anchor="end" x="56" y="213">7</text>
+<text x="72" xml:space="preserve" y="213"><tspan fill="#a8a396">}</tspan></text>
+<text fill="#586480" text-anchor="end" x="56" y="234">8</text>
+<text x="72" xml:space="preserve" y="234"><tspan fill="#c084fc">const</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">MAX_RETRIES</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#6cb8ff">=</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">3</tspan></text>
+<text fill="#586480" text-anchor="end" x="56" y="255">9</text>
+<text x="72" xml:space="preserve" y="255"><tspan fill="#c084fc">export</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#c084fc">const</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">boot</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#6cb8ff">=</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#c084fc">async</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#a8a396">(</tspan><tspan fill="#e06c75">cfg</tspan><tspan fill="#a8a396">:</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">Config</tspan><tspan fill="#a8a396">)</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#6cb8ff">=&gt;</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#a8a396">{</tspan></text>
+<rect fill="#121722" height="21" width="576" x="24" y="261"/>
+<text fill="#ffc940" font-weight="bold" text-anchor="end" x="56" y="276">10</text>
+<text x="72" xml:space="preserve" y="276"><tspan fill="#d8d3c3">  </tspan><tspan fill="#c084fc">const</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#e06c75">url</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#6cb8ff">=</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#60e654">`https://</tspan><tspan fill="#c084fc">${</tspan><tspan fill="#e06c75">cfg</tspan><tspan fill="#a8a396">.</tspan><tspan fill="#e06c75">host</tspan><tspan fill="#c084fc">}</tspan><tspan fill="#60e654">:</tspan><tspan fill="#c084fc">${</tspan><tspan fill="#e06c75">cfg</tspan><tspan fill="#a8a396">.</tspan><tspan fill="#e06c75">port</tspan><tspan fill="#c084fc">}</tspan><tspan fill="#60e654">`</tspan></text>
+<text fill="#586480" text-anchor="end" x="56" y="297">11</text>
+<rect fill="#907a41" height="21" rx="2" width="39" x="142.2" y="282"/><text x="72" xml:space="preserve" y="297"><tspan fill="#d8d3c3">  </tspan><tspan fill="#c084fc">return</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#0d111a" font-weight="bold">serve</tspan><tspan fill="#a8a396">(</tspan><tspan fill="#e06c75">url</tspan><tspan fill="#a8a396">,</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#a8a396">{</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#e06c75">retries</tspan><tspan fill="#a8a396">:</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">MAX_RETRIES</tspan><tspan fill="#a8a396">,</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#e06c75">tls</tspan><tspan fill="#a8a396">:</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">true</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#a8a396">})</tspan></text>
+<text fill="#586480" text-anchor="end" x="56" y="318">12</text>
+<text x="72" xml:space="preserve" y="318"><tspan fill="#a8a396">}</tspan></text>
+<line stroke="#586480" x1="600.5" x2="600.5" y1="60" y2="336"/>
+<text fill="#586480" text-anchor="end" x="633" y="87">1</text>
+<text x="649" xml:space="preserve" y="87"><tspan fill="#c084fc">package</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">main</tspan></text>
+<text fill="#586480" text-anchor="end" x="633" y="108">2</text>
+<text fill="#586480" text-anchor="end" x="633" y="129">3</text>
+<text x="649" xml:space="preserve" y="129"><tspan fill="#8695b7" font-style="italic">// Server owns one listener</tspan></text>
+<text fill="#586480" text-anchor="end" x="633" y="150">4</text>
+<text x="649" xml:space="preserve" y="150"><tspan fill="#c084fc">type</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">Server</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#c084fc">struct</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#a8a396">{</tspan></text>
+<text fill="#586480" text-anchor="end" x="633" y="171">5</text>
+<text x="649" xml:space="preserve" y="171"><tspan fill="#d8d3c3">    </tspan><tspan fill="#e06c75">Addr</tspan><tspan fill="#d8d3c3">    </tspan><tspan fill="#ffc940">string</tspan></text>
+<text fill="#586480" text-anchor="end" x="633" y="192">6</text>
+<text x="649" xml:space="preserve" y="192"><tspan fill="#d8d3c3">    </tspan><tspan fill="#e06c75">Retries</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">int</tspan></text>
+<text fill="#586480" text-anchor="end" x="633" y="213">7</text>
+<text x="649" xml:space="preserve" y="213"><tspan fill="#a8a396">}</tspan></text>
+<text fill="#586480" text-anchor="end" x="633" y="234">8</text>
+<text fill="#586480" text-anchor="end" x="633" y="255">9</text>
+<text x="649" xml:space="preserve" y="255"><tspan fill="#c084fc">func</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#a8a396">(</tspan><tspan fill="#e06c75">s</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#6cb8ff">*</tspan><tspan fill="#ffc940">Server</tspan><tspan fill="#a8a396">)</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">Start</tspan><tspan fill="#a8a396">()</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">error</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#a8a396">{</tspan></text>
+<text fill="#586480" text-anchor="end" x="633" y="276">10</text>
+<text x="649" xml:space="preserve" y="276"><tspan fill="#d8d3c3">    </tspan><tspan fill="#ffc940">log</tspan><tspan fill="#a8a396">.</tspan><tspan fill="#ffc940">Printf</tspan><tspan fill="#a8a396">(</tspan><tspan fill="#60e654">"listening on %s</tspan><tspan fill="#78e2d6">\n</tspan><tspan fill="#60e654">"</tspan><tspan fill="#a8a396">,</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#e06c75">s</tspan><tspan fill="#a8a396">.</tspan><tspan fill="#e06c75">Addr</tspan><tspan fill="#a8a396">)</tspan></text>
+<text fill="#586480" text-anchor="end" x="633" y="297">11</text>
+<text x="649" xml:space="preserve" y="297"><tspan fill="#d8d3c3">    </tspan><tspan fill="#c084fc">return</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">http</tspan><tspan fill="#a8a396">.</tspan><tspan fill="#ffc940">ListenAndServe</tspan><tspan fill="#a8a396">(</tspan><tspan fill="#e06c75">s</tspan><tspan fill="#a8a396">.</tspan><tspan fill="#e06c75">Addr</tspan><tspan fill="#a8a396">,</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">nil</tspan><tspan fill="#a8a396">)</tspan></text>
+<text fill="#586480" text-anchor="end" x="633" y="318">12</text>
+<text x="649" xml:space="preserve" y="318"><tspan fill="#a8a396">}</tspan></text>
+<rect fill="#090c13" height="22" width="1152" x="24" y="336"/>
+<rect fill="#ffc940" height="22" width="62.4" x="24" y="336"/>
+<text fill="#0d111a" font-weight="bold" x="24" xml:space="preserve" y="351"> NORMAL </text>
+<rect fill="#121722" height="22" width="62.4" x="86.4" y="336"/>
+<text fill="#d8d3c3" x="86.4" xml:space="preserve" y="351"> master </text>
+<text fill="#a8a396" x="148.8" xml:space="preserve" y="351"> app.ts [+] </text>
+<rect fill="#ffc940" height="22" width="54.6" x="1121.4" y="336"/>
+<text fill="#0d111a" font-weight="bold" x="1121.4" xml:space="preserve" y="351"> 10:23 </text>
+<rect fill="#121722" height="22" width="39" x="1082.4" y="336"/>
+<text fill="#d8d3c3" x="1082.4" xml:space="preserve" y="351"> 83% </text>
+<text fill="#a8a396" x="934.2" xml:space="preserve" y="351"> typescript  utf-8 </text></g>
+<rect fill="none" height="333" rx="10" stroke="#46516c" width="1151" x="24.5" y="24.5"/>
+<clipPath id="clip-terminal"><rect height="303" rx="10" width="1152" x="24" y="378"/></clipPath>
+<g clip-path="url(#clip-terminal)"><rect fill="#0d111a" height="303" width="1152" x="24" y="378"/>
+<rect fill="#090c13" height="36" width="1152" x="24" y="378"/>
+<circle cx="42" cy="396" fill="#e06c75" r="5"/>
+<circle cx="60" cy="396" fill="#ffc940" r="5"/>
+<circle cx="78" cy="396" fill="#60e654" r="5"/>
+<text fill="#8695b7" text-anchor="middle" x="600" y="401">tmux</text>
+<text x="36" xml:space="preserve" y="441"><tspan fill="#78e2d6" font-weight="bold">~/p/eggfriedrice.nvim</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#c084fc">[master]</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">[!]</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940" font-weight="bold">❯</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">eza</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#78e2d6">-l</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#78e2d6">--no-time</tspan></text>
+<text x="36" xml:space="preserve" y="462"><tspan fill="#a8a396">.</tspan><tspan fill="#d8d3c3">r</tspan><tspan fill="#ffc940">w</tspan><tspan fill="#60e654">x</tspan><tspan fill="#a8a396">r</tspan><tspan fill="#a8a396">-</tspan><tspan fill="#60e654">x</tspan><tspan fill="#8695b7">r</tspan><tspan fill="#a8a396">-</tspan><tspan fill="#60e654">x</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#d8d3c3"> 1.1</tspan><tspan fill="#6cb8ff">k</tspan><tspan fill="#d8d3c3"> egg </tspan><tspan fill="#60e654">build.sh</tspan></text>
+<text x="36" xml:space="preserve" y="483"><tspan fill="#6cb8ff" font-weight="bold">d</tspan><tspan fill="#d8d3c3">r</tspan><tspan fill="#ffc940">w</tspan><tspan fill="#60e654">x</tspan><tspan fill="#a8a396">r</tspan><tspan fill="#a8a396">-</tspan><tspan fill="#60e654">x</tspan><tspan fill="#8695b7">r</tspan><tspan fill="#a8a396">-</tspan><tspan fill="#60e654">x</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#a8a396">    -</tspan><tspan fill="#d8d3c3"> egg </tspan><tspan fill="#6cb8ff" font-weight="bold">extras</tspan></text>
+<text x="36" xml:space="preserve" y="504"><tspan fill="#6cb8ff" font-weight="bold">d</tspan><tspan fill="#d8d3c3">r</tspan><tspan fill="#ffc940">w</tspan><tspan fill="#60e654">x</tspan><tspan fill="#a8a396">r</tspan><tspan fill="#a8a396">-</tspan><tspan fill="#60e654">x</tspan><tspan fill="#8695b7">r</tspan><tspan fill="#a8a396">-</tspan><tspan fill="#60e654">x</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#a8a396">    -</tspan><tspan fill="#d8d3c3"> egg </tspan><tspan fill="#6cb8ff" font-weight="bold">lua</tspan></text>
+<text x="36" xml:space="preserve" y="525"><tspan fill="#a8a396">.</tspan><tspan fill="#d8d3c3">r</tspan><tspan fill="#ffc940">w</tspan><tspan fill="#a8a396">-</tspan><tspan fill="#a8a396">r</tspan><tspan fill="#a8a396">-</tspan><tspan fill="#a8a396">-</tspan><tspan fill="#8695b7">r</tspan><tspan fill="#a8a396">-</tspan><tspan fill="#a8a396">-</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#d8d3c3">  371</tspan><tspan fill="#d8d3c3"> egg </tspan><tspan fill="#d8d3c3">Makefile</tspan></text>
+<text x="36" xml:space="preserve" y="546"><tspan fill="#78e2d6">l</tspan><tspan fill="#d8d3c3">r</tspan><tspan fill="#ffc940">w</tspan><tspan fill="#60e654">x</tspan><tspan fill="#a8a396">r</tspan><tspan fill="#ffc940">w</tspan><tspan fill="#60e654">x</tspan><tspan fill="#8695b7">r</tspan><tspan fill="#ffc940">w</tspan><tspan fill="#60e654">x</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#a8a396">    -</tspan><tspan fill="#d8d3c3"> egg </tspan><tspan fill="#78e2d6">theme.yml</tspan><tspan fill="#a8a396"> -&gt; </tspan><tspan fill="#78e2d6">extras/eza/eggfriedrice.yml</tspan></text>
+<rect fill="#ffc940" height="21" rx="2" width="7.8" x="324.6" y="573"/><text x="36" xml:space="preserve" y="588"><tspan fill="#78e2d6" font-weight="bold">~/p/eggfriedrice.nvim</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#c084fc">[master]</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">[!]</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940" font-weight="bold">❯</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#d8d3c3"> </tspan></text>
+<line stroke="#c9a747" x1="600.5" x2="600.5" y1="414" y2="659"/>
+<text x="613" xml:space="preserve" y="441"><tspan fill="#78e2d6" font-weight="bold">~/p/eggfriedrice.nvim</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#c084fc">[master]</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">[!]</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940" font-weight="bold">❯</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#ffc940">git</tspan><tspan fill="#d8d3c3"> </tspan><tspan fill="#d8d3c3">diff</tspan></text>
+<text x="613" xml:space="preserve" y="462"><tspan fill="#78e2d6">@@ -7,2 +7,2 @@</tspan><tspan fill="#d8d3c3"> interface Config {</tspan></text>
+<text x="613" xml:space="preserve" y="483"><tspan fill="#d8d3c3"> }</tspan></text>
+<rect fill="#391d1e" height="21" width="575" x="601" y="489"/>
+<text x="613" xml:space="preserve" y="504"><tspan fill="#e06c75">-const MAX_RETRIES = 5</tspan></text>
+<rect fill="#192c17" height="21" width="575" x="601" y="510"/>
+<text x="613" xml:space="preserve" y="525"><tspan fill="#60e654">+const MAX_RETRIES = 3</tspan></text>
+<text fill="#8695b7" font-size="10" x="612" y="562">normal</text>
+<rect fill="#121722" height="30" rx="5" stroke="#46516c" width="30" x="672" y="543"/>
+<text fill="#586480" font-size="10" text-anchor="middle" x="687" y="585">0</text>
+<rect fill="#e06c75" height="30" rx="5" stroke="#46516c" width="30" x="710" y="543"/>
+<text fill="#586480" font-size="10" text-anchor="middle" x="725" y="585">1</text>
+<rect fill="#60e654" height="30" rx="5" stroke="#46516c" width="30" x="748" y="543"/>
+<text fill="#586480" font-size="10" text-anchor="middle" x="763" y="585">2</text>
+<rect fill="#ffc940" height="30" rx="5" stroke="#46516c" width="30" x="786" y="543"/>
+<text fill="#586480" font-size="10" text-anchor="middle" x="801" y="585">3</text>
+<rect fill="#6cb8ff" height="30" rx="5" stroke="#46516c" width="30" x="824" y="543"/>
+<text fill="#586480" font-size="10" text-anchor="middle" x="839" y="585">4</text>
+<rect fill="#c084fc" height="30" rx="5" stroke="#46516c" width="30" x="862" y="543"/>
+<text fill="#586480" font-size="10" text-anchor="middle" x="877" y="585">5</text>
+<rect fill="#78e2d6" height="30" rx="5" stroke="#46516c" width="30" x="900" y="543"/>
+<text fill="#586480" font-size="10" text-anchor="middle" x="915" y="585">6</text>
+<rect fill="#d8d3c3" height="30" rx="5" stroke="#46516c" width="30" x="938" y="543"/>
+<text fill="#586480" font-size="10" text-anchor="middle" x="953" y="585">7</text>
+<text fill="#8695b7" font-size="10" x="612" y="614">bright</text>
+<rect fill="#8695b7" height="30" rx="5" stroke="#46516c" width="30" x="672" y="595"/>
+<text fill="#586480" font-size="10" text-anchor="middle" x="687" y="637">8</text>
+<rect fill="#fb6c7a" height="30" rx="5" stroke="#46516c" width="30" x="710" y="595"/>
+<text fill="#586480" font-size="10" text-anchor="middle" x="725" y="637">9</text>
+<rect fill="#57f749" height="30" rx="5" stroke="#46516c" width="30" x="748" y="595"/>
+<text fill="#586480" font-size="10" text-anchor="middle" x="763" y="637">10</text>
+<rect fill="#ffda87" height="30" rx="5" stroke="#46516c" width="30" x="786" y="595"/>
+<text fill="#586480" font-size="10" text-anchor="middle" x="801" y="637">11</text>
+<rect fill="#88c4ff" height="30" rx="5" stroke="#46516c" width="30" x="824" y="595"/>
+<text fill="#586480" font-size="10" text-anchor="middle" x="839" y="637">12</text>
+<rect fill="#c996ff" height="30" rx="5" stroke="#46516c" width="30" x="862" y="595"/>
+<text fill="#586480" font-size="10" text-anchor="middle" x="877" y="637">13</text>
+<rect fill="#5cf5e6" height="30" rx="5" stroke="#46516c" width="30" x="900" y="595"/>
+<text fill="#586480" font-size="10" text-anchor="middle" x="915" y="637">14</text>
+<rect fill="#f2eddd" height="30" rx="5" stroke="#46516c" width="30" x="938" y="595"/>
+<text fill="#586480" font-size="10" text-anchor="middle" x="953" y="637">15</text>
+<rect fill="#090c13" height="22" width="1152" x="24" y="659"/>
+<rect fill="#ffc940" height="22" width="109.2" x="24" y="659"/>
+<text fill="#0d111a" font-weight="bold" x="24" xml:space="preserve" y="674"> eggfriedrice </text>
+<rect fill="#0d111a" height="22" width="62.4" x="133.2" y="659"/>
+<text fill="#d8d3c3" font-weight="bold" x="133.2" xml:space="preserve" y="674"> 1:zsh* </text>
+<text fill="#8695b7" x="195.6" xml:space="preserve" y="674"> 2:nvim </text>
+<text fill="#8695b7" x="1129.2" xml:space="preserve" y="674"> rice </text></g>
+<rect fill="none" height="302" rx="10" stroke="#46516c" width="1151" x="24.5" y="378.5"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="72" y="711">bg_dark</text>
+<rect fill="#090c13" height="30" rx="5" stroke="#46516c" width="30" x="57" y="716"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="72" y="761">#090c13</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="168" y="711">bg</text>
+<rect fill="#0d111a" height="30" rx="5" stroke="#46516c" width="30" x="153" y="716"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="168" y="761">#0d111a</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="264" y="711">bg_light</text>
+<rect fill="#121722" height="30" rx="5" stroke="#46516c" width="30" x="249" y="716"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="264" y="761">#121722</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="360" y="711">selection</text>
+<rect fill="#2f3b54" height="30" rx="5" stroke="#46516c" width="30" x="345" y="716"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="360" y="761">#2f3b54</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="456" y="711">fg_gutter</text>
+<rect fill="#46516c" height="30" rx="5" stroke="#46516c" width="30" x="441" y="716"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="456" y="761">#46516c</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="552" y="711">fg_gutter_ui</text>
+<rect fill="#586480" height="30" rx="5" stroke="#46516c" width="30" x="537" y="716"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="552" y="761">#586480</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="648" y="711">border</text>
+<rect fill="#c9a747" height="30" rx="5" stroke="#46516c" width="30" x="633" y="716"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="648" y="761">#c9a747</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="744" y="711">fg</text>
+<rect fill="#d8d3c3" height="30" rx="5" stroke="#46516c" width="30" x="729" y="716"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="744" y="761">#d8d3c3</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="840" y="711">fg_dark</text>
+<rect fill="#a8a396" height="30" rx="5" stroke="#46516c" width="30" x="825" y="716"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="840" y="761">#a8a396</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="936" y="711">fg_bright</text>
+<rect fill="#f2eddd" height="30" rx="5" stroke="#46516c" width="30" x="921" y="716"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="936" y="761">#f2eddd</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="1032" y="711">comment</text>
+<rect fill="#8695b7" height="30" rx="5" stroke="#46516c" width="30" x="1017" y="716"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="1032" y="761">#8695b7</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="1128" y="711">yellow</text>
+<rect fill="#ffc940" height="30" rx="5" stroke="#46516c" width="30" x="1113" y="716"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="1128" y="761">#ffc940</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="72" y="783">orange</text>
+<rect fill="#fc9a2c" height="30" rx="5" stroke="#46516c" width="30" x="57" y="788"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="72" y="833">#fc9a2c</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="168" y="783">green</text>
+<rect fill="#60e654" height="30" rx="5" stroke="#46516c" width="30" x="153" y="788"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="168" y="833">#60e654</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="264" y="783">cyan</text>
+<rect fill="#78e2d6" height="30" rx="5" stroke="#46516c" width="30" x="249" y="788"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="264" y="833">#78e2d6</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="360" y="783">blue</text>
+<rect fill="#6cb8ff" height="30" rx="5" stroke="#46516c" width="30" x="345" y="788"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="360" y="833">#6cb8ff</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="456" y="783">purple</text>
+<rect fill="#c084fc" height="30" rx="5" stroke="#46516c" width="30" x="441" y="788"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="456" y="833">#c084fc</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="552" y="783">red</text>
+<rect fill="#e06c75" height="30" rx="5" stroke="#46516c" width="30" x="537" y="788"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="552" y="833">#e06c75</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="648" y="783">red_bright</text>
+<rect fill="#fb6c7a" height="30" rx="5" stroke="#46516c" width="30" x="633" y="788"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="648" y="833">#fb6c7a</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="744" y="783">green_bright</text>
+<rect fill="#57f749" height="30" rx="5" stroke="#46516c" width="30" x="729" y="788"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="744" y="833">#57f749</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="840" y="783">yellow_bright</text>
+<rect fill="#ffda87" height="30" rx="5" stroke="#46516c" width="30" x="825" y="788"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="840" y="833">#ffda87</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="936" y="783">blue_bright</text>
+<rect fill="#88c4ff" height="30" rx="5" stroke="#46516c" width="30" x="921" y="788"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="936" y="833">#88c4ff</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="1032" y="783">purple_bright</text>
+<rect fill="#c996ff" height="30" rx="5" stroke="#46516c" width="30" x="1017" y="788"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="1032" y="833">#c996ff</text>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="1128" y="783">cyan_bright</text>
+<rect fill="#5cf5e6" height="30" rx="5" stroke="#46516c" width="30" x="1113" y="788"/>
+<text fill="#8695b7" font-size="10" text-anchor="middle" x="1128" y="833">#5cf5e6</text>
 </svg>

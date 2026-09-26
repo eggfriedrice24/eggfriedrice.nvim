@@ -45,8 +45,9 @@ jobs:
         with:
           neovim: true
           version: stable
-      - name: Regenerate extras and fail on drift
+      - name: Regenerate extras and preview and fail on drift
         run: |
           nvim -l scripts/extras.lua
-          git diff --exit-code -- extras/
-          test -z "$(git status --porcelain -- extras/)"
+          nvim -l scripts/preview.lua
+          git diff --exit-code -- extras/ assets/
+          test -z "$(git status --porcelain -- extras/ assets/)"
