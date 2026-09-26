@@ -49,7 +49,8 @@ function M.get(config)
 		-- Semantic
 		comment = "#8695b7", -- halcyon blue-gray: recedes on navy
 		selection = "#2f3b54",
-		border = "#c9a747",
+		border = "#c9a747", -- accent border: active panes, floats, popups
+		search_selected = "#907a41", -- current search match: lit gold that carries dark text
 
 		none = "NONE",
 	}
@@ -65,15 +66,15 @@ function M.get(config)
 	c.git_change = c.yellow
 	c.git_delete = c.red
 
-	-- Derived backgrounds
+	-- Derived backgrounds. Diff tints sit at one OKLCH lightness and chroma
+	-- in each accent's hue, so add, change and delete read as one family.
 	c.diff = {
-		add = util.blend(c.green, c.bg, 0.15),
-		change = util.blend(c.yellow, c.bg, 0.10),
-		delete = util.blend(c.red, c.bg, 0.15),
+		add = util.tint(c.green, 0.27, 0.045),
+		change = util.tint(c.yellow, 0.27, 0.045),
+		delete = util.tint(c.red, 0.27, 0.045),
 		text = util.blend(c.yellow, c.bg, 0.30),
 	}
 	c.search = util.blend(c.yellow, c.bg, 0.30)
-	c.search_selected = util.blend(c.yellow, c.bg, 0.55) -- current match in terminal extras; carries dark text
 	c.scope = util.blend(c.yellow, c.bg, 0.45)
 
 	if config and config.on_colors then

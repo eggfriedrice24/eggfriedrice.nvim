@@ -129,7 +129,7 @@ function M.get(c, config)
 		["@markup.heading.6"] = { fg = c.red, bold = true },
 		["@markup.quote"] = { fg = c.comment, italic = true },
 		["@markup.math"] = { fg = c.cyan },
-		["@markup.link"] = { fg = c.cyan },
+		["@markup.link"] = { fg = c.purple },
 		["@markup.link.label"] = { fg = c.cyan },
 		["@markup.link.url"] = { fg = c.purple, underline = true },
 		["@markup.raw"] = { fg = c.green },
