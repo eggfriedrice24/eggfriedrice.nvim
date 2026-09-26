@@ -11,6 +11,7 @@ bg_dark = "#090c13"
 bg_light = "#121722"
 fg = "#d8d3c3"
 fg_dark = "#a8a396"
+fg_gutter_ui = "#586480"
 comment = "#8695b7"
 
 # accents (these names shadow starship's ANSI names on purpose)
@@ -24,17 +25,31 @@ purple = "#c084fc"
 
 # roles, one per module
 directory = "#ffc940"
+directory_repo_root = "#ffc940"
+directory_before_root = "#8695b7"
+directory_read_only = "#e06c75"
 git_branch = "#c084fc"
+git_commit = "#c084fc"
+git_state = "#fc9a2c"
 git_status_clean = "#60e654"
 git_status_dirty = "#78e2d6"
+git_status_staged = "#60e654"
+git_status_untracked = "#a8a396"
+git_status_stashed = "#8695b7"
+git_status_deleted = "#e06c75"
+git_status_conflicted = "#e06c75"
 git_status_ahead = "#ffc940"
 git_status_behind = "#fc9a2c"
-git_status_conflicted = "#e06c75"
+git_metrics_added = "#60e654"
+git_metrics_deleted = "#e06c75"
 character_success = "#78e2d6"
 character_error = "#e06c75"
 character_vimcmd = "#c084fc"
+character_vimcmd_replace = "#e06c75"
+character_vimcmd_visual = "#ffc940"
 cmd_duration = "#fc9a2c"
 language = "#6cb8ff"
+docker_context = "#6cb8ff"
 status = "#e06c75"
 jobs = "#ffc940"
 time = "#8695b7"
@@ -42,30 +57,46 @@ username = "#a8a396"
 hostname = "#a8a396"
 
 # module styles that use them; merge into your own module tables
-# [character]
-# success_symbol = "[❯](bold character_success)"
-# error_symbol = "[❯](bold character_error)"
-# vimcmd_symbol = "[❮](bold character_vimcmd)"
-#
 # [directory]
 # style = "bold directory"
+# repo_root_style = "bold directory_repo_root"
+# before_repo_root_style = "directory_before_root"
+# read_only_style = "directory_read_only"
 #
 # [git_branch]
 # style = "git_branch"
 #
+# [git_commit]
+# style = "git_commit"
+#
+# [git_state]
+# style = "bold git_state"
+#
 # [git_status]
-# style = "git_status_dirty"
+# conflicted = "[$count ](bold git_status_conflicted)"
+# stashed = "[$count ](git_status_stashed)"
+# deleted = "[$count ](git_status_deleted)"
+# renamed = "[$count ](git_status_dirty)"
+# modified = "[$count ](git_status_dirty)"
+# staged = "[$count ](git_status_staged)"
+# untracked = "[$count ](git_status_untracked)"
+# ahead = "[$count ](git_status_ahead)"
+# behind = "[$count ](git_status_behind)"
+# diverged = "[$ahead_count ](git_status_ahead)[$behind_count ](git_status_behind)"
 # up_to_date = "[✓](git_status_clean)"
-# ahead = "[↑$count](git_status_ahead)"
-# behind = "[↓$count](git_status_behind)"
-# diverged = "[↕↑$ahead_count↓$behind_count](git_status_behind)"
-# conflicted = "[=](bold git_status_conflicted)"
+#
+# [git_metrics]
+# added_style = "git_metrics_added"
+# deleted_style = "git_metrics_deleted"
+#
+# [nodejs]  # and python, golang, rust, java...
+# style = "language"
+#
+# [docker_context]
+# style = "docker_context"
 #
 # [cmd_duration]
 # style = "cmd_duration"
-#
-# [nodejs]  # and python, golang, java, rust...
-# style = "language"
 #
 # [status]
 # style = "status"
@@ -73,11 +104,19 @@ hostname = "#a8a396"
 # [jobs]
 # style = "jobs"
 #
+# [character]
+# success_symbol = "[❯](bold character_success)"
+# error_symbol = "[❯](bold character_error)"
+# vimcmd_symbol = "[❮](bold character_vimcmd)"
+# vimcmd_replace_symbol = "[❮](bold character_vimcmd_replace)"
+# vimcmd_replace_one_symbol = "[❮](bold character_vimcmd_replace)"
+# vimcmd_visual_symbol = "[❮](bold character_vimcmd_visual)"
+#
 # [time]
 # style = "time"
 #
 # [username]
-# style = "username"
+# style_user = "username"
 #
 # [hostname]
 # style = "hostname"

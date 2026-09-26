@@ -215,8 +215,25 @@
         "fg": "#ffc940",
         "bold": true
       },
+      "directory_repo_root": {
+        "fg": "#ffc940",
+        "bold": true
+      },
+      "directory_before_root": {
+        "fg": "#8695b7"
+      },
+      "directory_read_only": {
+        "fg": "#e06c75"
+      },
       "git_branch": {
         "fg": "#c084fc"
+      },
+      "git_commit": {
+        "fg": "#c084fc"
+      },
+      "git_state": {
+        "fg": "#fc9a2c",
+        "bold": true
       },
       "git_status_clean": {
         "fg": "#60e654"
@@ -224,15 +241,33 @@
       "git_status_dirty": {
         "fg": "#78e2d6"
       },
+      "git_status_staged": {
+        "fg": "#60e654"
+      },
+      "git_status_untracked": {
+        "fg": "#a8a396"
+      },
+      "git_status_stashed": {
+        "fg": "#8695b7"
+      },
+      "git_status_deleted": {
+        "fg": "#e06c75"
+      },
+      "git_status_conflicted": {
+        "fg": "#e06c75",
+        "bold": true
+      },
       "git_status_ahead": {
         "fg": "#ffc940"
       },
       "git_status_behind": {
         "fg": "#fc9a2c"
       },
-      "git_status_conflicted": {
-        "fg": "#e06c75",
-        "bold": true
+      "git_metrics_added": {
+        "fg": "#60e654"
+      },
+      "git_metrics_deleted": {
+        "fg": "#e06c75"
       },
       "character_success": {
         "fg": "#78e2d6",
@@ -246,10 +281,21 @@
         "fg": "#c084fc",
         "bold": true
       },
+      "character_vimcmd_replace": {
+        "fg": "#e06c75",
+        "bold": true
+      },
+      "character_vimcmd_visual": {
+        "fg": "#ffc940",
+        "bold": true
+      },
       "cmd_duration": {
         "fg": "#fc9a2c"
       },
       "language": {
+        "fg": "#6cb8ff"
+      },
+      "docker_context": {
         "fg": "#6cb8ff"
       },
       "status": {

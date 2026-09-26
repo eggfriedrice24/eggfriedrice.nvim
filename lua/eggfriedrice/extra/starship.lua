@@ -3,25 +3,40 @@
 
 local M = {}
 
----One role per prompt module. The directory carries the signature
----yellow; the prompt character and dirty marker answer in cyan.
+---One role per prompt module and per git-status item. The directory
+---carries the signature yellow; the prompt character and dirty markers
+---answer in cyan.
 ---@param c table
 ---@return eggfriedrice.Entry[]
 function M.roles(c)
 	local _ = c
 	return {
 		{ "directory", { fg = "yellow", bold = true } },
+		{ "directory_repo_root", { fg = "yellow", bold = true } },
+		{ "directory_before_root", { fg = "comment" } },
+		{ "directory_read_only", { fg = "red" } },
 		{ "git_branch", { fg = "purple" } },
+		{ "git_commit", { fg = "purple" } },
+		{ "git_state", { fg = "orange", bold = true } },
 		{ "git_status_clean", { fg = "green" } },
 		{ "git_status_dirty", { fg = "cyan" } },
+		{ "git_status_staged", { fg = "green" } },
+		{ "git_status_untracked", { fg = "fg_dark" } },
+		{ "git_status_stashed", { fg = "comment" } },
+		{ "git_status_deleted", { fg = "red" } },
+		{ "git_status_conflicted", { fg = "red", bold = true } },
 		{ "git_status_ahead", { fg = "yellow" } },
 		{ "git_status_behind", { fg = "orange" } },
-		{ "git_status_conflicted", { fg = "red", bold = true } },
+		{ "git_metrics_added", { fg = "green" } },
+		{ "git_metrics_deleted", { fg = "red" } },
 		{ "character_success", { fg = "cyan", bold = true } },
 		{ "character_error", { fg = "red", bold = true } },
 		{ "character_vimcmd", { fg = "purple", bold = true } },
+		{ "character_vimcmd_replace", { fg = "red", bold = true } },
+		{ "character_vimcmd_visual", { fg = "yellow", bold = true } },
 		{ "cmd_duration", { fg = "orange" } },
 		{ "language", { fg = "blue" } },
+		{ "docker_context", { fg = "blue" } },
 		{ "status", { fg = "red" } },
 		{ "jobs", { fg = "yellow" } },
 		{ "time", { fg = "comment" } },
@@ -30,7 +45,7 @@ function M.roles(c)
 	}
 end
 
-local base = { "bg", "bg_dark", "bg_light", "fg", "fg_dark", "comment" }
+local base = { "bg", "bg_dark", "bg_light", "fg", "fg_dark", "fg_gutter_ui", "comment" }
 local accents = { "yellow", "orange", "red", "green", "cyan", "blue", "purple" }
 
 ---@param c table
@@ -61,30 +76,49 @@ function M.generate(c)
 	vim.list_extend(lines, {
 		"",
 		"# module styles that use them; merge into your own module tables",
-		"# [character]",
-		('# success_symbol = "[❯](%s)"'):format(style("character_success")),
-		('# error_symbol = "[❯](%s)"'):format(style("character_error")),
-		('# vimcmd_symbol = "[❮](%s)"'):format(style("character_vimcmd")),
-		"#",
 		"# [directory]",
 		('# style = "%s"'):format(style("directory")),
+		('# repo_root_style = "%s"'):format(style("directory_repo_root")),
+		('# before_repo_root_style = "%s"'):format(style("directory_before_root")),
+		('# read_only_style = "%s"'):format(style("directory_read_only")),
 		"#",
 		"# [git_branch]",
 		('# style = "%s"'):format(style("git_branch")),
 		"#",
+		"# [git_commit]",
+		('# style = "%s"'):format(style("git_commit")),
+		"#",
+		"# [git_state]",
+		('# style = "%s"'):format(style("git_state")),
+		"#",
 		"# [git_status]",
-		('# style = "%s"'):format(style("git_status_dirty")),
+		('# conflicted = "[$count ](%s)"'):format(style("git_status_conflicted")),
+		('# stashed = "[$count ](%s)"'):format(style("git_status_stashed")),
+		('# deleted = "[$count ](%s)"'):format(style("git_status_deleted")),
+		('# renamed = "[$count ](%s)"'):format(style("git_status_dirty")),
+		('# modified = "[$count ](%s)"'):format(style("git_status_dirty")),
+		('# staged = "[$count ](%s)"'):format(style("git_status_staged")),
+		('# untracked = "[$count ](%s)"'):format(style("git_status_untracked")),
+		('# ahead = "[$count ](%s)"'):format(style("git_status_ahead")),
+		('# behind = "[$count ](%s)"'):format(style("git_status_behind")),
+		('# diverged = "[$ahead_count ](%s)[$behind_count ](%s)"'):format(
+			style("git_status_ahead"),
+			style("git_status_behind")
+		),
 		('# up_to_date = "[✓](%s)"'):format(style("git_status_clean")),
-		('# ahead = "[↑$count](%s)"'):format(style("git_status_ahead")),
-		('# behind = "[↓$count](%s)"'):format(style("git_status_behind")),
-		('# diverged = "[↕↑$ahead_count↓$behind_count](%s)"'):format(style("git_status_behind")),
-		('# conflicted = "[=](%s)"'):format(style("git_status_conflicted")),
+		"#",
+		"# [git_metrics]",
+		('# added_style = "%s"'):format(style("git_metrics_added")),
+		('# deleted_style = "%s"'):format(style("git_metrics_deleted")),
+		"#",
+		"# [nodejs]  # and python, golang, rust, java...",
+		('# style = "%s"'):format(style("language")),
+		"#",
+		"# [docker_context]",
+		('# style = "%s"'):format(style("docker_context")),
 		"#",
 		"# [cmd_duration]",
 		('# style = "%s"'):format(style("cmd_duration")),
-		"#",
-		"# [nodejs]  # and python, golang, java, rust...",
-		('# style = "%s"'):format(style("language")),
 		"#",
 		"# [status]",
 		('# style = "%s"'):format(style("status")),
@@ -92,11 +126,19 @@ function M.generate(c)
 		"# [jobs]",
 		('# style = "%s"'):format(style("jobs")),
 		"#",
+		"# [character]",
+		('# success_symbol = "[❯](%s)"'):format(style("character_success")),
+		('# error_symbol = "[❯](%s)"'):format(style("character_error")),
+		('# vimcmd_symbol = "[❮](%s)"'):format(style("character_vimcmd")),
+		('# vimcmd_replace_symbol = "[❮](%s)"'):format(style("character_vimcmd_replace")),
+		('# vimcmd_replace_one_symbol = "[❮](%s)"'):format(style("character_vimcmd_replace")),
+		('# vimcmd_visual_symbol = "[❮](%s)"'):format(style("character_vimcmd_visual")),
+		"#",
 		"# [time]",
 		('# style = "%s"'):format(style("time")),
 		"#",
 		"# [username]",
-		('# style = "%s"'):format(style("username")),
+		('# style_user = "%s"'):format(style("username")),
 		"#",
 		"# [hostname]",
 		('# style = "%s"'):format(style("hostname")),
