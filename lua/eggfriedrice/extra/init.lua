@@ -120,6 +120,18 @@ M.extras = {
 		comment = "",
 		install = 'copy or symlink into ~/.config/opencode/themes/, then set theme.name to "eggfriedrice" in cli.json (opencode 2) or "theme" in tui.json (opencode 1)',
 	},
+	slack = {
+		label = "Slack",
+		ext = "txt",
+		comment = "#",
+		install = "Preferences > Themes > Custom theme, paste the last line",
+	},
+	discord = {
+		label = "Discord (Vencord, Vesktop, BetterDiscord)",
+		ext = "theme.css",
+		comment = "",
+		install = "copy or symlink into ~/.config/Vencord/themes/ (or BetterDiscord/themes/) and enable it in the client's Themes settings",
+	},
 }
 
 ---Every palette color as an ordered flat list, for variables-style extras

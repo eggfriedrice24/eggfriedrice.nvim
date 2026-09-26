@@ -98,6 +98,15 @@ function M.template(str, values)
 	)
 end
 
+---CSS `rgba(r, g, b, a)` for a hex color at opacity `alpha`.
+---@param hex string
+---@param alpha number 0..1
+---@return string
+function M.rgba(hex, alpha)
+	local r, g, b = rgb(hex)
+	return ("rgba(%d, %d, %d, %s)"):format(r, g, b, alpha)
+end
+
 ---Apply a table of highlight groups.
 ---@param groups table<string, vim.api.keyset.highlight>
 function M.apply(groups)

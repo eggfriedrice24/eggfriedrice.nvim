@@ -183,6 +183,8 @@ local apps = {
 	"btop",
 	"eza",
 	"opencode",
+	"slack",
+	"discord",
 }
 
 ---@param c table
