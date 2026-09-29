@@ -1086,10 +1086,16 @@
       "syntax_punctuation": "#a8a396"
     },
     "slack": {
-      "system_navigation": "#090c13",
-      "selected_items": "#ffc940",
-      "presence_indication": "#60e654",
-      "notifications": "#e06c75"
+      "column_bg": "#0d111a",
+      "menu_bg_hover": "#121722",
+      "active_item": "#ffc940",
+      "active_item_text": "#0d111a",
+      "hover_item": "#2f3b54",
+      "text_color": "#d8d3c3",
+      "active_presence": "#60e654",
+      "mention_badge": "#e06c75",
+      "top_nav_bg": "#0d111a",
+      "top_nav_text": "#d8d3c3"
     },
     "discord": {
       "surface_lowest": "#090c13",
