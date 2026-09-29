@@ -14,9 +14,15 @@ end
 ---@param c table
 ---@return string
 function M.generate(c)
-	-- A userChrome.css that sets Zen's own variables and the Firefox
-	-- theme variables underneath them, so toolbars, tabs, the url bar,
-	-- sidebar, panels and buttons all take the palette.
+	-- Written against Zen 1.22 (zen-styles/zen-theme.css, zen-omnibox.css,
+	-- zen-browser-ui.css, ZenGradientGenerator.mjs) and its Firefox base's
+	-- tab, urlbar and toolbar tokens. Every variable below is one that
+	-- build reads. Zen derives almost every surface from
+	-- --zen-primary-color and --zen-branding-bg, and its workspace gradient
+	-- writes the browser backgrounds inline on #zen-browser-background and
+	-- #zen-toolbar-background, and the accent and toolbar text inline on
+	-- :root and each zen-workspace. Inline styles lose to important
+	-- declarations on the same element, so those are set exactly there.
 	local extra = require("eggfriedrice.extra")
 	return util.template(
 		[[
@@ -24,82 +30,102 @@ function M.generate(c)
  * eggfriedrice for ${label}
  * generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand
  * install: ${install}
+ *
+ * Written for Zen 1.22. The workspace gradient is overridden on purpose:
+ * the sidebar and toolbar always wear the palette, whatever theme a
+ * workspace picked.
  */
 
-:root {
-  /* zen */
-  --zen-primary-color: ${accent} !important;
-  --zen-colors-primary: ${toolbar} !important;
-  --zen-colors-secondary: ${frame} !important;
-  --zen-colors-tertiary: ${sidebar} !important;
-  --zen-colors-border: ${border} !important;
-  --zen-dialog-background: ${popup} !important;
-  --zen-themed-toolbar-bg: ${toolbar} !important;
-  --zen-themed-toolbar-bg-transparent: ${toolbar} !important;
+/* the browser and toolbar backgrounds the workspace gradient paints */
+#zen-browser-background,
+#zen-toolbar-background {
   --zen-main-browser-background: ${frame} !important;
+  --zen-main-browser-background-old: ${frame} !important;
   --zen-main-browser-background-toolbar: ${toolbar} !important;
-  --zen-toolbar-element-bg: ${tab_active} !important;
-  --zen-urlbar-background: ${urlbar} !important;
-  --zen-browser-gradient-base: ${frame} !important;
-  --zen-branding-bg: ${accent} !important;
+  --zen-main-browser-background-toolbar-old: ${toolbar} !important;
+}
 
-  /* window and toolbars */
-  --lwt-accent-color: ${frame} !important;
-  --lwt-text-color: ${toolbar_text} !important;
-  --toolbar-bgcolor: ${toolbar} !important;
+/* the accent and toolbar text the gradient derives, pinned where Zen writes them */
+:root,
+zen-workspace {
+  --zen-primary-color: ${accent} !important;
+  --toolbox-textcolor: ${toolbar_text} !important;
+  --toolbar-color-scheme: dark !important;
+  color-scheme: dark !important;
+}
+
+/* the url bar surface, defined on the element itself */
+.urlbar-background {
+  --zen-urlbar-background-base: ${urlbar} !important;
+  --zen-urlbar-background-transparent: ${urlbar} !important;
+}
+
+:root {
+  /* branding surfaces every derived color mixes from */
+  --zen-branding-dark: ${frame} !important;
+  --zen-branding-paper: ${toolbar_text} !important;
+
+  /* derived surfaces, pinned so they stay navy instead of tinting toward the accent */
+  --zen-colors-primary: ${toolbar} !important;
+  --zen-colors-secondary: ${tab_active} !important;
+  --zen-colors-tertiary: ${frame} !important;
+  --zen-colors-hover-bg: ${hover} !important;
+  --zen-colors-primary-foreground: ${toolbar_text} !important;
+  --zen-colors-border: ${border} !important;
+  --zen-colors-border-contrast: ${border} !important;
+  --zen-colors-input-bg: ${urlbar} !important;
+  --zen-themed-toolbar-bg-transparent: ${toolbar} !important;
+  --zen-toolbar-element-bg: ${tab_active} !important;
+  --zen-toolbar-element-bg-hover: ${hover} !important;
+  --zen-dialog-background: ${popup} !important;
+  --zen-input-border-color: ${border} !important;
+
+  /* toolbars */
+  --toolbar-background-color: ${toolbar} !important;
   --toolbar-color: ${toolbar_text} !important;
+  --toolbar-text-color: ${toolbar_text} !important;
   --toolbarbutton-icon-fill: ${toolbar_icon} !important;
-  --toolbarbutton-hover-background: ${hover} !important;
-  --toolbarbutton-active-background: ${hover} !important;
+  --toolbarbutton-background-color-hover: ${hover} !important;
+  --toolbarbutton-background-color-active: ${hover} !important;
   --chrome-content-separator-color: ${border} !important;
 
   /* tabs */
-  --tab-selected-bgcolor: ${tab_active} !important;
+  --tab-background-color-selected: ${tab_active} !important;
+  --tab-background-color-hover: ${hover} !important;
   --tab-selected-textcolor: ${tab_active_text} !important;
-  --lwt-tab-text: ${tab_inactive_text} !important;
 
-  /* url bar */
+  /* url bar and its results */
   --toolbar-field-background-color: ${urlbar} !important;
-  --toolbar-field-color: ${urlbar_text} !important;
-  --toolbar-field-focus-background-color: ${urlbar} !important;
-  --toolbar-field-focus-color: ${urlbar_text} !important;
-  --toolbar-field-focus-border-color: ${accent} !important;
-  --urlbar-box-bgcolor: ${urlbar} !important;
-  --urlbar-box-hover-bgcolor: ${hover} !important;
-  --urlbar-box-active-bgcolor: ${hover} !important;
+  --urlbar-box-background-color-focus: ${hover} !important;
+  --urlbar-box-background-color-active: ${hover} !important;
   --urlbar-box-text-color: ${urlbar_text} !important;
-  --urlbar-box-hover-text-color: ${urlbar_text} !important;
-  --urlbar-box-focus-bgcolor: ${urlbar} !important;
-  --urlbarView-highlight-background: ${hover} !important;
-  --urlbarView-highlight-color: ${urlbar_text} !important;
-  --urlbar-popup-url-color: ${link} !important;
+  --urlbar-box-text-color-hover: ${urlbar_text} !important;
+  --urlbarView-result-button-selected-background-color: ${hover} !important;
+  --urlbarView-result-button-selected-color: ${urlbar_text} !important;
+  --urlbarview-background-color-hover: ${hover} !important;
+  --urlbarview-text-color-secondary: ${muted} !important;
+  --text-color-deemphasized: ${muted} !important;
+  --link-color: ${link} !important;
 
   /* panels and sidebar */
   --arrowpanel-background: ${popup} !important;
-  --arrowpanel-color: ${popup_text} !important;
   --arrowpanel-border-color: ${border} !important;
   --panel-separator-color: ${border} !important;
   --sidebar-background-color: ${sidebar} !important;
   --sidebar-text-color: ${sidebar_text} !important;
-  --lwt-sidebar-background-color: ${sidebar} !important;
-  --lwt-sidebar-text-color: ${sidebar_text} !important;
+  --lwt-sidebar-highlight-background-color: ${hover} !important;
+  --lwt-sidebar-highlight-text-color: ${sidebar_text} !important;
 
-  /* new tab and controls */
+  /* new tab, primary buttons and inputs */
   --newtab-background-color: ${newtab} !important;
   --newtab-text-primary-color: ${newtab_text} !important;
-  --button-primary-bgcolor: ${accent} !important;
-  --button-primary-hover-bgcolor: ${accent_hover} !important;
-  --button-primary-active-bgcolor: ${accent_hover} !important;
-  --button-primary-color: ${accent_text} !important;
-  --button-bgcolor: ${tab_active} !important;
-  --button-hover-bgcolor: ${hover} !important;
-  --button-color: ${toolbar_text} !important;
-  --input-bgcolor: ${urlbar} !important;
+  --in-content-primary-button-background: ${accent} !important;
+  --in-content-primary-button-background-hover: ${accent_hover} !important;
+  --in-content-primary-button-background-active: ${accent_hover} !important;
+  --in-content-primary-button-text-color: ${accent_text} !important;
   --input-color: ${urlbar_text} !important;
   --input-border-color: ${border} !important;
   --focus-outline-color: ${accent} !important;
-  --link-color: ${link} !important;
-  --text-color-deemphasized: ${muted} !important;
 }
 ]],
 		vim.tbl_extend("error", extra.vars(c, M.roles(c)), {

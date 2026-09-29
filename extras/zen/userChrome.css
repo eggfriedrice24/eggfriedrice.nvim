@@ -2,80 +2,100 @@
  * eggfriedrice for Zen Browser
  * generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand
  * install: copy or symlink to <profile>/chrome/userChrome.css, set toolkit.legacyUserProfileCustomizations.stylesheets to true in about:config, restart
+ *
+ * Written for Zen 1.22. The workspace gradient is overridden on purpose:
+ * the sidebar and toolbar always wear the palette, whatever theme a
+ * workspace picked.
  */
 
-:root {
-  /* zen */
-  --zen-primary-color: #ffc940 !important;
-  --zen-colors-primary: #0d111a !important;
-  --zen-colors-secondary: #090c13 !important;
-  --zen-colors-tertiary: #090c13 !important;
-  --zen-colors-border: #46516c !important;
-  --zen-dialog-background: #090c13 !important;
-  --zen-themed-toolbar-bg: #0d111a !important;
-  --zen-themed-toolbar-bg-transparent: #0d111a !important;
+/* the browser and toolbar backgrounds the workspace gradient paints */
+#zen-browser-background,
+#zen-toolbar-background {
   --zen-main-browser-background: #090c13 !important;
+  --zen-main-browser-background-old: #090c13 !important;
   --zen-main-browser-background-toolbar: #0d111a !important;
-  --zen-toolbar-element-bg: #121722 !important;
-  --zen-urlbar-background: #121722 !important;
-  --zen-browser-gradient-base: #090c13 !important;
-  --zen-branding-bg: #ffc940 !important;
+  --zen-main-browser-background-toolbar-old: #0d111a !important;
+}
 
-  /* window and toolbars */
-  --lwt-accent-color: #090c13 !important;
-  --lwt-text-color: #d8d3c3 !important;
-  --toolbar-bgcolor: #0d111a !important;
+/* the accent and toolbar text the gradient derives, pinned where Zen writes them */
+:root,
+zen-workspace {
+  --zen-primary-color: #ffc940 !important;
+  --toolbox-textcolor: #d8d3c3 !important;
+  --toolbar-color-scheme: dark !important;
+  color-scheme: dark !important;
+}
+
+/* the url bar surface, defined on the element itself */
+.urlbar-background {
+  --zen-urlbar-background-base: #121722 !important;
+  --zen-urlbar-background-transparent: #121722 !important;
+}
+
+:root {
+  /* branding surfaces every derived color mixes from */
+  --zen-branding-dark: #090c13 !important;
+  --zen-branding-paper: #d8d3c3 !important;
+
+  /* derived surfaces, pinned so they stay navy instead of tinting toward the accent */
+  --zen-colors-primary: #0d111a !important;
+  --zen-colors-secondary: #121722 !important;
+  --zen-colors-tertiary: #090c13 !important;
+  --zen-colors-hover-bg: #2f3b54 !important;
+  --zen-colors-primary-foreground: #d8d3c3 !important;
+  --zen-colors-border: #46516c !important;
+  --zen-colors-border-contrast: #46516c !important;
+  --zen-colors-input-bg: #121722 !important;
+  --zen-themed-toolbar-bg-transparent: #0d111a !important;
+  --zen-toolbar-element-bg: #121722 !important;
+  --zen-toolbar-element-bg-hover: #2f3b54 !important;
+  --zen-dialog-background: #090c13 !important;
+  --zen-input-border-color: #46516c !important;
+
+  /* toolbars */
+  --toolbar-background-color: #0d111a !important;
   --toolbar-color: #d8d3c3 !important;
+  --toolbar-text-color: #d8d3c3 !important;
   --toolbarbutton-icon-fill: #a8a396 !important;
-  --toolbarbutton-hover-background: #2f3b54 !important;
-  --toolbarbutton-active-background: #2f3b54 !important;
+  --toolbarbutton-background-color-hover: #2f3b54 !important;
+  --toolbarbutton-background-color-active: #2f3b54 !important;
   --chrome-content-separator-color: #46516c !important;
 
   /* tabs */
-  --tab-selected-bgcolor: #121722 !important;
+  --tab-background-color-selected: #121722 !important;
+  --tab-background-color-hover: #2f3b54 !important;
   --tab-selected-textcolor: #d8d3c3 !important;
-  --lwt-tab-text: #8695b7 !important;
 
-  /* url bar */
+  /* url bar and its results */
   --toolbar-field-background-color: #121722 !important;
-  --toolbar-field-color: #d8d3c3 !important;
-  --toolbar-field-focus-background-color: #121722 !important;
-  --toolbar-field-focus-color: #d8d3c3 !important;
-  --toolbar-field-focus-border-color: #ffc940 !important;
-  --urlbar-box-bgcolor: #121722 !important;
-  --urlbar-box-hover-bgcolor: #2f3b54 !important;
-  --urlbar-box-active-bgcolor: #2f3b54 !important;
+  --urlbar-box-background-color-focus: #2f3b54 !important;
+  --urlbar-box-background-color-active: #2f3b54 !important;
   --urlbar-box-text-color: #d8d3c3 !important;
-  --urlbar-box-hover-text-color: #d8d3c3 !important;
-  --urlbar-box-focus-bgcolor: #121722 !important;
-  --urlbarView-highlight-background: #2f3b54 !important;
-  --urlbarView-highlight-color: #d8d3c3 !important;
-  --urlbar-popup-url-color: #c084fc !important;
+  --urlbar-box-text-color-hover: #d8d3c3 !important;
+  --urlbarView-result-button-selected-background-color: #2f3b54 !important;
+  --urlbarView-result-button-selected-color: #d8d3c3 !important;
+  --urlbarview-background-color-hover: #2f3b54 !important;
+  --urlbarview-text-color-secondary: #8695b7 !important;
+  --text-color-deemphasized: #8695b7 !important;
+  --link-color: #c084fc !important;
 
   /* panels and sidebar */
   --arrowpanel-background: #090c13 !important;
-  --arrowpanel-color: #d8d3c3 !important;
   --arrowpanel-border-color: #46516c !important;
   --panel-separator-color: #46516c !important;
   --sidebar-background-color: #090c13 !important;
   --sidebar-text-color: #d8d3c3 !important;
-  --lwt-sidebar-background-color: #090c13 !important;
-  --lwt-sidebar-text-color: #d8d3c3 !important;
+  --lwt-sidebar-highlight-background-color: #2f3b54 !important;
+  --lwt-sidebar-highlight-text-color: #d8d3c3 !important;
 
-  /* new tab and controls */
+  /* new tab, primary buttons and inputs */
   --newtab-background-color: #0d111a !important;
   --newtab-text-primary-color: #d8d3c3 !important;
-  --button-primary-bgcolor: #ffc940 !important;
-  --button-primary-hover-bgcolor: #ffda87 !important;
-  --button-primary-active-bgcolor: #ffda87 !important;
-  --button-primary-color: #0d111a !important;
-  --button-bgcolor: #121722 !important;
-  --button-hover-bgcolor: #2f3b54 !important;
-  --button-color: #d8d3c3 !important;
-  --input-bgcolor: #121722 !important;
+  --in-content-primary-button-background: #ffc940 !important;
+  --in-content-primary-button-background-hover: #ffda87 !important;
+  --in-content-primary-button-background-active: #ffda87 !important;
+  --in-content-primary-button-text-color: #0d111a !important;
   --input-color: #d8d3c3 !important;
   --input-border-color: #46516c !important;
   --focus-outline-color: #ffc940 !important;
-  --link-color: #c084fc !important;
-  --text-color-deemphasized: #8695b7 !important;
 }
