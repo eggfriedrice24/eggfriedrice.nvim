@@ -185,6 +185,8 @@ local apps = {
 	"opencode",
 	"slack",
 	"discord",
+	"zen",
+	"chromium",
 }
 
 ---@param c table

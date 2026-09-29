@@ -1,0 +1,81 @@
+/*
+ * eggfriedrice for Zen Browser
+ * generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand
+ * install: copy or symlink to <profile>/chrome/userChrome.css, set toolkit.legacyUserProfileCustomizations.stylesheets to true in about:config, restart
+ */
+
+:root {
+  /* zen */
+  --zen-primary-color: #ffc940 !important;
+  --zen-colors-primary: #0d111a !important;
+  --zen-colors-secondary: #090c13 !important;
+  --zen-colors-tertiary: #090c13 !important;
+  --zen-colors-border: #46516c !important;
+  --zen-dialog-background: #090c13 !important;
+  --zen-themed-toolbar-bg: #0d111a !important;
+  --zen-themed-toolbar-bg-transparent: #0d111a !important;
+  --zen-main-browser-background: #090c13 !important;
+  --zen-main-browser-background-toolbar: #0d111a !important;
+  --zen-toolbar-element-bg: #121722 !important;
+  --zen-urlbar-background: #121722 !important;
+  --zen-browser-gradient-base: #090c13 !important;
+  --zen-branding-bg: #ffc940 !important;
+
+  /* window and toolbars */
+  --lwt-accent-color: #090c13 !important;
+  --lwt-text-color: #d8d3c3 !important;
+  --toolbar-bgcolor: #0d111a !important;
+  --toolbar-color: #d8d3c3 !important;
+  --toolbarbutton-icon-fill: #a8a396 !important;
+  --toolbarbutton-hover-background: #2f3b54 !important;
+  --toolbarbutton-active-background: #2f3b54 !important;
+  --chrome-content-separator-color: #46516c !important;
+
+  /* tabs */
+  --tab-selected-bgcolor: #121722 !important;
+  --tab-selected-textcolor: #d8d3c3 !important;
+  --lwt-tab-text: #8695b7 !important;
+
+  /* url bar */
+  --toolbar-field-background-color: #121722 !important;
+  --toolbar-field-color: #d8d3c3 !important;
+  --toolbar-field-focus-background-color: #121722 !important;
+  --toolbar-field-focus-color: #d8d3c3 !important;
+  --toolbar-field-focus-border-color: #ffc940 !important;
+  --urlbar-box-bgcolor: #121722 !important;
+  --urlbar-box-hover-bgcolor: #2f3b54 !important;
+  --urlbar-box-active-bgcolor: #2f3b54 !important;
+  --urlbar-box-text-color: #d8d3c3 !important;
+  --urlbar-box-hover-text-color: #d8d3c3 !important;
+  --urlbar-box-focus-bgcolor: #121722 !important;
+  --urlbarView-highlight-background: #2f3b54 !important;
+  --urlbarView-highlight-color: #d8d3c3 !important;
+  --urlbar-popup-url-color: #c084fc !important;
+
+  /* panels and sidebar */
+  --arrowpanel-background: #090c13 !important;
+  --arrowpanel-color: #d8d3c3 !important;
+  --arrowpanel-border-color: #46516c !important;
+  --panel-separator-color: #46516c !important;
+  --sidebar-background-color: #090c13 !important;
+  --sidebar-text-color: #d8d3c3 !important;
+  --lwt-sidebar-background-color: #090c13 !important;
+  --lwt-sidebar-text-color: #d8d3c3 !important;
+
+  /* new tab and controls */
+  --newtab-background-color: #0d111a !important;
+  --newtab-text-primary-color: #d8d3c3 !important;
+  --button-primary-bgcolor: #ffc940 !important;
+  --button-primary-hover-bgcolor: #ffda87 !important;
+  --button-primary-active-bgcolor: #ffda87 !important;
+  --button-primary-color: #0d111a !important;
+  --button-bgcolor: #121722 !important;
+  --button-hover-bgcolor: #2f3b54 !important;
+  --button-color: #d8d3c3 !important;
+  --input-bgcolor: #121722 !important;
+  --input-color: #d8d3c3 !important;
+  --input-border-color: #46516c !important;
+  --focus-outline-color: #ffc940 !important;
+  --link-color: #c084fc !important;
+  --text-color-deemphasized: #8695b7 !important;
+}

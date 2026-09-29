@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "eggfriedrice",
+  "version": "1.0.0",
+  "description": "Yolk-yellow accents, rice-cream text and navy chrome. Generated from eggfriedrice.nvim by make extras; do not edit by hand.",
+  "theme": {
+    "colors": {
+      "frame": [9, 12, 19],
+      "frame_inactive": [9, 12, 19],
+      "frame_incognito": [9, 12, 19],
+      "frame_incognito_inactive": [9, 12, 19],
+      "background_tab": [9, 12, 19],
+      "background_tab_inactive": [9, 12, 19],
+      "background_tab_incognito": [9, 12, 19],
+      "background_tab_incognito_inactive": [9, 12, 19],
+      "toolbar": [13, 17, 26],
+      "toolbar_text": [216, 211, 195],
+      "toolbar_button_icon": [168, 163, 150],
+      "bookmark_text": [216, 211, 195],
+      "tab_text": [216, 211, 195],
+      "tab_background_text": [134, 149, 183],
+      "tab_background_text_inactive": [134, 149, 183],
+      "tab_background_text_incognito": [134, 149, 183],
+      "tab_background_text_incognito_inactive": [134, 149, 183],
+      "omnibox_background": [18, 23, 34],
+      "omnibox_text": [216, 211, 195],
+      "button_background": [18, 23, 34],
+      "ntp_background": [13, 17, 26],
+      "ntp_text": [216, 211, 195],
+      "ntp_header": [216, 211, 195],
+      "ntp_link": [192, 132, 252]
+    }
+  }
+}

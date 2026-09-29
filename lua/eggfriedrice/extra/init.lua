@@ -14,6 +14,7 @@ local M = {}
 ---@field ext string output extension without the dot, "" for none
 ---@field comment string comment prefix for the generated header, "" to skip
 ---@field install string one-line install hint
+---@field file? string output filename when the target dictates one (manifest.json)
 
 ---Registered extras, keyed by their directory name under extras/.
 ---@type table<string, eggfriedrice.Extra>
@@ -132,6 +133,20 @@ M.extras = {
 		comment = "",
 		install = "copy or symlink into ~/.config/Vencord/themes/ (or BetterDiscord/themes/) and enable it in the client's Themes settings",
 	},
+	zen = {
+		label = "Zen Browser",
+		ext = "css",
+		file = "userChrome.css",
+		comment = "",
+		install = "copy or symlink to <profile>/chrome/userChrome.css, set toolkit.legacyUserProfileCustomizations.stylesheets to true in about:config, restart",
+	},
+	chromium = {
+		label = "Helium and other Chromium browsers",
+		ext = "json",
+		file = "manifest.json",
+		comment = "",
+		install = "chrome://extensions, enable Developer mode, Load unpacked, pick the extras/chromium folder",
+	},
 }
 
 ---Every palette color as an ordered flat list, for variables-style extras
@@ -201,7 +216,8 @@ end
 ---@return string
 function M.path(name)
 	local extra = M.extras[name]
-	return "extras/" .. name .. "/eggfriedrice" .. (extra.ext ~= "" and "." .. extra.ext or "")
+	local file = extra.file or ("eggfriedrice" .. (extra.ext ~= "" and "." .. extra.ext or ""))
+	return "extras/" .. name .. "/" .. file
 end
 
 -- Role maps -----------------------------------------------------------------
