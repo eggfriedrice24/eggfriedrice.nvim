@@ -170,7 +170,7 @@ The same palette, rendered for the rest of the terminal. Every file under [`extr
 | [btop](https://github.com/aristocratos/btop) | `extras/btop/eggfriedrice.theme` | copy into `~/.config/btop/themes/`, set `color_theme = "eggfriedrice"` |
 | [eza](https://github.com/eza-community/eza) | `extras/eza/eggfriedrice.yml` | copy or symlink to `~/.config/eza/theme.yml`, unset `LS_COLORS` and `EZA_COLORS` |
 | [opencode](https://opencode.ai) | `extras/opencode/eggfriedrice.json` | copy or symlink into `~/.config/opencode/themes/`, then set `theme.name` in `cli.json` (opencode 2) or `theme` in `tui.json` (opencode 1) |
-| [Slack](https://slack.com) | `extras/slack/eggfriedrice.txt` | Preferences, Appearance, Custom theme, Import: paste the last line |
+| [Slack](https://slack.com) | `extras/slack/eggfriedrice.txt` | Preferences, Appearance, Custom theme, Import: paste the four-color line (classic client: the ten-color one) |
 | [Discord](https://discord.com) via [Vencord](https://vencord.dev), Vesktop or BetterDiscord | `extras/discord/eggfriedrice.theme.css` | copy or symlink into the client mod's `themes/` dir and enable it; the stock client cannot load themes |
 | [Zen Browser](https://zen-browser.app) | `extras/zen/userChrome.css` | copy or symlink to `<profile>/chrome/userChrome.css`, set `toolkit.legacyUserProfileCustomizations.stylesheets` to true in `about:config`, restart |
 | [Helium](https://helium.computer) and other Chromium browsers | `extras/chromium/manifest.json` | `chrome://extensions`, Developer mode, Load unpacked, pick the `extras/chromium` folder |
