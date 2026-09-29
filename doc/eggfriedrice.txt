@@ -162,6 +162,8 @@ committed output drifts, so the extras never lag behind the editor.
   opencode                   extras/opencode/eggfriedrice.json
   Slack                      extras/slack/eggfriedrice.txt
   Discord (client mods)      extras/discord/eggfriedrice.theme.css
+  Zen Browser                extras/zen/userChrome.css
+  Helium, Chromium browsers  extras/chromium/manifest.json
   anything else              extras/palette/eggfriedrice.json
 
 Each generated file starts with its install hint. The hyprland, lua, gtk
@@ -169,9 +171,9 @@ and rofi files expose the whole palette as named variables, and the tmux
 file also sets it as `@eggfriedrice_*` user options. Every extra renders
 from a role map, and the palette JSON emits all of them under "apps",
 so the design export and the generated files agree by construction.
-Shell roles match the
-editor: commands are yellow like functions, quoted words green like
-strings, `$vars` red like variables, redirections blue like operators.
+Shell roles match the editor: commands are yellow like functions, quoted
+words green like strings, `$vars` red like variables, redirections blue
+like operators.
 The palette JSON carries the full token set of the design system,
 including the semantic names each extra maps from.
 
