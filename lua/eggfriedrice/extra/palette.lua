@@ -187,6 +187,7 @@ local apps = {
 	"discord",
 	"zen",
 	"chromium",
+	"frameit",
 }
 
 ---@param c table

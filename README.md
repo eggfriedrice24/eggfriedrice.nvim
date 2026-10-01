@@ -32,7 +32,7 @@ A bright tier (`red_bright`, `green_bright`, `yellow_bright`, `blue_bright`, `pu
 - Consistent token roles across legacy syntax, treesitter, and LSP semantic tokens - tuned against TypeScript, JavaScript, Go, Rust, Java, Python, Lua, CSS, HTML, YAML, JSON, TOML, and Markdown
 - Terminal colors (`:terminal` matches the theme)
 - Bundled lualine theme
-- Extras for Ghostty, Hyprland, waybar, rofi, dunst, fzf, zsh, Starship, tmux, lazygit, bat, btop, eza, opencode, Slack, Discord, Zen and Chromium browsers, generated from the same palette (see [Extras](#extras))
+- Extras for Ghostty, Hyprland, waybar, rofi, dunst, fzf, zsh, Starship, tmux, lazygit, bat, btop, eza, opencode, Slack, Discord, Zen and Chromium browsers and frameit, generated from the same palette (see [Extras](#extras))
 - `on_colors` / `on_highlights` hooks for overriding anything
 - Popular plugin support (Telescope, neo-tree, gitsigns, nvim-cmp, and more)
 
@@ -174,6 +174,7 @@ The same palette, rendered for the rest of the terminal. Every file under [`extr
 | [Discord](https://discord.com) via [Vencord](https://vencord.dev), Vesktop or BetterDiscord | `extras/discord/eggfriedrice.theme.css` | copy or symlink into the client mod's `themes/` dir and enable it; the stock client cannot load themes |
 | [Zen Browser](https://zen-browser.app) | `extras/zen/userChrome.css` | copy or symlink to `<profile>/chrome/userChrome.css`, set `toolkit.legacyUserProfileCustomizations.stylesheets` to true in `about:config`, restart |
 | [Helium](https://helium.computer) and other Chromium browsers | `extras/chromium/manifest.json` | `chrome://extensions`, Developer mode, Load unpacked, pick the `extras/chromium` folder |
+| [frameit](https://github.com/eggfriedrice24/frameit) 0.2+ | `extras/frameit/eggfriedrice.toml` | `include = "/path/to/eggfriedrice.toml"` in `~/.config/frameit/config.toml` |
 | anything else | `extras/palette/eggfriedrice.json` | primitives, semantic tokens, the 16 ANSI slots and every app's role map as JSON |
 
 Shell roles match the editor: commands are yellow like functions, quoted words green like strings, `$vars` red like variables, redirections blue like operators. The palette JSON carries the full token set of the design system, including the semantic names each extra maps from.

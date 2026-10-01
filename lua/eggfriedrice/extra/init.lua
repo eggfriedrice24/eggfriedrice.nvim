@@ -140,6 +140,12 @@ M.extras = {
 		comment = "",
 		install = "copy or symlink to <profile>/chrome/userChrome.css, set toolkit.legacyUserProfileCustomizations.stylesheets to true in about:config, restart",
 	},
+	frameit = {
+		label = "frameit",
+		ext = "toml",
+		comment = "#",
+		install = '`include = "/path/to/eggfriedrice.toml"` in ~/.config/frameit/config.toml (frameit 0.2 or newer)',
+	},
 	chromium = {
 		label = "Helium and other Chromium browsers",
 		ext = "json",

@@ -1194,6 +1194,11 @@
       "success": "#60e654",
       "warning": "#fc9a2c",
       "error": "#e06c75"
+    },
+    "frameit": {
+      "fill": "#ffc940",
+      "fill_alpha": 0.2,
+      "border": "#ffc940"
     }
   }
 }

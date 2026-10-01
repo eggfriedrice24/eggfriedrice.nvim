@@ -1,0 +1,6 @@
+# eggfriedrice for frameit
+# generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand
+# install: `include = "/path/to/eggfriedrice.toml"` in ~/.config/frameit/config.toml (frameit 0.2 or newer)
+
+fill = "#ffc94033"
+border = "#ffc940"

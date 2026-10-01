@@ -164,6 +164,7 @@ committed output drifts, so the extras never lag behind the editor.
   Discord (client mods)      extras/discord/eggfriedrice.theme.css
   Zen Browser                extras/zen/userChrome.css
   Helium, Chromium browsers  extras/chromium/manifest.json
+  frameit (0.2+)             extras/frameit/eggfriedrice.toml
   anything else              extras/palette/eggfriedrice.json
 
 Each generated file starts with its install hint. The hyprland, lua, gtk
