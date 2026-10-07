@@ -44,17 +44,6 @@ function M.roles(c)
 	}
 end
 
----TOML key for a role: bare when it is a plain word, quoted when it
----contains a dot, so "diff.add" stays one key and not a nested table.
----@param name string
----@return string
-local function key(name)
-	if name:find("^[%w_-]+$") then
-		return name
-	end
-	return ('"%s"'):format(name)
-end
-
 ---@param c table
 ---@return string
 function M.generate(c)
@@ -63,10 +52,12 @@ function M.generate(c)
 	for _, e in ipairs(M.roles(c)) do
 		if extra.is_entries(e[2]) then
 			for _, sub in ipairs(e[2]) do
-				lines[#lines + 1] = ('%s = "%s"'):format(key(e[1] .. "." .. sub[1]), extra.hex(c, sub[2]))
+				-- A bare dotted key, such as diff.add, is the key add of the table diff, as
+				-- efr reads it; a quoted "diff.add" would be one unknown key.
+				lines[#lines + 1] = ('%s.%s = "%s"'):format(e[1], sub[1], extra.hex(c, sub[2]))
 			end
 		else
-			lines[#lines + 1] = ('%s = "%s"'):format(key(e[1]), extra.hex(c, e[2]))
+			lines[#lines + 1] = ('%s = "%s"'):format(e[1], extra.hex(c, e[2]))
 		end
 	end
 	return extra.header("efr")
