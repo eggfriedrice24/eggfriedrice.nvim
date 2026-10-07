@@ -61,10 +61,9 @@ function M.generate(c)
 		end
 	end
 	return extra.header("efr")
-		.. "# Code and diffs use the bat theme of this repository. A relative path does not\n"
-		.. "# work in a copied file, so set code_theme to the absolute path of\n"
-		.. "# extras/bat/eggfriedrice.tmTheme:\n"
-		.. '# code_theme = "/path/to/eggfriedrice.nvim/extras/bat/eggfriedrice.tmTheme"\n'
+		.. "# Code and diffs use the bat theme of this repository. efr reads a relative path\n"
+		.. "# from the directory of this file; in a copy, use an absolute path.\n"
+		.. 'code_theme = "../bat/eggfriedrice.tmTheme"\n'
 		.. "\n"
 		.. "[colors]\n"
 		.. table.concat(lines, "\n")
