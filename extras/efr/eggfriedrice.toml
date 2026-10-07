@@ -1,0 +1,23 @@
+# eggfriedrice for efr
+# generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand
+# install: set `palette = "/path/to/eggfriedrice.toml"` under [render] in ~/.config/efr/config.toml
+
+# Code and diffs use the bat theme of this repository. A relative path does not
+# work in a copied file, so set code_theme to the absolute path of
+# extras/bat/eggfriedrice.tmTheme:
+# code_theme = "/path/to/eggfriedrice.nvim/extras/bat/eggfriedrice.tmTheme"
+
+[colors]
+text = "#d8d3c3"
+muted = "#a8a396"
+accent = "#ffc940"
+heading = "#ffc940"
+link = "#c084fc"
+code = "#78e2d6"
+success = "#60e654"
+warning = "#ffc940"
+error = "#e06c75"
+quote = "#8695b7"
+"diff.add" = "#60e654"
+"diff.remove" = "#e06c75"
+"diff.hunk" = "#78e2d6"

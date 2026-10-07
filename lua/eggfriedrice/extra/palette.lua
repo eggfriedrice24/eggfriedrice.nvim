@@ -145,6 +145,10 @@ local semantic = {
 	{ "sh_reserved_word", "purple" },
 }
 
+---Semantic tokens as `{ name, palette key }` pairs, so extras can map
+---their roles from the design system's names.
+M.semantic = semantic
+
 ---Palette keys of ANSI slots 0 to 15, in order. The preview reads this
 ---list so its swatches match the JSON.
 ---@type string[]
@@ -188,6 +192,7 @@ local apps = {
 	"zen",
 	"chromium",
 	"frameit",
+	"efr",
 }
 
 ---@param c table

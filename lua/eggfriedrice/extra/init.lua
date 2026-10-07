@@ -146,6 +146,12 @@ M.extras = {
 		comment = "#",
 		install = '`include = "/path/to/eggfriedrice.toml"` in ~/.config/frameit/config.toml (frameit 0.2 or newer)',
 	},
+	efr = {
+		label = "efr",
+		ext = "toml",
+		comment = "#",
+		install = 'set `palette = "/path/to/eggfriedrice.toml"` under [render] in ~/.config/efr/config.toml',
+	},
 	chromium = {
 		label = "Helium and other Chromium browsers",
 		ext = "json",
