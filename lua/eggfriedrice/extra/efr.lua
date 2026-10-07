@@ -15,9 +15,9 @@ local function token(name)
 	error("unknown semantic token " .. name)
 end
 
----efr's render roles, each from a semantic token: prose on the text
----tokens, yolk for the accent and headings, teal for inline code and
----hunk headers, and the state tokens for results and diff lines.
+---efr's render roles. Markdown follows the opencode extra's markdown roles
+---(red headings, green inline code, purple links, comment quotes), the
+---accent is the primary yolk, and diffs follow its diff roles.
 ---@param c table
 ---@return eggfriedrice.Entry[]
 function M.roles(c)
@@ -26,19 +26,19 @@ function M.roles(c)
 		{ "text", token("text_primary") },
 		{ "muted", token("text_muted") },
 		{ "accent", token("accent_primary") },
-		{ "heading", token("accent_primary") },
+		{ "heading", "red" },
 		{ "link", token("link") },
-		{ "code", token("accent_ui") },
+		{ "code", "green" },
 		{ "success", token("state_success") },
 		{ "warning", token("state_warning") },
 		{ "error", token("state_error") },
-		{ "quote", token("text_subtle") },
+		{ "quote", "comment" },
 		{
 			"diff",
 			{
 				{ "add", token("state_success") },
 				{ "remove", token("state_error") },
-				{ "hunk", token("accent_ui") },
+				{ "hunk", "cyan" },
 			},
 		},
 	}
