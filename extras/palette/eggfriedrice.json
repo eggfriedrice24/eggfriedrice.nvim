@@ -1223,7 +1223,7 @@
     },
     "efr": {
       "text": "#d8d3c3",
-      "muted": "#a8a396",
+      "muted": "#8695b7",
       "accent": "#ffc940",
       "heading": "#e06c75",
       "link": "#c084fc",
@@ -1231,11 +1231,14 @@
       "success": "#60e654",
       "warning": "#ffc940",
       "error": "#e06c75",
-      "quote": "#8695b7",
+      "quote": "#a8a396",
+      "code_bg": "#121722",
       "diff": {
         "add": "#60e654",
         "remove": "#e06c75",
-        "hunk": "#78e2d6"
+        "hunk": "#78e2d6",
+        "add_bg": "#192c17",
+        "remove_bg": "#391d1e"
       }
     }
   }

@@ -2,13 +2,15 @@
 # generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand
 # install: set `palette = "/path/to/eggfriedrice.toml"` under [render] in ~/.config/efr/config.toml
 
-# Code and diffs use the bat theme of this repository. efr reads a relative path
-# from the directory of this file; in a copy, use an absolute path.
+# Code and diffs use the bat themes of this repository: code_theme in truecolor,
+# code_theme_ansi (the 16 colours of the terminal) in 16 colours. efr reads a
+# relative path from the directory of this file; in a copy, use absolute paths.
 code_theme = "../bat/eggfriedrice.tmTheme"
+code_theme_ansi = "../bat/eggfriedrice-ansi.tmTheme"
 
 [colors]
 text = "#d8d3c3"
-muted = "#a8a396"
+muted = "#8695b7"
 accent = "#ffc940"
 heading = "#e06c75"
 link = "#c084fc"
@@ -16,7 +18,10 @@ code = "#60e654"
 success = "#60e654"
 warning = "#ffc940"
 error = "#e06c75"
-quote = "#8695b7"
+quote = "#a8a396"
+code_bg = "#121722"
 diff.add = "#60e654"
 diff.remove = "#e06c75"
 diff.hunk = "#78e2d6"
+diff.add_bg = "#192c17"
+diff.remove_bg = "#391d1e"

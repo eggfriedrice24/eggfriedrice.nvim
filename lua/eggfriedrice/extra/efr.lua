@@ -15,30 +15,37 @@ local function token(name)
 	error("unknown semantic token " .. name)
 end
 
----efr's render roles. Markdown follows the opencode extra's markdown roles
----(red headings, green inline code, purple links, comment quotes), the
----accent is the primary yolk, and diffs follow its diff roles.
+---efr's render roles, as the terminal design of efr maps them (its Legend
+---board): muted rows and marks in text_subtle, quotes in text_muted, the
+---accent in the primary yolk, red headings (as on the phone), inline code
+---in the string green, diffs in the git colours with their tints as row
+---backgrounds, and code blocks on surface_2. A background role has a key
+---of its own (code_bg, diff.add_bg), because TOML cannot hold code.bg next
+---to code.
 ---@param c table
 ---@return eggfriedrice.Entry[]
 function M.roles(c)
 	local _ = c
 	return {
 		{ "text", token("text_primary") },
-		{ "muted", token("text_muted") },
+		{ "muted", token("text_subtle") },
 		{ "accent", token("accent_primary") },
 		{ "heading", "red" },
 		{ "link", token("link") },
-		{ "code", "green" },
+		{ "code", token("code_string") },
 		{ "success", token("state_success") },
 		{ "warning", token("state_warning") },
 		{ "error", token("state_error") },
-		{ "quote", "comment" },
+		{ "quote", token("text_muted") },
+		{ "code_bg", token("surface_2") },
 		{
 			"diff",
 			{
-				{ "add", token("state_success") },
-				{ "remove", token("state_error") },
-				{ "hunk", "cyan" },
+				{ "add", token("git_add") },
+				{ "remove", token("git_delete") },
+				{ "hunk", token("accent_ui") },
+				{ "add_bg", token("diff_add_bg") },
+				{ "remove_bg", token("diff_delete_bg") },
 			},
 		},
 	}
@@ -61,9 +68,11 @@ function M.generate(c)
 		end
 	end
 	return extra.header("efr")
-		.. "# Code and diffs use the bat theme of this repository. efr reads a relative path\n"
-		.. "# from the directory of this file; in a copy, use an absolute path.\n"
+		.. "# Code and diffs use the bat themes of this repository: code_theme in truecolor,\n"
+		.. "# code_theme_ansi (the 16 colours of the terminal) in 16 colours. efr reads a\n"
+		.. "# relative path from the directory of this file; in a copy, use absolute paths.\n"
 		.. 'code_theme = "../bat/eggfriedrice.tmTheme"\n'
+		.. 'code_theme_ansi = "../bat/eggfriedrice-ansi.tmTheme"\n'
 		.. "\n"
 		.. "[colors]\n"
 		.. table.concat(lines, "\n")
