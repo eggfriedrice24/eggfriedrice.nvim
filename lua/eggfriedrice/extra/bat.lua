@@ -22,6 +22,15 @@ local settings = {
 -- Scope selectors per rule, following the Sublime Text conventions bat's
 -- syntaxes use. Punctuation is muted like the editor, but string
 -- delimiters keep the string color so quotes are not greyed out.
+--
+-- The token kinds follow the editor's tree-sitter captures, as the syntax
+-- table of efr's terminal design (its Code board) lists them: self and
+-- this are constants, lifetimes and labels are red like variables, a
+-- regex is red with muted delimiters, interpolation marks are purple,
+-- arguments of a shell command are red like parameters. A grammar scores
+-- a selector by the atoms of its deepest match, so a selector inside a
+-- regex repeats the atoms of the rule it must beat (keyword.operator,
+-- constant.character.escape).
 local scopes = {
 	comment = { "Comment", "comment, punctuation.definition.comment" },
 	string = { "String", "string" },
@@ -36,22 +45,38 @@ local scopes = {
 	["function"] = { "Function", "entity.name.function, support.function, meta.function-call, variable.function" },
 	type = {
 		"Type",
-		"entity.name.type, entity.name.class, entity.name.struct, entity.name.enum, entity.name.interface, entity.name.namespace, support.type, support.class, entity.other.inherited-class",
+		"entity.name.type, entity.name.class, entity.name.struct, entity.name.enum, entity.name.interface, entity.name.namespace, support.type, support.class, entity.other.inherited-class, meta.generic, meta.path",
 	},
-	constant = { "Constant", "constant, constant.language, support.constant" },
+	constant = {
+		"Constant",
+		"constant, constant.language, support.constant, variable.language, variable.other.constant.object",
+	},
 	number = { "Number", "constant.numeric" },
 	attribute = { "Attribute", "entity.other.attribute-name" },
-	variable = { "Variable", "variable, variable.other, variable.parameter, variable.language" },
+	variable = { "Variable", "variable, variable.other, variable.parameter, meta.function-call.arguments" },
 	property = {
 		"Property",
-		"variable.other.member, variable.other.property, variable.other.object.property, support.type.property-name, meta.object-literal.key, entity.name.label",
+		"variable.other.member, variable.other.property, variable.other.object.property, support.type.property-name, meta.object-literal.key, entity.name.label, entity.name.table, meta.mapping.key string, meta.tag.key string",
 	},
+	label = { "Label", "storage.modifier.lifetime, entity.name.lifetime" },
 	tag = { "Tag", "entity.name.tag, punctuation.definition.tag" },
-	operator = { "Operator", "keyword.operator" },
+	operator = { "Operator", "keyword.operator, punctuation.definition.key-value" },
+	keyword_operator = { "Keyword operator", "keyword.operator.ternary, keyword.operator.new" },
 	punctuation = {
 		"Punctuation",
-		"punctuation.separator, punctuation.terminator, punctuation.accessor, punctuation.section, meta.brace",
+		"punctuation.separator, punctuation.terminator, punctuation.accessor, punctuation.section, meta.brace, punctuation.definition.block, punctuation.definition.parameters, punctuation.definition.typeparameters, punctuation.definition.generic, punctuation.definition.table, support.function.double-brace, keyword.operator.logical.continue",
 	},
+	type_annotation = { "Type annotation", "keyword.operator.type.annotation" },
+	interpolation = {
+		"Interpolation",
+		"punctuation.section.interpolation, punctuation.definition.template-expression, punctuation.section.embedded, punctuation.section.expansion, meta.group.expansion.parameter punctuation.definition.variable, meta.group.expansion.command punctuation.definition.variable - punctuation.definition.variable.job, meta.group.expansion.command punctuation.section.parens",
+	},
+	regex = {
+		"Regex",
+		"string.regexp, string.regexp keyword, string.regexp keyword.control, string.regexp keyword.operator, string.regexp keyword.other, string.regexp constant, string.regexp constant.character, string.regexp constant.character.escape, string.regexp constant.other, string.regexp punctuation, string.regexp punctuation.section, string.regexp punctuation.separator",
+	},
+	regex_delimiter = { "Regex delimiter", "string.regexp punctuation.definition.string" },
+	unquoted = { "Unquoted shell word", "source.shell string.unquoted" },
 	invalid = { "Invalid", "invalid, invalid.illegal" },
 	markup_heading = { "Markup heading", "markup.heading, entity.name.section" },
 	markup_bold = { "Markup bold", "markup.bold" },
@@ -63,7 +88,10 @@ local scopes = {
 	diff_inserted = { "Diff inserted", "markup.inserted" },
 	diff_deleted = { "Diff deleted", "markup.deleted" },
 	diff_changed = { "Diff changed", "markup.changed" },
-	diff_header = { "Diff header", "meta.diff.header, meta.diff.range, meta.diff.index" },
+	diff_header = {
+		"Diff header",
+		"meta.diff.header, meta.diff.range, meta.diff.index, meta.diff.range entity.name.section",
+	},
 }
 
 ---Settings first, then one style per scope rule in render order.
@@ -96,9 +124,16 @@ function M.roles(c)
 		{ "attribute", { fg = "yellow" } },
 		{ "variable", { fg = "red" } },
 		{ "property", { fg = "red" } },
+		{ "label", { fg = "red" } },
 		{ "tag", { fg = "red" } },
 		{ "operator", { fg = "blue" } },
+		{ "keyword_operator", { fg = "purple" } },
 		{ "punctuation", { fg = "fg_dark" } },
+		{ "type_annotation", { fg = "fg_dark" } },
+		{ "interpolation", { fg = "purple" } },
+		{ "regex", { fg = "red" } },
+		{ "regex_delimiter", { fg = "fg_dark" } },
+		{ "unquoted", { fg = "fg" } },
 		{ "invalid", { fg = "red", underline = true } },
 		{ "markup_heading", { fg = "red", bold = true } },
 		{ "markup_bold", { bold = true } },
@@ -110,7 +145,7 @@ function M.roles(c)
 		{ "diff_inserted", { fg = "green" } },
 		{ "diff_deleted", { fg = "red" } },
 		{ "diff_changed", { fg = "yellow" } },
-		{ "diff_header", { fg = "cyan" } },
+		{ "diff_header", { fg = "cyan", plain = true } },
 	}
 end
 

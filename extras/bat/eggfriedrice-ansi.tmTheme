@@ -117,7 +117,7 @@
 			<key>name</key>
 			<string>Type</string>
 			<key>scope</key>
-			<string>entity.name.type, entity.name.class, entity.name.struct, entity.name.enum, entity.name.interface, entity.name.namespace, support.type, support.class, entity.other.inherited-class</string>
+			<string>entity.name.type, entity.name.class, entity.name.struct, entity.name.enum, entity.name.interface, entity.name.namespace, support.type, support.class, entity.other.inherited-class, meta.generic, meta.path</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
@@ -128,7 +128,7 @@
 			<key>name</key>
 			<string>Constant</string>
 			<key>scope</key>
-			<string>constant, constant.language, support.constant</string>
+			<string>constant, constant.language, support.constant, variable.language, variable.other.constant.object</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
@@ -161,7 +161,7 @@
 			<key>name</key>
 			<string>Variable</string>
 			<key>scope</key>
-			<string>variable, variable.other, variable.parameter, variable.language</string>
+			<string>variable, variable.other, variable.parameter, meta.function-call.arguments</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
@@ -172,7 +172,18 @@
 			<key>name</key>
 			<string>Property</string>
 			<key>scope</key>
-			<string>variable.other.member, variable.other.property, variable.other.object.property, support.type.property-name, meta.object-literal.key, entity.name.label</string>
+			<string>variable.other.member, variable.other.property, variable.other.object.property, support.type.property-name, meta.object-literal.key, entity.name.label, entity.name.table, meta.mapping.key string, meta.tag.key string</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#01000000</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Label</string>
+			<key>scope</key>
+			<string>storage.modifier.lifetime, entity.name.lifetime</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
@@ -194,7 +205,7 @@
 			<key>name</key>
 			<string>Operator</string>
 			<key>scope</key>
-			<string>keyword.operator</string>
+			<string>keyword.operator, punctuation.definition.key-value</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
@@ -203,9 +214,75 @@
 		</dict>
 		<dict>
 			<key>name</key>
+			<string>Keyword operator</string>
+			<key>scope</key>
+			<string>keyword.operator.ternary, keyword.operator.new</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#05000000</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>Punctuation</string>
 			<key>scope</key>
-			<string>punctuation.separator, punctuation.terminator, punctuation.accessor, punctuation.section, meta.brace</string>
+			<string>punctuation.separator, punctuation.terminator, punctuation.accessor, punctuation.section, meta.brace, punctuation.definition.block, punctuation.definition.parameters, punctuation.definition.typeparameters, punctuation.definition.generic, punctuation.definition.table, support.function.double-brace, keyword.operator.logical.continue</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#00000001</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Type annotation</string>
+			<key>scope</key>
+			<string>keyword.operator.type.annotation</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#00000001</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Interpolation</string>
+			<key>scope</key>
+			<string>punctuation.section.interpolation, punctuation.definition.template-expression, punctuation.section.embedded, punctuation.section.expansion, meta.group.expansion.parameter punctuation.definition.variable, meta.group.expansion.command punctuation.definition.variable - punctuation.definition.variable.job, meta.group.expansion.command punctuation.section.parens</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#05000000</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Regex</string>
+			<key>scope</key>
+			<string>string.regexp, string.regexp keyword, string.regexp keyword.control, string.regexp keyword.operator, string.regexp keyword.other, string.regexp constant, string.regexp constant.character, string.regexp constant.character.escape, string.regexp constant.other, string.regexp punctuation, string.regexp punctuation.section, string.regexp punctuation.separator</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#01000000</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Regex delimiter</string>
+			<key>scope</key>
+			<string>string.regexp punctuation.definition.string</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#00000001</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Unquoted shell word</string>
+			<key>scope</key>
+			<string>source.shell string.unquoted</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
@@ -345,9 +422,11 @@
 			<key>name</key>
 			<string>Diff header</string>
 			<key>scope</key>
-			<string>meta.diff.header, meta.diff.range, meta.diff.index</string>
+			<string>meta.diff.header, meta.diff.range, meta.diff.index, meta.diff.range entity.name.section</string>
 			<key>settings</key>
 			<dict>
+				<key>fontStyle</key>
+				<string></string>
 				<key>foreground</key>
 				<string>#06000000</string>
 			</dict>

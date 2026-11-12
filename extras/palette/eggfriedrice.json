@@ -610,14 +610,35 @@
       "property": {
         "fg": "#e06c75"
       },
+      "label": {
+        "fg": "#e06c75"
+      },
       "tag": {
         "fg": "#e06c75"
       },
       "operator": {
         "fg": "#6cb8ff"
       },
+      "keyword_operator": {
+        "fg": "#c084fc"
+      },
       "punctuation": {
         "fg": "#a8a396"
+      },
+      "type_annotation": {
+        "fg": "#a8a396"
+      },
+      "interpolation": {
+        "fg": "#c084fc"
+      },
+      "regex": {
+        "fg": "#e06c75"
+      },
+      "regex_delimiter": {
+        "fg": "#a8a396"
+      },
+      "unquoted": {
+        "fg": "#d8d3c3"
       },
       "invalid": {
         "fg": "#e06c75",
