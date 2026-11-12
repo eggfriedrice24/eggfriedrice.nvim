@@ -162,6 +162,7 @@ The same palette, rendered for the rest of the terminal. Every file under [`extr
 | [tmux](https://github.com/tmux/tmux) 3.3+ | `extras/tmux/eggfriedrice.tmux` | `source-file` it from `tmux.conf`; the palette is also set as `@eggfriedrice_*` user options for your own formats |
 | [lazygit](https://github.com/jesseduffield/lazygit) | `extras/lazygit/eggfriedrice.yml` | append to `LG_CONFIG_FILE` after your own config |
 | [bat](https://github.com/sharkdp/bat), Sublime Text | `extras/bat/eggfriedrice.tmTheme` | copy to `~/.config/bat/themes/`, run `bat cache --build`, set `BAT_THEME=eggfriedrice` |
+| bat in the 16 colours of the terminal | `extras/bat/eggfriedrice-ansi.tmTheme` | the same rules as ANSI slots (bat's ANSI encoding), so code follows the terminal's own palette; install as above with `BAT_THEME=eggfriedrice-ansi` |
 | [Hyprland](https://hyprland.org) and hyprlock | `extras/hyprland/eggfriedrice.conf` | `source =` it, then use `$yellow` or `rgba($yellowAlphaee)` |
 | Lua (Hyprland's Lua config, wezterm, ...) | `extras/lua/eggfriedrice.lua` | put it on your Lua path and `require("eggfriedrice")` |
 | GTK CSS: [waybar](https://github.com/Alexays/Waybar), ghostty `gtk-custom-css` | `extras/gtk/eggfriedrice.css` | `@import url(...)` it, then use `@yellow` or `alpha(@bg, 0.7)` |

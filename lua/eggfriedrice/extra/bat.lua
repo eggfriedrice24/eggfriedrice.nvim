@@ -121,13 +121,13 @@ local function camel(s)
 	return (s:gsub("_(%l)", string.upper))
 end
 
----One `<dict>` entry of the tmTheme settings array.
----@param c table
+---One `<dict>` entry of the tmTheme settings array. `colour` turns a
+---palette key into the string the file holds.
 ---@param id string
 ---@param style table
+---@param colour fun(key: string): string
 ---@return string
-local function rule(c, id, style)
-	local extra = require("eggfriedrice.extra")
+local function rule(id, style, colour)
 	local pairs_ = {}
 	local flags = {}
 	for _, flag in ipairs({ "bold", "italic", "underline" }) do
@@ -135,11 +135,12 @@ local function rule(c, id, style)
 			flags[#flags + 1] = flag
 		end
 	end
-	if #flags > 0 then
+	if #flags > 0 or style.plain then
+		-- An empty fontStyle clears a bold or an italic that a broader rule sets.
 		pairs_[#pairs_ + 1] = { "fontStyle", table.concat(flags, " ") }
 	end
 	if style.fg then
-		pairs_[#pairs_ + 1] = { "foreground", extra.hex(c, style.fg) }
+		pairs_[#pairs_ + 1] = { "foreground", colour(style.fg) }
 	end
 	local lines = {
 		"\t\t<dict>",
@@ -159,20 +160,27 @@ local function rule(c, id, style)
 	return table.concat(lines, "\n")
 end
 
+---The whole file: its header, name and uuid, the global settings and one
+---rule per style role.
+---@param header string
+---@param name string
+---@param uuid string
+---@param global string[] the setting keys of the first dict, in order
+---@param colour fun(key: string): string
 ---@param c table
 ---@return string
-function M.generate(c)
+local function theme(header, name, uuid, global, colour, c)
 	local extra = require("eggfriedrice.extra")
 	local roles = M.roles(c)
-	local global = {}
-	for _, key in ipairs(settings) do
-		global[#global + 1] = "\t\t\t\t<key>" .. camel(key) .. "</key>"
-		global[#global + 1] = "\t\t\t\t<string>" .. extra.hex(c, extra.role(roles, key)) .. "</string>"
+	local lines = {}
+	for _, key in ipairs(global) do
+		lines[#lines + 1] = "\t\t\t\t<key>" .. camel(key) .. "</key>"
+		lines[#lines + 1] = "\t\t\t\t<string>" .. colour(extra.role(roles, key)) .. "</string>"
 	end
 	local rules = {}
 	for _, e in ipairs(roles) do
 		if extra.is_style(e[2]) then
-			rules[#rules + 1] = rule(c, e[1], e[2])
+			rules[#rules + 1] = rule(e[1], e[2], colour)
 		end
 	end
 	return util.template(
@@ -180,16 +188,14 @@ function M.generate(c)
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <!--
-  eggfriedrice for bat and Sublime Text
-  generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand
-  install: copy to ~/.config/bat/themes/, run `bat cache -b`, set BAT_THEME=eggfriedrice
+${header}
 -->
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>eggfriedrice</string>
+	<string>${name}</string>
 	<key>uuid</key>
-	<string>df3b6327-0ef5-47aa-9223-0c6eca464ba6</string>
+	<string>${uuid}</string>
 	<key>settings</key>
 	<array>
 		<dict>
@@ -203,7 +209,78 @@ ${rules}
 </dict>
 </plist>
 ]],
-		{ global = table.concat(global, "\n"), rules = table.concat(rules, "\n") }
+		{
+			header = header,
+			name = name,
+			uuid = uuid,
+			global = table.concat(lines, "\n"),
+			rules = table.concat(rules, "\n"),
+		}
+	)
+end
+
+---@param c table
+---@return string
+function M.generate(c)
+	local extra = require("eggfriedrice.extra")
+	return theme(
+		table.concat({
+			"  eggfriedrice for bat and Sublime Text",
+			"  generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand",
+			"  install: copy to ~/.config/bat/themes/, run `bat cache -b`, set BAT_THEME=eggfriedrice",
+		}, "\n"),
+		"eggfriedrice",
+		"df3b6327-0ef5-47aa-9223-0c6eca464ba6",
+		settings,
+		function(key)
+			return extra.hex(c, key)
+		end,
+		c
+	)
+end
+
+---The slot of the terminal's 16 colours for a palette key, in bat's ANSI
+---encoding: `#RR000000` names slot RR, `#00000001` the terminal's own
+---foreground. The text and the punctuation take the terminal's own
+---foreground, because no slot holds fg_dark (the 16-colour column of the
+---Code board's syntax table).
+---@param key string
+---@return string
+local function ansi(key)
+	if key == "fg" or key == "fg_dark" then
+		return "#00000001"
+	end
+	for slot, name in ipairs(require("eggfriedrice.extra.palette").ansi) do
+		if name == key then
+			return ("#%02X000000"):format(slot - 1)
+		end
+	end
+	error("palette key " .. key .. " has no slot of the 16 colours")
+end
+
+---The same rules in the 16 colours of the terminal, so code keeps the
+---token colours of the design when the terminal has only its own palette.
+---The text and the background stay the terminal's own.
+---@param c table
+---@return string
+function M.generate_ansi(c)
+	return theme(
+		table.concat({
+			"  eggfriedrice for bat and efr in the 16 colours of the terminal",
+			"  generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand",
+			"  install: copy to ~/.config/bat/themes/, run `bat cache -b`, set BAT_THEME=eggfriedrice-ansi;",
+			"  the efr extra names it as code_theme_ansi",
+		}, "\n"),
+		"eggfriedrice-ansi",
+		"191a4265-fe18-41dc-9809-7806e1c2329f",
+		{ "background", "foreground" },
+		function(key)
+			if key == "bg" then
+				return "#00000001"
+			end
+			return ansi(key)
+		end,
+		c
 	)
 end
 

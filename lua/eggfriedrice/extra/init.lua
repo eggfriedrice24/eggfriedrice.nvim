@@ -15,6 +15,9 @@ local M = {}
 ---@field comment string comment prefix for the generated header, "" to skip
 ---@field install string one-line install hint
 ---@field file? string output filename when the target dictates one (manifest.json)
+---@field dir? string directory under extras/ when it is not the name (a second file of an extra)
+---@field module? string module under eggfriedrice.extra when it is not the name
+---@field generate? string function of the module that renders the file, "generate" by default
 
 ---Registered extras, keyed by their directory name under extras/.
 ---@type table<string, eggfriedrice.Extra>
@@ -66,6 +69,16 @@ M.extras = {
 		ext = "tmTheme",
 		comment = "",
 		install = "copy to ~/.config/bat/themes/, run `bat cache --build`, set BAT_THEME=eggfriedrice",
+	},
+	["bat-ansi"] = {
+		label = "bat and efr in the 16 colours of the terminal",
+		ext = "tmTheme",
+		dir = "bat",
+		file = "eggfriedrice-ansi.tmTheme",
+		module = "bat",
+		generate = "generate_ansi",
+		comment = "",
+		install = "copy to ~/.config/bat/themes/, run `bat cache --build`, set BAT_THEME=eggfriedrice-ansi; the efr extra names it as code_theme_ansi",
 	},
 	palette = {
 		label = "palette JSON",
@@ -229,7 +242,7 @@ end
 function M.path(name)
 	local extra = M.extras[name]
 	local file = extra.file or ("eggfriedrice" .. (extra.ext ~= "" and "." .. extra.ext or ""))
-	return "extras/" .. name .. "/" .. file
+	return "extras/" .. (extra.dir or name) .. "/" .. file
 end
 
 -- Role maps -----------------------------------------------------------------
@@ -348,9 +361,11 @@ function M.generate(root)
 
 	local written = {}
 	for _, name in ipairs(names) do
+		local extra = M.extras[name]
 		local rel = M.path(name)
-		vim.fn.mkdir(root .. "/extras/" .. name, "p")
-		local content = require("eggfriedrice.extra." .. name).generate(c)
+		vim.fn.mkdir(root .. "/extras/" .. (extra.dir or name), "p")
+		local module = require("eggfriedrice.extra." .. (extra.module or name))
+		local content = module[extra.generate or "generate"](c)
 		local f = assert(io.open(root .. "/" .. rel, "w"))
 		f:write(content)
 		f:close()
