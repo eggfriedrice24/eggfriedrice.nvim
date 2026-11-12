@@ -271,7 +271,10 @@ function M.lookup(c)
 	return t
 end
 
----Hex for a palette key, or the value itself when it is not one.
+---Hex for a palette key, or the value itself when it is not one. A dotted
+---key such as "diff.add" (as the semantic tokens name the diff tints) is
+---the flat key "diff_add", and a derived key of the palette that the flat
+---list leaves out, such as "git_add", is its hex too.
 ---@param c table
 ---@param value any
 ---@return any
@@ -279,7 +282,16 @@ function M.hex(c, value)
 	if type(value) ~= "string" then
 		return value
 	end
-	return M.lookup(c)[value] or value
+	local lookup = M.lookup(c)
+	local flat = value:gsub("%.", "_")
+	if lookup[value] or lookup[flat] then
+		return lookup[value] or lookup[flat]
+	end
+	local derived = c[value]
+	if type(derived) == "string" and derived:match("^#%x%x%x%x%x%x$") then
+		return derived
+	end
+	return value
 end
 
 ---Flatten entries into a `${name}` map for util.template with every
