@@ -32,7 +32,7 @@ A bright tier (`red_bright`, `green_bright`, `yellow_bright`, `blue_bright`, `pu
 - Consistent token roles across legacy syntax, treesitter, and LSP semantic tokens - tuned against TypeScript, JavaScript, Go, Rust, Java, Python, Lua, CSS, HTML, YAML, JSON, TOML, and Markdown
 - Terminal colors (`:terminal` matches the theme)
 - Bundled lualine theme
-- Extras for Ghostty, Hyprland, waybar, rofi, dunst, fzf, zsh, Starship, tmux, lazygit, bat, btop, eza, opencode, Slack, Discord, Zen and Chromium browsers, frameit and efr, generated from the same palette (see [Extras](#extras))
+- Extras for Ghostty, Hyprland, waybar, GTK3 and libadwaita apps (adw-gtk3), Papirus folders, rofi, dunst, fzf, zsh, Starship, tmux, lazygit, bat, btop, eza, opencode, Slack, Discord, Zen and Chromium browsers, frameit and efr, generated from the same palette (see [Extras](#extras))
 - `on_colors` / `on_highlights` hooks for overriding anything
 - Popular plugin support (Telescope, neo-tree, gitsigns, nvim-cmp, and more)
 
@@ -166,6 +166,9 @@ The same palette, rendered for the rest of the terminal. Every file under [`extr
 | [Hyprland](https://hyprland.org) and hyprlock | `extras/hyprland/eggfriedrice.conf` | `source =` it, then use `$yellow` or `rgba($yellowAlphaee)` |
 | Lua (Hyprland's Lua config, wezterm, ...) | `extras/lua/eggfriedrice.lua` | put it on your Lua path and `require("eggfriedrice")` |
 | GTK CSS: [waybar](https://github.com/Alexays/Waybar), ghostty `gtk-custom-css` | `extras/gtk/eggfriedrice.css` | `@import url(...)` it, then use `@yellow` or `alpha(@bg, 0.7)` |
+| GTK3 apps on [adw-gtk3](https://github.com/lassekongo83/adw-gtk3) (Thunar, file pickers, ...) | `extras/adw/gtk-3.0.css` | set the GTK theme to `adw-gtk3-dark` and `@import` it from `~/.config/gtk-3.0/gtk.css`; it redefines the named colors the whole theme draws from |
+| GTK4 and libadwaita apps | `extras/adw/gtk-4.0.css` | `@import` it from `~/.config/gtk-4.0/gtk.css` |
+| [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) folders | `extras/papirus/eggfriedrice.sh` | the three folder hexes as shell variables, for a script that recolors Papirus's yellow folders into a user icon theme |
 | [rofi](https://github.com/davatorium/rofi) | `extras/rofi/eggfriedrice.rasi` | `@import` it, then use `@yellow` or the launcher roles (`@panel`, `@panel-edge`, `@accent`, `@on-accent`, ...) |
 | [dunst](https://dunst-project.org) | `extras/dunst/eggfriedrice.conf` | copy or symlink into `~/.config/dunst/dunstrc.d/` |
 | [btop](https://github.com/aristocratos/btop) | `extras/btop/eggfriedrice.theme` | copy into `~/.config/btop/themes/`, set `color_theme = "eggfriedrice"` |
