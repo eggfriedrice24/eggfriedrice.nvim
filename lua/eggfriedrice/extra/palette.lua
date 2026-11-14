@@ -183,6 +183,7 @@ local apps = {
 	"hyprland",
 	"gtk",
 	"adw",
+	"papirus",
 	"rofi",
 	"dunst",
 	"btop",

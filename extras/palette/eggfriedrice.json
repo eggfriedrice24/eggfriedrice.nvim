@@ -753,6 +753,11 @@
       "panel_bg_color": "#090c13",
       "panel_fg_color": "#d8d3c3"
     },
+    "papirus": {
+      "folder_front": "#ffc940",
+      "folder_back": "#d6a200",
+      "folder_symbol": "#584514"
+    },
     "rofi": {
       "panel": "#0d111ab8",
       "panel_edge": "#58648066",

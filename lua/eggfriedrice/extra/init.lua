@@ -121,6 +121,12 @@ M.extras = {
 		comment = "",
 		install = '`@import url("gtk-4.0.css");` from ~/.config/gtk-4.0/gtk.css',
 	},
+	papirus = {
+		label = "Papirus folder colors",
+		ext = "sh",
+		comment = "#",
+		install = "source it from a script that recolors Papirus's folder-yellow icons into a user icon theme (the dotfiles' papirus-folders.sh)",
+	},
 	rofi = {
 		label = "rofi",
 		ext = "rasi",
