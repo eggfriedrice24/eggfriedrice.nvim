@@ -182,6 +182,7 @@ local apps = {
 	"bat",
 	"hyprland",
 	"gtk",
+	"adw",
 	"rofi",
 	"dunst",
 	"btop",

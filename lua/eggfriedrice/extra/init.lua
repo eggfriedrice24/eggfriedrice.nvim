@@ -104,6 +104,23 @@ M.extras = {
 		comment = "",
 		install = '`@import url("/path/to/eggfriedrice.css");` at the top of your stylesheet, then use @yellow or alpha(@bg, 0.7)',
 	},
+	adw = {
+		label = "GTK3 apps on adw-gtk3 (Thunar, file pickers, ...)",
+		ext = "css",
+		file = "gtk-3.0.css",
+		comment = "",
+		install = 'set the GTK theme to adw-gtk3-dark, then `@import url("gtk-3.0.css");` from ~/.config/gtk-3.0/gtk.css',
+	},
+	["adw-gtk4"] = {
+		label = "GTK4 and libadwaita apps",
+		ext = "css",
+		dir = "adw",
+		file = "gtk-4.0.css",
+		module = "adw",
+		generate = "generate_gtk4",
+		comment = "",
+		install = '`@import url("gtk-4.0.css");` from ~/.config/gtk-4.0/gtk.css',
+	},
 	rofi = {
 		label = "rofi",
 		ext = "rasi",
