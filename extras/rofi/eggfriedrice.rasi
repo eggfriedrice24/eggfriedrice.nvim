@@ -1,6 +1,6 @@
 // eggfriedrice for rofi
 // generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand
-// install: `@import "/path/to/eggfriedrice.rasi"` in your rasi theme, then use @yellow
+// install: `@import "/path/to/eggfriedrice.rasi"` in your rasi theme, then use @yellow or the launcher roles (@panel, @accent)
 
 * {
     bg-dark: #090c13;
@@ -34,16 +34,15 @@
     diff-change: #302509;
     diff-delete: #391d1e;
     diff-text: #564825;
-}
 
-// suggested roles
-// window-background: @bg
-// text: @fg
-// muted: @comment
-// accent: @yellow
-// selected-background: @selection
-// selected-text: @fg
-// urgent: @red
-// active: @green
-// border-accent: @fg-gutter-ui
-// input-background: @bg-light
+    // launcher roles
+    panel: #0d111ab8;
+    panel-edge: #58648066;
+    panel-divider: #58648040;
+    foreground: #d8d3c3;
+    input: #f2eddd;
+    muted: #8695b7;
+    accent: #ffc940;
+    on-accent: #090c13;
+    urgent: #e06c75;
+}

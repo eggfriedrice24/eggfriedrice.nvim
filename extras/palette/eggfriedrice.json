@@ -703,16 +703,15 @@
       "tab_indicator": "#ffc940"
     },
     "rofi": {
-      "window_background": "#0d111a",
-      "text": "#d8d3c3",
+      "panel": "#0d111ab8",
+      "panel_edge": "#58648066",
+      "panel_divider": "#58648040",
+      "foreground": "#d8d3c3",
+      "input": "#f2eddd",
       "muted": "#8695b7",
       "accent": "#ffc940",
-      "selected_background": "#2f3b54",
-      "selected_text": "#d8d3c3",
-      "urgent": "#e06c75",
-      "active": "#60e654",
-      "border": "#586480",
-      "input_background": "#121722"
+      "on_accent": "#090c13",
+      "urgent": "#e06c75"
     },
     "dunst": {
       "global": {
