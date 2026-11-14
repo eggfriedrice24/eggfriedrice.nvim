@@ -166,7 +166,7 @@ The same palette, rendered for the rest of the terminal. Every file under [`extr
 | [Hyprland](https://hyprland.org) and hyprlock | `extras/hyprland/eggfriedrice.conf` | `source =` it, then use `$yellow` or `rgba($yellowAlphaee)` |
 | Lua (Hyprland's Lua config, wezterm, ...) | `extras/lua/eggfriedrice.lua` | put it on your Lua path and `require("eggfriedrice")` |
 | GTK CSS: [waybar](https://github.com/Alexays/Waybar), ghostty `gtk-custom-css` | `extras/gtk/eggfriedrice.css` | `@import url(...)` it, then use `@yellow` or `alpha(@bg, 0.7)` |
-| [rofi](https://github.com/davatorium/rofi) | `extras/rofi/eggfriedrice.rasi` | `@import` it, then use `@yellow` |
+| [rofi](https://github.com/davatorium/rofi) | `extras/rofi/eggfriedrice.rasi` | `@import` it, then use `@yellow` or the launcher roles (`@panel`, `@panel-edge`, `@accent`, `@on-accent`, ...) |
 | [dunst](https://dunst-project.org) | `extras/dunst/eggfriedrice.conf` | copy or symlink into `~/.config/dunst/dunstrc.d/` |
 | [btop](https://github.com/aristocratos/btop) | `extras/btop/eggfriedrice.theme` | copy into `~/.config/btop/themes/`, set `color_theme = "eggfriedrice"` |
 | [eza](https://github.com/eza-community/eza) | `extras/eza/eggfriedrice.yml` | copy or symlink to `~/.config/eza/theme.yml`, unset `LS_COLORS` and `EZA_COLORS` |

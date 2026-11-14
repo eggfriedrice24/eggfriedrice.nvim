@@ -108,7 +108,7 @@ M.extras = {
 		label = "rofi",
 		ext = "rasi",
 		comment = "//",
-		install = '`@import "/path/to/eggfriedrice.rasi"` in your rasi theme, then use @yellow',
+		install = '`@import "/path/to/eggfriedrice.rasi"` in your rasi theme, then use @yellow or the launcher roles (@panel, @accent)',
 	},
 	dunst = {
 		label = "dunst",
