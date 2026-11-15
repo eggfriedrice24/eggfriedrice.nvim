@@ -55,10 +55,27 @@
 @define-color panel_bg_color #090c13;
 @define-color panel_fg_color #d8d3c3;
 
-button.suggested-action,
-button.suggested-action:hover,
-button.suggested-action:active,
-button.suggested-action:checked {
+button.suggested-action:not(.flat):not(:disabled),
+button.suggested-action:not(.flat):not(:disabled):hover,
+button.suggested-action:not(.flat):not(:disabled):active,
+button.suggested-action:not(.flat):not(:disabled):checked {
+  color: @accent_fg_color;
+}
+
+.osd button.suggested-action:not(.flat):not(:disabled),
+.osd button.suggested-action:not(.flat):not(:disabled):hover,
+.osd button.suggested-action:not(.flat):not(:disabled):active,
+.osd button.suggested-action:not(.flat):not(:disabled):checked {
+  color: @window_fg_color;
+}
+
+.view.content-view.check:checked:not(list),
+.content-view:not(list) check:checked {
+  color: @accent_fg_color;
+}
+
+.terminal selection,
+.terminal text selection {
   color: @accent_fg_color;
 }
 

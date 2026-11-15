@@ -23,7 +23,7 @@ unfocused-split-fill = #090c13
 unfocused-split-opacity = 0.85
 
 window-titlebar-background = #090c13
-window-titlebar-foreground = #a8a396
+window-titlebar-foreground = #d8d3c3
 
 palette = 0=#121722
 palette = 1=#e06c75
