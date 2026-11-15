@@ -80,13 +80,35 @@ function M.roles(c)
 end
 
 -- adw-gtk3 writes a few colors straight into its rules instead of naming
--- them: white text on suggested buttons (unreadable on a yellow accent)
--- and a black tooltip. These rules put the named colors back.
+-- them: white text on the accent fill of suggested buttons, selection
+-- checks and terminal selections (unreadable on a yellow accent), and a
+-- black tooltip. These rules put the named colors back. A user
+-- stylesheet outranks the theme whatever the specificity, so the button
+-- rule is scoped to the filled, enabled states: flat and disabled
+-- buttons keep the theme's colors, and an OSD button, which is filled
+-- with black rather than the accent, gets light text back.
 local gtk3_fixes = [[
-button.suggested-action,
-button.suggested-action:hover,
-button.suggested-action:active,
-button.suggested-action:checked {
+button.suggested-action:not(.flat):not(:disabled),
+button.suggested-action:not(.flat):not(:disabled):hover,
+button.suggested-action:not(.flat):not(:disabled):active,
+button.suggested-action:not(.flat):not(:disabled):checked {
+  color: @accent_fg_color;
+}
+
+.osd button.suggested-action:not(.flat):not(:disabled),
+.osd button.suggested-action:not(.flat):not(:disabled):hover,
+.osd button.suggested-action:not(.flat):not(:disabled):active,
+.osd button.suggested-action:not(.flat):not(:disabled):checked {
+  color: @window_fg_color;
+}
+
+.view.content-view.check:checked:not(list),
+.content-view:not(list) check:checked {
+  color: @accent_fg_color;
+}
+
+.terminal selection,
+.terminal text selection {
   color: @accent_fg_color;
 }
 
