@@ -11,6 +11,7 @@ CONTENTS                                                *eggfriedrice-contents*
   6. Lualine .............................. |eggfriedrice-lualine|
   7. Palette .............................. |eggfriedrice-palette|
   8. Extras ............................... |eggfriedrice-extras|
+  9. Typography ........................... |eggfriedrice-typography|
 
 ==============================================================================
 1. INTRODUCTION                                     *eggfriedrice-introduction*
@@ -156,6 +157,8 @@ committed output drifts, so the extras never lag behind the editor.
   Hyprland, hyprlock         extras/hyprland/eggfriedrice.conf
   Lua                        extras/lua/eggfriedrice.lua
   GTK CSS (waybar, ghostty)  extras/gtk/eggfriedrice.css
+  GTK base font (waybar)     extras/gtk/font.css
+  GTK 4.16+ typography       extras/gtk/typography.css
   GTK3 apps on adw-gtk3      extras/adw/gtk-3.0.css
   GTK4 and libadwaita apps   extras/adw/gtk-4.0.css
   Papirus folders            extras/papirus/eggfriedrice.sh
@@ -182,5 +185,34 @@ words green like strings, `$vars` red like variables, redirections blue
 like operators.
 The palette JSON carries the full token set of the design system,
 including the semantic names each extra maps from.
+
+==============================================================================
+9. TYPOGRAPHY                                         *eggfriedrice-typography*
+
+`lua/eggfriedrice/typography.lua` holds the type next to the colors. The
+colorscheme never reads it; the extras emit it so the apps around the
+editor share one set of fonts.
+
+  Token            Value                          Use ~
+  font.ui          Nunito                         every UI surface
+  font.mono        Cartograph CF                  terminal text only
+  font.icon        JetBrainsMono Nerd Font Propo  nerd glyphs
+  font.emoji       Noto Color Emoji               emoji
+  weight.ui        500 (Medium)                   all ui text
+  weight.emphasis  600 (SemiBold)                 titles, clock, active
+  size.xs          9pt                            secondary labels
+  size.sm          10pt                           default UI size
+  size.md          11pt                           search field, location bar
+  size.lg          13pt                           largest text, icon glyphs
+
+rofi gets Pango font strings, one property per size (`@font-ui-sm`, ...,
+`@font-icon`, `@font-emoji`). `extras/gtk/typography.css` sets every token
+as a CSS custom property for GTK 4.16 and newer; GTK3 has no CSS
+variables, so `extras/gtk/font.css` is one `*` rule for a stylesheet that
+styles a whole app (waybar), and GTK apps in general take the ui font from
+the `font-name` setting. dunst gets `font` in its drop-in, Hyprland and
+hyprlock get `$font_ui`, `$font_weight_ui`, `$font_size_sm` and the rest,
+the Lua extra `M.font`, `M.font_weight` and `M.font_size`, and the palette
+JSON a `typography` section.
 
 vim:tw=78:ts=8:noet:ft=help:norl:

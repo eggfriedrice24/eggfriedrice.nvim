@@ -33,6 +33,7 @@ A bright tier (`red_bright`, `green_bright`, `yellow_bright`, `blue_bright`, `pu
 - Terminal colors (`:terminal` matches the theme)
 - Bundled lualine theme
 - Extras for Ghostty, Hyprland, waybar, GTK3 and libadwaita apps (adw-gtk3), Papirus folders, rofi, dunst, fzf, zsh, Starship, tmux, lazygit, bat, btop, eza, opencode, Slack, Discord, Zen and Chromium browsers, frameit and efr, generated from the same palette (see [Extras](#extras))
+- Typography tokens (fonts, weights and a small size scale) that the rofi, GTK, dunst, Hyprland and Lua extras emit next to the colors (see [Typography](#typography))
 - `on_colors` / `on_highlights` hooks for overriding anything
 - Popular plugin support (Telescope, neo-tree, gitsigns, nvim-cmp, and more)
 
@@ -166,6 +167,8 @@ The same palette, rendered for the rest of the terminal. Every file under [`extr
 | [Hyprland](https://hyprland.org) and hyprlock | `extras/hyprland/eggfriedrice.conf` | `source =` it, then use `$yellow` or `rgba($yellowAlphaee)` |
 | Lua (Hyprland's Lua config, wezterm, ...) | `extras/lua/eggfriedrice.lua` | put it on your Lua path and `require("eggfriedrice")` |
 | GTK CSS: [waybar](https://github.com/Alexays/Waybar), ghostty `gtk-custom-css` | `extras/gtk/eggfriedrice.css` | `@import url(...)` it, then use `@yellow` or `alpha(@bg, 0.7)` |
+| GTK CSS base font (waybar) | `extras/gtk/font.css` | `@import url(...)` it in a stylesheet that styles a whole app: one `*` rule with the ui font, its weight and the default size |
+| GTK 4.16+ CSS typography (ghostty `gtk-custom-css`) | `extras/gtk/typography.css` | `@import url(...)` it, then use `var(--font-ui)`, `var(--font-weight-ui)` or `var(--font-size-sm)` |
 | GTK3 apps on [adw-gtk3](https://github.com/lassekongo83/adw-gtk3) (Thunar, file pickers, ...) | `extras/adw/gtk-3.0.css` | set the GTK theme to `adw-gtk3-dark` and `@import` it from `~/.config/gtk-3.0/gtk.css`; it redefines the named colors the whole theme draws from |
 | GTK4 and libadwaita apps | `extras/adw/gtk-4.0.css` | `@import` it from `~/.config/gtk-4.0/gtk.css` |
 | [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) folders | `extras/papirus/eggfriedrice.sh` | the three folder hexes as shell variables, for a script that recolors Papirus's yellow folders into a user icon theme |
@@ -180,9 +183,35 @@ The same palette, rendered for the rest of the terminal. Every file under [`extr
 | [Helium](https://helium.computer) and other Chromium browsers | `extras/chromium/manifest.json` | `chrome://extensions`, Developer mode, Load unpacked, pick the `extras/chromium` folder |
 | [frameit](https://github.com/eggfriedrice24/frameit) 0.2+ | `extras/frameit/eggfriedrice.toml` | `include = "/path/to/eggfriedrice.toml"` in `~/.config/frameit/config.toml` |
 | [efr](https://github.com/eggfriedrice24/eggfriedrice.code) | `extras/efr/eggfriedrice.toml` | set `palette = "/path/to/eggfriedrice.toml"` under `[render]` in `~/.config/efr/config.toml`; the file's `code_theme` points at `../bat/eggfriedrice.tmTheme` and its `code_theme_ansi` at `../bat/eggfriedrice-ansi.tmTheme` next to it, so code uses the bat themes in truecolor and in 16 colours; in a copy of the file, set both to absolute paths. The file sets the background keys `code_bg`, `diff.add_bg` and `diff.remove_bg`, which need an efr that knows them |
-| anything else | `extras/palette/eggfriedrice.json` | primitives, semantic tokens, the 16 ANSI slots and every app's role map as JSON |
+| anything else | `extras/palette/eggfriedrice.json` | primitives, semantic tokens, the 16 ANSI slots, the typography tokens and every app's role map as JSON |
 
 Shell roles match the editor: commands are yellow like functions, quoted words green like strings, `$vars` red like variables, redirections blue like operators. The palette JSON carries the full token set of the design system, including the semantic names each extra maps from.
+
+### Typography
+
+`lua/eggfriedrice/typography.lua` holds the type next to the colors. The colorscheme never reads it (the terminal decides the editor's font); the extras emit it so the apps around the editor share one set of fonts.
+
+| Token | Value | Use |
+| --- | --- | --- |
+| `font.ui` | Nunito | every UI surface: bars, launchers, notifications, file manager |
+| `font.mono` | Cartograph CF | terminal text only |
+| `font.icon` | JetBrainsMono Nerd Font Propo | nerd glyphs the ui font lacks |
+| `font.emoji` | Noto Color Emoji | emoji |
+| `weight.ui` | 500 (Medium) | all ui text; Regular is too thin at small sizes on the navy |
+| `weight.emphasis` | 600 (SemiBold) | titles, the clock, active labels |
+| `size.xs` | 9pt | secondary labels |
+| `size.sm` | 10pt | the default UI size |
+| `size.md` | 11pt | prominent text: a search field, a location bar |
+| `size.lg` | 13pt | the largest text, and icon glyphs beside md text |
+
+How each extra carries them:
+
+- rofi: Pango font strings, one property per size (`@font-ui-xs` to `@font-ui-lg`, `@font-ui-emphasis`, `@font-mono`, `@font-icon`) plus `@font-emoji` sized for an emoji grid; use `font: @font-ui-sm;`
+- GTK: `extras/gtk/typography.css` sets every token as a custom property for GTK 4.16 and newer; GTK3 has no CSS variables, so `extras/gtk/font.css` is one `*` rule for stylesheets that style a whole app, and GTK apps in general take the ui font from the `font-name` setting (`Nunito Medium 10`)
+- dunst: `font` in the drop-in's `[global]`
+- Hyprland and hyprlock: `$font_ui`, `$font_mono`, `$font_icon`, `$font_emoji`, `$font_weight_ui`, `$font_weight_emphasis` and `$font_size_xs` to `$font_size_lg`; hyprlock sets a label's weight itself, so weights go through markup: `text = <span weight="$font_weight_emphasis">$TIME</span>`
+- Lua: `M.font`, `M.font_weight` and `M.font_size`
+- palette JSON: a `typography` section
 
 ## Supported Plugins
 
