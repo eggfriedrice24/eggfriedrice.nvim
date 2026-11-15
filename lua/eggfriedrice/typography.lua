@@ -44,6 +44,9 @@ M.sizes = { "xs", "sm", "md", "lg" }
 ---Font families in the order renderers list them.
 M.fonts = { "ui", "mono", "icon", "emoji" }
 
+---Weight names in the order renderers list them.
+M.weights = { "ui", "emphasis" }
+
 ---Style names Pango and fontconfig use for the CSS weights.
 local weight_names = {
 	[400] = "Regular",

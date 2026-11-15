@@ -118,7 +118,7 @@ function M.generate_typography(c)
 	for _, font in ipairs(typography.fonts) do
 		lines[#lines + 1] = ('  --font-%s: "%s";'):format(font, t.font[font])
 	end
-	for _, weight in ipairs({ "ui", "emphasis" }) do
+	for _, weight in ipairs(typography.weights) do
 		lines[#lines + 1] = ("  --font-weight-%s: %d;"):format(weight, t.weight[weight])
 	end
 	for _, size in ipairs(typography.sizes) do

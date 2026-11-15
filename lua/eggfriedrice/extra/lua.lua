@@ -47,7 +47,7 @@ function M.generate(c)
 	local t = typography.get()
 	local groups = {
 		{ "font", typography.fonts, '"%s"', t.font },
-		{ "font_weight", { "ui", "emphasis" }, "%d", t.weight },
+		{ "font_weight", typography.weights, "%d", t.weight },
 		{ "font_size", typography.sizes, "%d", t.size },
 	}
 	for _, group in ipairs(groups) do

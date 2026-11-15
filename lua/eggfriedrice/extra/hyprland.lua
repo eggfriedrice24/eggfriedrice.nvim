@@ -44,7 +44,7 @@ function M.generate(c)
 	for _, font in ipairs(typography.fonts) do
 		lines[#lines + 1] = ("$font_%s = %s"):format(font, t.font[font])
 	end
-	for _, weight in ipairs({ "ui", "emphasis" }) do
+	for _, weight in ipairs(typography.weights) do
 		lines[#lines + 1] = ("$font_weight_%s = %d"):format(weight, t.weight[weight])
 	end
 	for _, size in ipairs(typography.sizes) do

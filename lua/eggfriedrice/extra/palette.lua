@@ -316,7 +316,7 @@ function M.generate(c)
 		group(typography.fonts, t.font, '"%s"'),
 		"    },",
 		'    "weight": {',
-		group({ "ui", "emphasis" }, t.weight, "%d"),
+		group(typography.weights, t.weight, "%d"),
 		"    },",
 		'    "size_unit": "pt",',
 		'    "size": {',
