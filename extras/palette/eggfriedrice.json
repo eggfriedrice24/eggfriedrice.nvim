@@ -154,6 +154,25 @@
     "#5cf5e6",
     "#f2eddd"
   ],
+  "typography": {
+    "font": {
+      "ui": "Nunito",
+      "mono": "Cartograph CF",
+      "icon": "JetBrainsMono Nerd Font Propo",
+      "emoji": "Noto Color Emoji"
+    },
+    "weight": {
+      "ui": 500,
+      "emphasis": 600
+    },
+    "size_unit": "pt",
+    "size": {
+      "xs": 9,
+      "sm": 10,
+      "md": 11,
+      "lg": 13
+    }
+  },
   "apps": {
     "ghostty": {
       "background": "#0d111a",
@@ -772,6 +791,7 @@
     },
     "dunst": {
       "global": {
+        "font": "Nunito Medium 10",
         "frame_color": "#586480",
         "separator_color": "frame",
         "highlight": "#ffc940"

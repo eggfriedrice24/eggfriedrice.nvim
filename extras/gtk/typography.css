@@ -1,0 +1,18 @@
+/*
+ * eggfriedrice for GTK 4.16+ CSS typography variables (ghostty gtk-custom-css)
+ * generated from lua/eggfriedrice/typography.lua by `make extras`; do not edit by hand
+ * install: `@import url("/path/to/typography.css");`, then use var(--font-ui), var(--font-weight-ui) or var(--font-size-sm)
+ */
+
+:root {
+  --font-ui: "Nunito";
+  --font-mono: "Cartograph CF";
+  --font-icon: "JetBrainsMono Nerd Font Propo";
+  --font-emoji: "Noto Color Emoji";
+  --font-weight-ui: 500;
+  --font-weight-emphasis: 600;
+  --font-size-xs: 9pt;
+  --font-size-sm: 10pt;
+  --font-size-md: 11pt;
+  --font-size-lg: 13pt;
+}

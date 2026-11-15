@@ -1,0 +1,12 @@
+/*
+ * eggfriedrice for GTK CSS base font (waybar)
+ * generated from lua/eggfriedrice/typography.lua by `make extras`; do not edit by hand
+ * install: `@import url("/path/to/font.css");` in a stylesheet that styles a whole app (waybar); other GTK apps take the ui font from the font-name setting
+ */
+
+/* scale: xs 9pt, sm 10pt, md 11pt, lg 13pt; weights: ui 500, emphasis 600 */
+* {
+  font-family: "Nunito", "JetBrainsMono Nerd Font Propo";
+  font-weight: 500;
+  font-size: 10pt;
+}

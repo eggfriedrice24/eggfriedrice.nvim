@@ -42,6 +42,21 @@ function M.generate(c)
 		end
 		lines[#lines + 1] = ""
 	end
+	-- typography tokens: family names, CSS weights and sizes in points
+	local typography = require("eggfriedrice.typography")
+	local t = typography.get()
+	local groups = {
+		{ "font", typography.fonts, '"%s"', t.font },
+		{ "font_weight", { "ui", "emphasis" }, "%d", t.weight },
+		{ "font_size", typography.sizes, "%d", t.size },
+	}
+	for _, group in ipairs(groups) do
+		lines[#lines + 1] = ("M.%s = {}"):format(group[1])
+		for _, key in ipairs(group[2]) do
+			lines[#lines + 1] = ("M.%s.%s = " .. group[3]):format(group[1], key, group[4][key])
+		end
+		lines[#lines + 1] = ""
+	end
 	lines[#lines + 1] = '-- top-level names are the rgb() view, so `require("eggfriedrice").yellow` works'
 	lines[#lines + 1] = "setmetatable(M, { __index = M.rgb })"
 	lines[#lines + 1] = ""

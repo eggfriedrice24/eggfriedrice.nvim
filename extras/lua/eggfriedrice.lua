@@ -103,6 +103,22 @@ M.hex.diff_change = "#302509"
 M.hex.diff_delete = "#391d1e"
 M.hex.diff_text = "#564825"
 
+M.font = {}
+M.font.ui = "Nunito"
+M.font.mono = "Cartograph CF"
+M.font.icon = "JetBrainsMono Nerd Font Propo"
+M.font.emoji = "Noto Color Emoji"
+
+M.font_weight = {}
+M.font_weight.ui = 500
+M.font_weight.emphasis = 600
+
+M.font_size = {}
+M.font_size.xs = 9
+M.font_size.sm = 10
+M.font_size.md = 11
+M.font_size.lg = 13
+
 -- top-level names are the rgb() view, so `require("eggfriedrice").yellow` works
 setmetatable(M, { __index = M.rgb })
 

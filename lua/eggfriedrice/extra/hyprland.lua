@@ -33,6 +33,23 @@ function M.generate(c)
 	for _, color in ipairs(extra.colors(c)) do
 		lines[#lines + 1] = ("$%sAlpha = %s"):format(color[1], color[2]:sub(2))
 	end
+	-- hyprlock sets a label's weight itself (400) after parsing font_family,
+	-- so the families are bare and the weights are CSS numbers for markup:
+	-- `text = <span weight="$font_weight_emphasis">$TIME</span>`
+	local typography = require("eggfriedrice.typography")
+	local t = typography.get()
+	lines[#lines + 1] = ""
+	lines[#lines + 1] =
+		"# typography: families for font_family, weights for <span weight>, sizes in points for font_size"
+	for _, font in ipairs(typography.fonts) do
+		lines[#lines + 1] = ("$font_%s = %s"):format(font, t.font[font])
+	end
+	for _, weight in ipairs({ "ui", "emphasis" }) do
+		lines[#lines + 1] = ("$font_weight_%s = %d"):format(weight, t.weight[weight])
+	end
+	for _, size in ipairs(typography.sizes) do
+		lines[#lines + 1] = ("$font_size_%s = %d"):format(size, t.size[size])
+	end
 	local roles = M.roles(c)
 	vim.list_extend(lines, {
 		"",

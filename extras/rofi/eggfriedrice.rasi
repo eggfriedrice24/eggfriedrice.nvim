@@ -1,6 +1,6 @@
 // eggfriedrice for rofi
 // generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand
-// install: `@import "/path/to/eggfriedrice.rasi"` in your rasi theme, then use @yellow or the launcher roles (@panel, @accent)
+// install: `@import "/path/to/eggfriedrice.rasi"` in your rasi theme, then use @yellow, the launcher roles (@panel, @accent) or the fonts (@font-ui-sm)
 
 * {
     bg-dark: #090c13;
@@ -45,4 +45,14 @@
     accent: #ffc940;
     on-accent: #090c13;
     urgent: #e06c75;
+
+    // typography, for `font: @font-ui-sm;`
+    font-ui-xs: "Nunito Medium 9";
+    font-ui-sm: "Nunito Medium 10";
+    font-ui-md: "Nunito Medium 11";
+    font-ui-lg: "Nunito Medium 13";
+    font-ui-emphasis: "Nunito SemiBold 10";
+    font-mono: "Cartograph CF 10";
+    font-icon: "JetBrainsMono Nerd Font Propo 13";
+    font-emoji: "Noto Color Emoji 20";
 }

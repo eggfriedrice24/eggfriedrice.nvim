@@ -31,6 +31,28 @@ function M.roles(c)
 	}
 end
 
+---The fonts a launcher takes from the typography tokens, as Pango font
+---strings (rofi's `font` takes family, weight and size in one value, so
+---each size of the scale is its own property). The icon font matches the
+---largest text; the emoji font is sized for a cell of an emoji grid, not
+---for running text.
+---@param t eggfriedrice.Typography
+---@return { [1]: string, [2]: string }[] name, font string
+function M.fonts(t)
+	local typography = require("eggfriedrice.typography")
+	local out = {}
+	for _, size in ipairs(typography.sizes) do
+		out[#out + 1] = { "font_ui_" .. size, typography.pango(t.font.ui, t.size[size], t.weight.ui) }
+	end
+	vim.list_extend(out, {
+		{ "font_ui_emphasis", typography.pango(t.font.ui, t.size.sm, t.weight.emphasis) },
+		{ "font_mono", typography.pango(t.font.mono, t.size.sm) },
+		{ "font_icon", typography.pango(t.font.icon, t.size.lg) },
+		{ "font_emoji", typography.pango(t.font.emoji, 20) },
+	})
+	return out
+end
+
 ---rasi property name: hyphenated, and the palette's `border` renamed so
 ---it never shadows rofi's own border-width property in the `*` block.
 ---@param name string
@@ -51,6 +73,11 @@ function M.generate(c)
 	lines[#lines + 1] = "    // launcher roles"
 	for _, e in ipairs(M.roles(c)) do
 		lines[#lines + 1] = ("    %s: %s;"):format(prop(e[1]), extra.hex(c, e[2]))
+	end
+	lines[#lines + 1] = ""
+	lines[#lines + 1] = "    // typography, for `font: @font-ui-sm;`"
+	for _, e in ipairs(M.fonts(require("eggfriedrice.typography").get())) do
+		lines[#lines + 1] = ('    %s: "%s";'):format(prop(e[1]), e[2])
 	end
 	lines[#lines + 1] = "}"
 	lines[#lines + 1] = ""

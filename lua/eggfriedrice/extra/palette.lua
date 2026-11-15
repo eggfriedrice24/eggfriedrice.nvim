@@ -275,8 +275,9 @@ local function encode(c, v, indent)
 end
 
 ---Machine-readable palette for consumers outside Neovim: the design
----system's primitives, semantic tokens, ANSI slots and per-app role
----maps, regenerated live from the same data the extras render from.
+---system's primitives, semantic tokens, ANSI slots, typography tokens and
+---per-app role maps, regenerated live from the same data the extras
+---render from.
 ---@param c table
 ---@return string
 function M.generate(c)
@@ -288,6 +289,15 @@ function M.generate(c)
 	for _, name in ipairs(apps) do
 		local mod = require("eggfriedrice.extra." .. name)
 		sections[#sections + 1] = ('    "%s": %s'):format(mod.app or name, encode(c, mod.roles(c), "    "))
+	end
+	local typography = require("eggfriedrice.typography")
+	local t = typography.get()
+	local function group(keys, values, fmt)
+		local out = {}
+		for _, k in ipairs(keys) do
+			out[#out + 1] = ('      "%s": ' .. fmt):format(k, values[k])
+		end
+		return table.concat(out, ",\n")
 	end
 	return table.concat({
 		"{",
@@ -301,6 +311,18 @@ function M.generate(c)
 		'  "ansi": [',
 		table.concat(slots, ",\n"),
 		"  ],",
+		'  "typography": {',
+		'    "font": {',
+		group(typography.fonts, t.font, '"%s"'),
+		"    },",
+		'    "weight": {',
+		group({ "ui", "emphasis" }, t.weight, "%d"),
+		"    },",
+		'    "size_unit": "pt",',
+		'    "size": {',
+		group(typography.sizes, t.size, "%d"),
+		"    }",
+		"  },",
 		'  "apps": {',
 		table.concat(sections, ",\n"),
 		"  }",
