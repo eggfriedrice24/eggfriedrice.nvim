@@ -176,11 +176,14 @@ the editor.
   efr                        extras/efr/eggfriedrice.toml
   anything else              extras/palette/eggfriedrice.json
 
-Each generated file starts with its install hint. The hyprland, lua, gtk
-and rofi files expose the whole palette as named variables, and the tmux
-file also sets it as `@eggfriedrice_*` user options. Every extra renders
-from a role map, and the palette JSON emits all of them under "apps",
-so the design export and the generated files agree by construction.
+Each generated file whose format allows comments starts with its install
+hint (the JSON files do not). The hyprland, lua, gtk and rofi files expose
+the whole palette as named variables, and the tmux file also sets it as
+`@eggfriedrice_*` user options. Every extra with app roles renders from a
+role map, and the palette JSON emits those under "apps", so the design
+export and the generated files agree by construction. The rest render
+without one: fsh straight from the palette, and the lua, GTK font and
+GTK typography files from the palette and typography tokens.
 Shell roles match the editor: commands are yellow like functions, quoted
 words green like strings, `$vars` red like variables, redirections blue
 like operators.
