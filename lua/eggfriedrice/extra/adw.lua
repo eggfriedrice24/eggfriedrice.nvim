@@ -25,21 +25,23 @@ end
 ---@return eggfriedrice.Entry[]
 function M.roles(c)
 	local _ = c
+	-- text on every filled state color, not only the accent
+	local on = require("eggfriedrice.extra.palette").on_accent
 	return {
 		{ "accent_bg_color", "yellow" },
-		{ "accent_fg_color", "bg_dark" },
+		{ "accent_fg_color", on },
 		{ "accent_color", "yellow" },
 		{ "destructive_bg_color", "red" },
-		{ "destructive_fg_color", "bg_dark" },
+		{ "destructive_fg_color", on },
 		{ "destructive_color", "red" },
 		{ "success_bg_color", "green" },
-		{ "success_fg_color", "bg_dark" },
+		{ "success_fg_color", on },
 		{ "success_color", "green" },
 		{ "warning_bg_color", "warning" },
-		{ "warning_fg_color", "bg_dark" },
+		{ "warning_fg_color", on },
 		{ "warning_color", "warning" },
 		{ "error_bg_color", "error" },
-		{ "error_fg_color", "bg_dark" },
+		{ "error_fg_color", on },
 		{ "error_color", "error" },
 		{ "", "" },
 		{ "window_bg_color", "bg" },

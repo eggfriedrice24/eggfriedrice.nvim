@@ -15,7 +15,7 @@ function M.roles(c)
 		{ "bar_border", "fg_gutter" },
 		{ "muted", "comment" },
 		{ "active", "yellow" },
-		{ "active_text", "bg_dark" },
+		{ "active_text", require("eggfriedrice.extra.palette").on_accent },
 		{ "urgent", "red" },
 		{ "success", "green" },
 		{ "info", "blue" },

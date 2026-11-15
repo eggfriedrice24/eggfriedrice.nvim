@@ -34,11 +34,16 @@ local primitives = {
 	{ "fg_bright", "fg_bright" },
 	{ "search_match", "search" },
 	{ "search_selected", "search_selected" },
+	{ "scope", "scope" },
 	{ "diff_add", "diff.add" },
 	{ "diff_change", "diff.change" },
 	{ "diff_delete", "diff.delete" },
 	{ "diff_text", "diff.text" },
 }
+
+---Palette key of text on an accent fill. The semantic token and every
+---extra that fills with the accent (rofi, gtk, adw) read this one value.
+M.on_accent = "bg_dark"
 
 ---@type { [1]: string, [2]: string }[]
 local semantic = {
@@ -46,7 +51,7 @@ local semantic = {
 	{ "text_muted", "fg_dark" },
 	{ "text_subtle", "comment" },
 	{ "text_bright", "fg_bright" },
-	{ "text_on_accent", "bg" },
+	{ "text_on_accent", M.on_accent },
 	{ "text_line_number", "fg_gutter_ui" },
 	{ "text_decorative", "fg_gutter" },
 	{ "surface_0", "bg_dark" },

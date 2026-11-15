@@ -26,7 +26,7 @@ function M.roles(c)
 		{ "input", "fg_bright" },
 		{ "muted", "comment" },
 		{ "accent", "yellow" },
-		{ "on_accent", "bg_dark" },
+		{ "on_accent", require("eggfriedrice.extra.palette").on_accent },
 		{ "urgent", "red" },
 	}
 end
