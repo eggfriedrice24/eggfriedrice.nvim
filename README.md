@@ -151,7 +151,7 @@ require("lualine").setup({
 
 ## Extras
 
-The same palette, rendered for the rest of the terminal. Every file under [`extras/`](extras) is generated from `lua/eggfriedrice/colors.lua` by `make extras`, and CI fails when they drift, so they never lag behind the editor.
+The same palette, rendered for the rest of the terminal. Every file under [`extras/`](extras) is generated from `lua/eggfriedrice/colors.lua` and `typography.lua` by `make extras`, and CI fails when they drift, so they never lag behind the editor.
 
 | App | File | Install |
 | --- | --- | --- |

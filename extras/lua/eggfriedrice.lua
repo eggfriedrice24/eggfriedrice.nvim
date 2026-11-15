@@ -1,5 +1,5 @@
 -- eggfriedrice for Lua
--- generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand
+-- generated from lua/eggfriedrice/colors.lua and typography.lua by `make extras`; do not edit by hand
 -- install: put it on your Lua path and `require("eggfriedrice")` (Hyprland's Lua config, wezterm, ...)
 
 local M = {}

@@ -1,5 +1,5 @@
 // eggfriedrice for rofi
-// generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand
+// generated from lua/eggfriedrice/colors.lua and typography.lua by `make extras`; do not edit by hand
 // install: `@import "/path/to/eggfriedrice.rasi"` in your rasi theme, then use @yellow, the launcher roles (@panel, @accent) or the fonts (@font-ui-sm)
 
 * {

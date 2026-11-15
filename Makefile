@@ -1,6 +1,6 @@
 .PHONY: extras preview check-extras check-preview fmt check
 
-# regenerate extras/ from lua/eggfriedrice/colors.lua
+# regenerate extras/ from lua/eggfriedrice/colors.lua and typography.lua
 extras:
 	nvim -l scripts/extras.lua
 

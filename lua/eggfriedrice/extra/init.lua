@@ -2,10 +2,11 @@
 ---@author eggfriedrice24
 ---@license MIT
 
--- Generates the files under extras/ from the palette, so every app that
--- wears the theme reads the same hexes as Neovim. Run `make extras` (or
--- `nvim -l scripts/extras.lua`) after changing colors.lua; CI fails when
--- the committed output drifts from the palette.
+-- Generates the files under extras/ from the palette and the typography
+-- tokens, so every app that wears the theme reads the same hexes and fonts
+-- as Neovim. Run `make extras` (or `nvim -l scripts/extras.lua`) after
+-- changing colors.lua or typography.lua; CI fails when the committed output
+-- drifts from them.
 
 local M = {}
 
@@ -18,6 +19,7 @@ local M = {}
 ---@field dir? string directory under extras/ when it is not the name (a second file of an extra)
 ---@field module? string module under eggfriedrice.extra when it is not the name
 ---@field generate? string function of the module that renders the file, "generate" by default
+---@field sources? string[] files under lua/eggfriedrice/ the header names, { "colors.lua" } by default
 
 ---Registered extras, keyed by their directory name under extras/.
 ---@type table<string, eggfriedrice.Extra>
@@ -91,12 +93,14 @@ M.extras = {
 		ext = "conf",
 		comment = "#",
 		install = "`source = /path/to/eggfriedrice.conf` in hyprland.conf or hyprlock.conf, then use $yellow or rgba($yellowAlphaee), and $font_ui for font_family",
+		sources = { "colors.lua", "typography.lua" },
 	},
 	lua = {
 		label = "Lua",
 		ext = "lua",
 		comment = "--",
 		install = 'put it on your Lua path and `require("eggfriedrice")` (Hyprland\'s Lua config, wezterm, ...)',
+		sources = { "colors.lua", "typography.lua" },
 	},
 	gtk = {
 		label = "GTK CSS (waybar, ghostty gtk-custom-css)",
@@ -152,12 +156,14 @@ M.extras = {
 		ext = "rasi",
 		comment = "//",
 		install = '`@import "/path/to/eggfriedrice.rasi"` in your rasi theme, then use @yellow, the launcher roles (@panel, @accent) or the fonts (@font-ui-sm)',
+		sources = { "colors.lua", "typography.lua" },
 	},
 	dunst = {
 		label = "dunst",
 		ext = "conf",
 		comment = "#",
 		install = "copy or symlink into ~/.config/dunst/dunstrc.d/",
+		sources = { "colors.lua", "typography.lua" },
 	},
 	btop = {
 		label = "btop",
@@ -270,9 +276,10 @@ function M.header(name)
 		return ""
 	end
 	local p = extra.comment .. " "
+	local sources = table.concat(extra.sources or { "colors.lua" }, " and ")
 	return table.concat({
 		p .. "eggfriedrice for " .. extra.label,
-		p .. "generated from lua/eggfriedrice/colors.lua by `make extras`; do not edit by hand",
+		p .. "generated from lua/eggfriedrice/" .. sources .. " by `make extras`; do not edit by hand",
 		p .. "install: " .. extra.install,
 		"",
 		"",

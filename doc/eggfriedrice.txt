@@ -141,8 +141,9 @@ time, so palette overrides via |eggfriedrice-on_colors| carry through.
 
 The palette rendered for other programs lives under `extras/` in the
 repository. Every file there is generated from `lua/eggfriedrice/colors.lua`
-by `make extras` (or `nvim -l scripts/extras.lua`), and CI fails when the
-committed output drifts, so the extras never lag behind the editor.
+and `typography.lua` by `make extras` (or `nvim -l scripts/extras.lua`), and
+CI fails when the committed output drifts, so the extras never lag behind
+the editor.
 
   App                        File                              ~
   Ghostty                    extras/ghostty/eggfriedrice
