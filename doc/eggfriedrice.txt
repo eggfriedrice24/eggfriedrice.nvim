@@ -152,9 +152,13 @@ committed output drifts, so the extras never lag behind the editor.
   tmux (3.3+)                extras/tmux/eggfriedrice.tmux
   lazygit                    extras/lazygit/eggfriedrice.yml
   bat, Sublime Text          extras/bat/eggfriedrice.tmTheme
+  bat (16 terminal colours)  extras/bat/eggfriedrice-ansi.tmTheme
   Hyprland, hyprlock         extras/hyprland/eggfriedrice.conf
   Lua                        extras/lua/eggfriedrice.lua
   GTK CSS (waybar, ghostty)  extras/gtk/eggfriedrice.css
+  GTK3 apps on adw-gtk3      extras/adw/gtk-3.0.css
+  GTK4 and libadwaita apps   extras/adw/gtk-4.0.css
+  Papirus folders            extras/papirus/eggfriedrice.sh
   rofi                       extras/rofi/eggfriedrice.rasi
   dunst                      extras/dunst/eggfriedrice.conf
   btop                       extras/btop/eggfriedrice.theme
