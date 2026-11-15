@@ -156,7 +156,7 @@
   ],
   "typography": {
     "font": {
-      "ui": "Nunito",
+      "ui": "Atkinson Hyperlegible Next",
       "mono": "Cartograph CF",
       "icon": "JetBrainsMono Nerd Font Propo",
       "emoji": "Noto Color Emoji"
@@ -791,7 +791,7 @@
     },
     "dunst": {
       "global": {
-        "font": "Nunito Medium 10",
+        "font": "Atkinson Hyperlegible Next Medium 10",
         "frame_color": "#586480",
         "separator_color": "frame",
         "highlight": "#ffc940"

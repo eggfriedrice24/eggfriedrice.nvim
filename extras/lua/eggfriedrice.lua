@@ -104,7 +104,7 @@ M.hex.diff_delete = "#391d1e"
 M.hex.diff_text = "#564825"
 
 M.font = {}
-M.font.ui = "Nunito"
+M.font.ui = "Atkinson Hyperlegible Next"
 M.font.mono = "Cartograph CF"
 M.font.icon = "JetBrainsMono Nerd Font Propo"
 M.font.emoji = "Noto Color Emoji"

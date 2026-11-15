@@ -47,11 +47,11 @@
     urgent: #e06c75;
 
     // typography, for `font: @font-ui-sm;`
-    font-ui-xs: "Nunito Medium 9";
-    font-ui-sm: "Nunito Medium 10";
-    font-ui-md: "Nunito Medium 11";
-    font-ui-lg: "Nunito Medium 13";
-    font-ui-emphasis: "Nunito SemiBold 10";
+    font-ui-xs: "Atkinson Hyperlegible Next Medium 9";
+    font-ui-sm: "Atkinson Hyperlegible Next Medium 10";
+    font-ui-md: "Atkinson Hyperlegible Next Medium 11";
+    font-ui-lg: "Atkinson Hyperlegible Next Medium 13";
+    font-ui-emphasis: "Atkinson Hyperlegible Next SemiBold 10";
     font-mono: "Cartograph CF 10";
     font-icon: "JetBrainsMono Nerd Font Propo 13";
     font-emoji: "Noto Color Emoji 20";

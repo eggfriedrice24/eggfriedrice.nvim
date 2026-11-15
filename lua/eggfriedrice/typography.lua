@@ -18,7 +18,7 @@ local M = {}
 function M.get()
 	return {
 		font = {
-			ui = "Nunito", -- every UI surface: bars, launchers, notifications, file manager
+			ui = "Atkinson Hyperlegible Next", -- every UI surface: bars, launchers, notifications, file manager
 			mono = "Cartograph CF", -- terminal text only
 			icon = "JetBrainsMono Nerd Font Propo", -- nerd glyphs the ui font lacks
 			emoji = "Noto Color Emoji",
