@@ -24,7 +24,7 @@ function M.roles(c)
 		{ "unfocused_split_fill", "bg_dark" },
 		{ "unfocused_split_opacity", 0.85 },
 		{ "window_titlebar_background", "bg_dark" },
-		{ "window_titlebar_foreground", "fg_dark" },
+		{ "window_titlebar_foreground", "fg" },
 		{ "palette", require("eggfriedrice.extra.palette").ansi },
 		{ "palette_generate", true },
 	}
