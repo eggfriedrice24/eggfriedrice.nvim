@@ -2,3 +2,6 @@ CLAUDE.md
 
 # written by Chromium browsers next to the unpacked theme
 extras/chromium/Cached Theme.pak
+
+# help tags Neovim generates when it loads this repo as a local plugin
+doc/tags
