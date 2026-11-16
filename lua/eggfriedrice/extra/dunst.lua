@@ -12,9 +12,11 @@ local M = {}
 ---@param c table
 ---@return eggfriedrice.Entry[]
 function M.roles(c)
-	local _ = c
 	local typography = require("eggfriedrice.typography")
 	local t = typography.get()
+	-- glass, like the launcher: bg at the shared glass opacity, blurred by the compositor
+	local palette = require("eggfriedrice.extra.palette")
+	local glass = palette.with_alpha(c.bg, palette.glass)
 	return {
 		{
 			"global",
@@ -28,7 +30,7 @@ function M.roles(c)
 		{
 			"urgency_low",
 			{
-				{ "background", "bg" },
+				{ "background", glass },
 				{ "foreground", "comment" },
 				{ "frame_color", "fg_gutter_ui" },
 				{ "highlight", "cyan" },
@@ -36,11 +38,11 @@ function M.roles(c)
 		},
 		{
 			"urgency_normal",
-			{ { "background", "bg" }, { "foreground", "fg" }, { "frame_color", "border" }, { "highlight", "yellow" } },
+			{ { "background", glass }, { "foreground", "fg" }, { "frame_color", "border" }, { "highlight", "yellow" } },
 		},
 		{
 			"urgency_critical",
-			{ { "background", "bg" }, { "foreground", "fg" }, { "frame_color", "red" }, { "highlight", "red" } },
+			{ { "background", glass }, { "foreground", "fg" }, { "frame_color", "red" }, { "highlight", "red" } },
 		},
 	}
 end

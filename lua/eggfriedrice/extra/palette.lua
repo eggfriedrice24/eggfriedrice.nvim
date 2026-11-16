@@ -45,6 +45,19 @@ local primitives = {
 ---extra that fills with the accent (rofi, gtk, adw) read this one value.
 M.on_accent = "bg_dark"
 
+---Opacity of the glass surfaces the compositor blurs through: the launcher
+---panel (rofi), notifications (dunst) and the bar (gtk's `@panel`). They
+---all read this one value; bg at this alpha.
+M.glass = 0.72
+
+---`#rrggbbaa`: `hex` (`#rrggbb`) at opacity `a` (0..1).
+---@param hex string
+---@param a number
+---@return string
+function M.with_alpha(hex, a)
+	return hex .. ("%02x"):format(math.floor(a * 255 + 0.5))
+end
+
 ---@type { [1]: string, [2]: string }[]
 local semantic = {
 	{ "text_primary", "fg" },

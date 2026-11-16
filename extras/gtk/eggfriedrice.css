@@ -36,6 +36,8 @@
 @define-color diff_delete #391d1e;
 @define-color diff_text #564825;
 
+@define-color panel alpha(@bg, 0.72);
+
 /* suggested roles */
 /* bar_background: @bg */
 /* bar_foreground: @fg */

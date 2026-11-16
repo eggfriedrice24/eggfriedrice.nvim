@@ -44,6 +44,9 @@ function M.generate(c)
 		lines[#lines + 1] = ("@define-color %s %s;"):format(color[1], color[2])
 	end
 	lines[#lines + 1] = ""
+	-- the glass surface (bar), at the opacity rofi's panel and dunst share
+	lines[#lines + 1] = ("@define-color panel alpha(@bg, %s);"):format(require("eggfriedrice.extra.palette").glass)
+	lines[#lines + 1] = ""
 	lines[#lines + 1] = "/* suggested roles */"
 	for _, e in ipairs(M.roles(c)) do
 		lines[#lines + 1] = ("/* %s: @%s */"):format(e[1], e[2])

@@ -3,13 +3,9 @@
 
 local M = {}
 
----`#rrggbbaa`, since rasi has no alpha().
----@param hex string
----@param a number 0..1
----@return string
-local function alpha(hex, a)
-	return hex .. ("%02x"):format(math.floor(a * 255 + 0.5))
-end
+-- `#rrggbbaa`, since rasi has no alpha()
+local palette = require("eggfriedrice.extra.palette")
+local alpha = palette.with_alpha
 
 ---The roles a launcher takes from the palette: a translucent panel the
 ---compositor blurs through, a faint edge and divider, and a filled accent
@@ -19,7 +15,7 @@ end
 ---@return eggfriedrice.Entry[]
 function M.roles(c)
 	return {
-		{ "panel", alpha(c.bg, 0.72) },
+		{ "panel", alpha(c.bg, palette.glass) },
 		{ "panel_edge", alpha(c.fg_gutter_ui, 0.40) },
 		{ "panel_divider", alpha(c.fg_gutter_ui, 0.25) },
 		{ "foreground", "fg" },
